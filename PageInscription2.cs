@@ -23,5 +23,12 @@ namespace SAE_S2._01
             pageInscription1.Show();
             this.Close();
         }
+
+        private void btnValider2_Click(object sender, EventArgs e)
+        {
+            PageValidationConnexion pageValidationConnexion = new PageValidationConnexion();
+            pageValidationConnexion.Show();
+            this.Close();
+        }
     }
 }

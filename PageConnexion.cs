@@ -16,5 +16,19 @@ namespace SAE_S2._01
         {
             InitializeComponent();
         }
+
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            PageChoixConnexion pageChoixConnexion = new PageChoixConnexion();
+            pageChoixConnexion.Show();
+            this.Close();
+        }
+
+        private void btnValiderConnexion_Click(object sender, EventArgs e)
+        {
+            PageValidationConnexion pageValidationConnexion = new PageValidationConnexion();
+            pageValidationConnexion.Show();
+            this.Close();
+        }
     }
 }

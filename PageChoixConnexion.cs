@@ -11,14 +11,14 @@ namespace SAE_S2._01
         {
             PageInscription1 pageInscription = new PageInscription1();
             pageInscription.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnConnexion_Click(object sender, EventArgs e)
         {
             PageConnexion pageConnexion = new PageConnexion();
             pageConnexion.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnRetourChoixConnexion_Click(object sender, EventArgs e)

@@ -28,12 +28,90 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "PageConnexion";
+            lblIdentifiantConnexion = new Label();
+            lblMotDePasseConnexion = new Label();
+            txtIdentifiantConnexion = new TextBox();
+            txtMotDePasseConnexion = new TextBox();
+            btnRetour = new Button();
+            btnValiderConnexion = new Button();
+            SuspendLayout();
+            // 
+            // lblIdentifiantConnexion
+            // 
+            lblIdentifiantConnexion.AutoSize = true;
+            lblIdentifiantConnexion.Location = new Point(198, 106);
+            lblIdentifiantConnexion.Name = "lblIdentifiantConnexion";
+            lblIdentifiantConnexion.Size = new Size(84, 20);
+            lblIdentifiantConnexion.TabIndex = 0;
+            lblIdentifiantConnexion.Text = "Identifiant :";
+            // 
+            // lblMotDePasseConnexion
+            // 
+            lblMotDePasseConnexion.AutoSize = true;
+            lblMotDePasseConnexion.Location = new Point(177, 164);
+            lblMotDePasseConnexion.Name = "lblMotDePasseConnexion";
+            lblMotDePasseConnexion.Size = new Size(105, 20);
+            lblMotDePasseConnexion.TabIndex = 1;
+            lblMotDePasseConnexion.Text = "Mot de passe :";
+            // 
+            // txtIdentifiantConnexion
+            // 
+            txtIdentifiantConnexion.Location = new Point(334, 103);
+            txtIdentifiantConnexion.Name = "txtIdentifiantConnexion";
+            txtIdentifiantConnexion.Size = new Size(125, 27);
+            txtIdentifiantConnexion.TabIndex = 2;
+            // 
+            // txtMotDePasseConnexion
+            // 
+            txtMotDePasseConnexion.Location = new Point(334, 161);
+            txtMotDePasseConnexion.Name = "txtMotDePasseConnexion";
+            txtMotDePasseConnexion.Size = new Size(125, 27);
+            txtMotDePasseConnexion.TabIndex = 3;
+            // 
+            // btnRetour
+            // 
+            btnRetour.Location = new Point(354, 341);
+            btnRetour.Name = "btnRetour";
+            btnRetour.Size = new Size(94, 29);
+            btnRetour.TabIndex = 4;
+            btnRetour.Text = "Retour";
+            btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.Click += btnRetour_Click;
+            // 
+            // btnValiderConnexion
+            // 
+            btnValiderConnexion.Location = new Point(354, 297);
+            btnValiderConnexion.Name = "btnValiderConnexion";
+            btnValiderConnexion.Size = new Size(94, 29);
+            btnValiderConnexion.TabIndex = 5;
+            btnValiderConnexion.Text = "Valider";
+            btnValiderConnexion.UseVisualStyleBackColor = true;
+            btnValiderConnexion.Click += btnValiderConnexion_Click;
+            // 
+            // PageConnexion
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnValiderConnexion);
+            Controls.Add(btnRetour);
+            Controls.Add(txtMotDePasseConnexion);
+            Controls.Add(txtIdentifiantConnexion);
+            Controls.Add(lblMotDePasseConnexion);
+            Controls.Add(lblIdentifiantConnexion);
+            Name = "PageConnexion";
+            Text = "Connexion";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblIdentifiantConnexion;
+        private Label lblMotDePasseConnexion;
+        private TextBox txtIdentifiantConnexion;
+        private TextBox txtMotDePasseConnexion;
+        private Button btnRetour;
+        private Button btnValiderConnexion;
     }
 }

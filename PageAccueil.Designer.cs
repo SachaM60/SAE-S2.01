@@ -70,6 +70,7 @@
             btnAccederAppli.TabIndex = 3;
             btnAccederAppli.Text = "Accéder à l'application";
             btnAccederAppli.UseVisualStyleBackColor = true;
+            btnAccederAppli.Click += btnAccederAppli_Click;
             // 
             // PageAccueil
             // 

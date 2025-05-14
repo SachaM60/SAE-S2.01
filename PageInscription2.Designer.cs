@@ -83,6 +83,7 @@
             btnValider2.TabIndex = 4;
             btnValider2.Text = "Valider";
             btnValider2.UseVisualStyleBackColor = true;
+            btnValider2.Click += btnValider2_Click;
             // 
             // btnRetourInscription2
             // 

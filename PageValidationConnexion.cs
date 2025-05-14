@@ -10,25 +10,18 @@ using System.Windows.Forms;
 
 namespace SAE_S2._01
 {
-    public partial class PageAccueil : Form
+    public partial class PageValidationConnexion : Form
     {
-        public PageAccueil()
+        public PageValidationConnexion()
         {
             InitializeComponent();
         }
 
-        private void btnSeConnecterAccueil_Click(object sender, EventArgs e)
-        {
-            PageChoixConnexion pageChoixConnexion = new PageChoixConnexion();
-            pageChoixConnexion.Show();
-            this.Hide();
-        }
-
-        private void btnAccederAppli_Click(object sender, EventArgs e)
+        private void btnAccèsAppli_Click(object sender, EventArgs e)
         {
             PageMenuPrincipal pageMenuPrincipal = new PageMenuPrincipal();
             pageMenuPrincipal.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }
