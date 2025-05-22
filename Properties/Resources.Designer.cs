@@ -168,5 +168,23 @@ namespace SAE_S2._01.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap gear
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("gear", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap image_menu
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("image_menu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

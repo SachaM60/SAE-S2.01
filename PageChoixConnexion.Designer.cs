@@ -33,6 +33,8 @@
             lblPasDeCompte = new Label();
             lblCompteExiste = new Label();
             btnRetourChoixConnexion = new Button();
+            picAdmin = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picAdmin).BeginInit();
             SuspendLayout();
             // 
             // btnConnexion
@@ -83,11 +85,24 @@
             btnRetourChoixConnexion.UseVisualStyleBackColor = true;
             btnRetourChoixConnexion.Click += btnRetourChoixConnexion_Click;
             // 
+            // picAdmin
+            // 
+            picAdmin.Cursor = Cursors.Hand;
+            picAdmin.Image = Properties.Resources.gear;
+            picAdmin.Location = new Point(727, 12);
+            picAdmin.Name = "picAdmin";
+            picAdmin.Size = new Size(61, 51);
+            picAdmin.SizeMode = PictureBoxSizeMode.StretchImage;
+            picAdmin.TabIndex = 7;
+            picAdmin.TabStop = false;
+            picAdmin.Click += picAdmin_Click;
+            // 
             // PageChoixConnexion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(picAdmin);
             Controls.Add(btnRetourChoixConnexion);
             Controls.Add(lblCompteExiste);
             Controls.Add(lblPasDeCompte);
@@ -95,6 +110,7 @@
             Controls.Add(btnConnexion);
             Name = "PageChoixConnexion";
             Text = "Page de connexion";
+            ((System.ComponentModel.ISupportInitialize)picAdmin).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -105,5 +121,6 @@
         private Label lblPasDeCompte;
         private Label lblCompteExiste;
         private Button btnRetourChoixConnexion;
+        private PictureBox picAdmin;
     }
 }

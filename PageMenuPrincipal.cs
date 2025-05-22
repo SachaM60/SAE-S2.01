@@ -17,7 +17,7 @@ namespace SAE_S2._01
             InitializeComponent();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void picAccueilMenu_Click(object sender, EventArgs e)
         {
             PageAccueil pageAccueil = new PageAccueil();
             pageAccueil.Show();
@@ -42,6 +42,13 @@ namespace SAE_S2._01
         {
             PagePlanDuReseau pagePlanDuReseau = new PagePlanDuReseau();
             pagePlanDuReseau.Show();
+            this.Close();
+        }
+
+        private void picAdmin_Click(object sender, EventArgs e)
+        {
+            PageMenuAdmin pageMenuAdmin = new PageMenuAdmin();
+            pageMenuAdmin.Show();
             this.Close();
         }
     }

@@ -26,5 +26,12 @@ namespace SAE_S2._01
             Application.OpenForms[0]!.Show();
             this.Close();
         }
+
+        private void picAdmin_Click(object sender, EventArgs e)
+        {
+            PageMenuAdmin pageMenuAdmin = new PageMenuAdmin();
+            pageMenuAdmin.Show();
+            this.Close();
+        }
     }
 }

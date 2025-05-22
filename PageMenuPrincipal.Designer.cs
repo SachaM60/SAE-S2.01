@@ -28,26 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pictureBox1 = new PictureBox();
+            picAccueilMenu = new PictureBox();
             btnMenu = new Button();
             btnFavoris = new Button();
             btnCalculItinéraire = new Button();
             btnPlan = new Button();
             lblHavgo = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            picMenuPrincipal = new PictureBox();
+            picAdmin = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picAccueilMenu).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picMenuPrincipal).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picAdmin).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // picAccueilMenu
             // 
-            pictureBox1.Cursor = Cursors.Hand;
-            pictureBox1.Image = Properties.Resources.house_icon_187945;
-            pictureBox1.Location = new Point(751, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(37, 34);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            picAccueilMenu.Cursor = Cursors.Hand;
+            picAccueilMenu.Image = Properties.Resources.house_icon_187945;
+            picAccueilMenu.Location = new Point(751, 12);
+            picAccueilMenu.Name = "picAccueilMenu";
+            picAccueilMenu.Size = new Size(37, 34);
+            picAccueilMenu.SizeMode = PictureBoxSizeMode.StretchImage;
+            picAccueilMenu.TabIndex = 0;
+            picAccueilMenu.TabStop = false;
+            picAccueilMenu.Click += picAccueilMenu_Click;
             // 
             // btnMenu
             // 
@@ -100,31 +104,59 @@
             lblHavgo.TabIndex = 5;
             lblHavgo.Text = "HAVGO";
             // 
+            // picMenuPrincipal
+            // 
+            picMenuPrincipal.Image = Properties.Resources.image_menu;
+            picMenuPrincipal.Location = new Point(118, 104);
+            picMenuPrincipal.Name = "picMenuPrincipal";
+            picMenuPrincipal.Size = new Size(587, 281);
+            picMenuPrincipal.SizeMode = PictureBoxSizeMode.StretchImage;
+            picMenuPrincipal.TabIndex = 6;
+            picMenuPrincipal.TabStop = false;
+            // 
+            // picAdmin
+            // 
+            picAdmin.Cursor = Cursors.Hand;
+            picAdmin.Image = Properties.Resources.gear;
+            picAdmin.Location = new Point(15, 14);
+            picAdmin.Name = "picAdmin";
+            picAdmin.Size = new Size(43, 32);
+            picAdmin.SizeMode = PictureBoxSizeMode.StretchImage;
+            picAdmin.TabIndex = 7;
+            picAdmin.TabStop = false;
+            picAdmin.Click += picAdmin_Click;
+            // 
             // PageMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(picAdmin);
+            Controls.Add(picMenuPrincipal);
             Controls.Add(lblHavgo);
             Controls.Add(btnPlan);
             Controls.Add(btnCalculItinéraire);
             Controls.Add(btnFavoris);
             Controls.Add(btnMenu);
-            Controls.Add(pictureBox1);
+            Controls.Add(picAccueilMenu);
             Name = "PageMenuPrincipal";
             Text = "Menu principal";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picAccueilMenu).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picMenuPrincipal).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picAdmin).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
+        private PictureBox picAccueilMenu;
         private Button btnMenu;
         private Button btnFavoris;
         private Button btnCalculItinéraire;
         private Button btnPlan;
         private Label lblHavgo;
+        private PictureBox picMenuPrincipal;
+        private PictureBox picAdmin;
     }
 }
