@@ -30,5 +30,6 @@ namespace SAE_S2._01
             pageMenuPrincipal.Show();
             this.Hide();
         }
+
     }
 }

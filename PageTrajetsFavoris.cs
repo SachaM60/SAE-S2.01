@@ -10,24 +10,17 @@ using System.Windows.Forms;
 
 namespace SAE_S2._01
 {
-    public partial class PageMenuPrincipal : Form
+    public partial class PageTrajetsFavoris : Form
     {
-        public PageMenuPrincipal()
+        public PageTrajetsFavoris()
         {
             InitializeComponent();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void btnMenu_Click(object sender, EventArgs e)
         {
-            PageAccueil pageAccueil = new PageAccueil();
-            pageAccueil.Show();
-            this.Close();
-        }
-
-        private void btnFavoris_Click(object sender, EventArgs e)
-        {
-            PageTrajetsFavoris pageTrajetsFavoris = new PageTrajetsFavoris();
-            pageTrajetsFavoris.Show();
+            PageMenuPrincipal pageMenuPrincipal = new PageMenuPrincipal();
+            pageMenuPrincipal.Show();
             this.Close();
         }
 

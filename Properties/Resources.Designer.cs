@@ -69,5 +69,104 @@ namespace SAE_S2._01.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plan_general_2024 {
+            get {
+                object obj = ResourceManager.GetObject("plan_general_2024", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap plan_9_19
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("plan_9_19", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap plan_11_11express
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("plan_11_11express", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        internal static System.Drawing.Bitmap plan_10
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("plan_10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap plan_12
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("plan_12", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap plan_13
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("plan_13", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap plan_14
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("plan_14", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap plan_15_18
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("plan_15_18", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap plan_16
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("plan_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap plan_17
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("plan_17", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap plan_21
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("plan_21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace SAE_S2._01
 {
-    public partial class PageMenuPrincipal : Form
+    public partial class PageCalculItineraire : Form
     {
-        public PageMenuPrincipal()
+        public PageCalculItineraire()
         {
             InitializeComponent();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void btnMenu_Click(object sender, EventArgs e)
         {
-            PageAccueil pageAccueil = new PageAccueil();
-            pageAccueil.Show();
+            PageMenuPrincipal pageMenuPrincipal = new PageMenuPrincipal();
+            pageMenuPrincipal.Show();
             this.Close();
         }
 
@@ -28,13 +28,6 @@ namespace SAE_S2._01
         {
             PageTrajetsFavoris pageTrajetsFavoris = new PageTrajetsFavoris();
             pageTrajetsFavoris.Show();
-            this.Close();
-        }
-
-        private void btnCalculItinéraire_Click(object sender, EventArgs e)
-        {
-            PageCalculItineraire pageCalculItineraire = new PageCalculItineraire();
-            pageCalculItineraire.Show();
             this.Close();
         }
 

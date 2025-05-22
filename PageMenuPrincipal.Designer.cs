@@ -67,6 +67,7 @@
             btnFavoris.TabIndex = 2;
             btnFavoris.Text = "Trajets favoris";
             btnFavoris.UseVisualStyleBackColor = true;
+            btnFavoris.Click += btnFavoris_Click;
             // 
             // btnCalculItinéraire
             // 
@@ -76,6 +77,7 @@
             btnCalculItinéraire.TabIndex = 3;
             btnCalculItinéraire.Text = "Calcul d'itinéraire";
             btnCalculItinéraire.UseVisualStyleBackColor = true;
+            btnCalculItinéraire.Click += btnCalculItinéraire_Click;
             // 
             // btnPlan
             // 
@@ -85,6 +87,7 @@
             btnPlan.TabIndex = 4;
             btnPlan.Text = "Plan du réseau";
             btnPlan.UseVisualStyleBackColor = true;
+            btnPlan.Click += btnPlan_Click;
             // 
             // lblHavgo
             // 
