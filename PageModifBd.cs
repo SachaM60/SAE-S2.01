@@ -40,14 +40,14 @@ namespace SAE_S2._01
 
         private void btnSuppression_Click(object sender, EventArgs e)
         {
-            PageSuppressionDeDonnées pageSuppressionDeDonnées = new PageSuppressionDeDonnées();
+            PageChoixSuppression pageSuppressionDeDonnées = new PageChoixSuppression();
             pageSuppressionDeDonnées.Show();
             this.Close();
         }
 
         private void btnModif_Click(object sender, EventArgs e)
         {
-            PageModificationDeDonnées pageModificationDeDonnées = new PageModificationDeDonnées();
+            PageChoixModification pageModificationDeDonnées = new PageChoixModification();
             pageModificationDeDonnées.Show();
             this.Close();
         }
