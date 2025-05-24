@@ -1,6 +1,6 @@
 ﻿namespace SAE_S2._01
 {
-    partial class PageSuppressionDeDonnées
+    partial class PageSuppressionArret
     {
         /// <summary>
         /// Required designer variable.
@@ -28,16 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SuspendLayout();
-            // 
-            // PageSuppressionDeDonnées
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Name = "PageSuppressionDeDonnées";
-            Text = "Suppression de données";
-            ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "PageSuppressionArret";
         }
 
         #endregion

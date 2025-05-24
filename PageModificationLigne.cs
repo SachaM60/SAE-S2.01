@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SAE_S2._01
 {
-    public partial class PageSuppressionDeDonnées : Form
+    public partial class PageModificationLigne : Form
     {
-        public PageSuppressionDeDonnées()
+        public PageModificationLigne()
         {
             InitializeComponent();
         }

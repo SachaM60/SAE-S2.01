@@ -27,6 +27,7 @@ namespace SAE_S2._01
 
         private void btnValider_Click(object sender, EventArgs e)
         {
+            //Commande de BD pour ajouter dans Ligne et suivant
             PageModifBd pagemodifbd = new PageModifBd();
             pagemodifbd.Show();
             this.Close();

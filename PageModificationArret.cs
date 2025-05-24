@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SAE_S2._01
 {
-    public partial class PageModificationDeDonnées : Form
+    public partial class PageModificationArret : Form
     {
-        public PageModificationDeDonnées()
+        public PageModificationArret()
         {
             InitializeComponent();
         }
