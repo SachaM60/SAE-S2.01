@@ -15,6 +15,7 @@ namespace SAE_S2._01
         public PageAjoutArret()
         {
             InitializeComponent();
+            lbLigne.Text = "";
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -34,6 +35,11 @@ namespace SAE_S2._01
 
         private void numericUpDownNbLigne_ValueChanged(object sender, EventArgs e)
         {
+            if (numericUpDownNbLigne.Value > 0)
+            {
+                lbLigne.Text = "Lesquelles : ";
+            }
+            else { lbLigne.Text = ""; }
             int compt = (int)numericUpDownNbLigne.Value;
 
             if (compt > flpLigne.Controls.Count)

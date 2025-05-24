@@ -16,5 +16,20 @@ namespace SAE_S2._01
         {
             InitializeComponent();
         }
+
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            //Commande de BD pour ajouter Horaire à faire
+            PageModifBd pageModifBd = new PageModifBd();
+            pageModifBd.Show();
+            this.Close();
+        }
+
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            PageChoixAjout pagechoixajout = new PageChoixAjout();
+            pagechoixajout.Show();
+            this.Close();
+        }
     }
 }

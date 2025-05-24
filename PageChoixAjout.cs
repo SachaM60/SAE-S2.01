@@ -30,5 +30,19 @@ namespace SAE_S2._01
             pageAjoutArret.Show();
             this.Close();
         }
+
+        private void btnAjoutLigne_Click(object sender, EventArgs e)
+        {
+            PageAjoutLigne pageAjoutligne = new PageAjoutLigne();
+            pageAjoutligne.Show();
+            this.Close();
+        }
+
+        private void btnAjoutHoraire_Click(object sender, EventArgs e)
+        {
+            PageAjoutHoraire pageAjouthoraire = new PageAjoutHoraire();
+            pageAjouthoraire.Show();
+            this.Close();
+        }
     }
 }

@@ -48,17 +48,18 @@
             // btnAjoutLigne
             // 
             btnAjoutLigne.Location = new Point(366, 168);
-            btnAjoutLigne.Margin = new Padding(4, 4, 4, 4);
+            btnAjoutLigne.Margin = new Padding(4);
             btnAjoutLigne.Name = "btnAjoutLigne";
             btnAjoutLigne.Size = new Size(219, 36);
             btnAjoutLigne.TabIndex = 1;
             btnAjoutLigne.Text = "Ajout d'une ligne";
             btnAjoutLigne.UseVisualStyleBackColor = true;
+            btnAjoutLigne.Click += btnAjoutLigne_Click;
             // 
             // btnAjoutArret
             // 
             btnAjoutArret.Location = new Point(366, 230);
-            btnAjoutArret.Margin = new Padding(4, 4, 4, 4);
+            btnAjoutArret.Margin = new Padding(4);
             btnAjoutArret.Name = "btnAjoutArret";
             btnAjoutArret.Size = new Size(219, 36);
             btnAjoutArret.TabIndex = 2;
@@ -69,17 +70,18 @@
             // btnAjoutHoraire
             // 
             btnAjoutHoraire.Location = new Point(366, 291);
-            btnAjoutHoraire.Margin = new Padding(4, 4, 4, 4);
+            btnAjoutHoraire.Margin = new Padding(4);
             btnAjoutHoraire.Name = "btnAjoutHoraire";
             btnAjoutHoraire.Size = new Size(219, 36);
             btnAjoutHoraire.TabIndex = 3;
             btnAjoutHoraire.Text = "Ajout d'un horaire";
             btnAjoutHoraire.UseVisualStyleBackColor = true;
+            btnAjoutHoraire.Click += btnAjoutHoraire_Click;
             // 
             // btnRetour
             // 
             btnRetour.Location = new Point(410, 381);
-            btnRetour.Margin = new Padding(4, 4, 4, 4);
+            btnRetour.Margin = new Padding(4);
             btnRetour.Name = "btnRetour";
             btnRetour.Size = new Size(118, 36);
             btnRetour.TabIndex = 4;
@@ -97,7 +99,7 @@
             Controls.Add(btnAjoutArret);
             Controls.Add(btnAjoutLigne);
             Controls.Add(lblChoixAjout);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "PageChoixAjout";
             Text = "Choix des données à ajouter";
             ResumeLayout(false);
