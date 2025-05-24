@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SAE_S2._01
 {
-    public partial class PageAjoutDeDonnées : Form
+    public partial class PageAjoutHoraire : Form
     {
-        public PageAjoutDeDonnées()
+        public PageAjoutHoraire()
         {
             InitializeComponent();
         }

@@ -38,44 +38,50 @@
             // lblChoixAjout
             // 
             lblChoixAjout.AutoSize = true;
-            lblChoixAjout.Location = new Point(220, 61);
+            lblChoixAjout.Location = new Point(275, 76);
+            lblChoixAjout.Margin = new Padding(4, 0, 4, 0);
             lblChoixAjout.Name = "lblChoixAjout";
-            lblChoixAjout.Size = new Size(329, 20);
+            lblChoixAjout.Size = new Size(399, 25);
             lblChoixAjout.TabIndex = 0;
             lblChoixAjout.Text = "Quels types de données souhaitez vous ajouter ?";
             // 
             // btnAjoutLigne
             // 
-            btnAjoutLigne.Location = new Point(293, 134);
+            btnAjoutLigne.Location = new Point(366, 168);
+            btnAjoutLigne.Margin = new Padding(4, 4, 4, 4);
             btnAjoutLigne.Name = "btnAjoutLigne";
-            btnAjoutLigne.Size = new Size(175, 29);
+            btnAjoutLigne.Size = new Size(219, 36);
             btnAjoutLigne.TabIndex = 1;
             btnAjoutLigne.Text = "Ajout d'une ligne";
             btnAjoutLigne.UseVisualStyleBackColor = true;
             // 
             // btnAjoutArret
             // 
-            btnAjoutArret.Location = new Point(293, 184);
+            btnAjoutArret.Location = new Point(366, 230);
+            btnAjoutArret.Margin = new Padding(4, 4, 4, 4);
             btnAjoutArret.Name = "btnAjoutArret";
-            btnAjoutArret.Size = new Size(175, 29);
+            btnAjoutArret.Size = new Size(219, 36);
             btnAjoutArret.TabIndex = 2;
             btnAjoutArret.Text = "Ajout d'un arret";
             btnAjoutArret.UseVisualStyleBackColor = true;
+            btnAjoutArret.Click += btnAjoutArret_Click;
             // 
             // btnAjoutHoraire
             // 
-            btnAjoutHoraire.Location = new Point(293, 233);
+            btnAjoutHoraire.Location = new Point(366, 291);
+            btnAjoutHoraire.Margin = new Padding(4, 4, 4, 4);
             btnAjoutHoraire.Name = "btnAjoutHoraire";
-            btnAjoutHoraire.Size = new Size(175, 29);
+            btnAjoutHoraire.Size = new Size(219, 36);
             btnAjoutHoraire.TabIndex = 3;
             btnAjoutHoraire.Text = "Ajout d'un horaire";
             btnAjoutHoraire.UseVisualStyleBackColor = true;
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(328, 305);
+            btnRetour.Location = new Point(410, 381);
+            btnRetour.Margin = new Padding(4, 4, 4, 4);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(94, 29);
+            btnRetour.Size = new Size(118, 36);
             btnRetour.TabIndex = 4;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
@@ -83,14 +89,15 @@
             // 
             // PageChoixAjout
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 562);
             Controls.Add(btnRetour);
             Controls.Add(btnAjoutHoraire);
             Controls.Add(btnAjoutArret);
             Controls.Add(btnAjoutLigne);
             Controls.Add(lblChoixAjout);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "PageChoixAjout";
             Text = "Choix des données à ajouter";
             ResumeLayout(false);

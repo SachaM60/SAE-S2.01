@@ -23,5 +23,12 @@ namespace SAE_S2._01
             pageModifBd.Show();
             this.Close();
         }
+
+        private void btnAjoutArret_Click(object sender, EventArgs e)
+        {
+            PageAjoutArret pageAjoutArret = new PageAjoutArret();
+            pageAjoutArret.Show();
+            this.Close();
+        }
     }
 }
