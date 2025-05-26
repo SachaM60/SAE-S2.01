@@ -15,7 +15,6 @@ namespace SAE_S2._01
         public PageAjoutArret()
         {
             InitializeComponent();
-            lbLigne.Text = "";
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -35,30 +34,6 @@ namespace SAE_S2._01
 
         private void numericUpDownNbLigne_ValueChanged(object sender, EventArgs e)
         {
-            if (numericUpDownNbLigne.Value > 0)
-            {
-                lbLigne.Text = "Lesquelles : ";
-            }
-            else { lbLigne.Text = ""; }
-            int compt = (int)numericUpDownNbLigne.Value;
-
-            if (compt > flpLigne.Controls.Count)
-            {
-                for (int j = flpLigne.Controls.Count; j < (compt); j++)
-                {
-                    ComboBox ListeLigne = new ComboBox();
-                    //Commande de BD à faire pour remplir les ComboBox
-                    flpLigne.Controls.Add(ListeLigne);
-                }
-            }
-            else
-            {
-                for (int i = flpLigne.Controls.Count; i > (compt); i--)
-                {
-                    flpLigne.Controls.RemoveAt(flpLigne.Controls.Count - 1);
-                }
-
-            }
         }
     }
 }

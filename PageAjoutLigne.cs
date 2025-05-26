@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace SAE_S2._01
 {
     public partial class PageAjoutLigne : Form
     {
+        private static MySqlConnection conn;
+        private List<string> NomArret = new List<string>();
+
         public PageAjoutLigne()
         {
             InitializeComponent();
@@ -47,7 +51,8 @@ namespace SAE_S2._01
                 for (int j = flpArret.Controls.Count; j < (compt); j++)
                 {
                     ComboBox ListeLigne = new ComboBox();
-                    //Commande de BD à faire pour remplir les ComboBox avec les arret de la base
+                    ClasseBD.LectureNomArret(ref NomArret);
+                    ListeLigne.Items.AddRange(NomArret.ToArray());
                     flpArret.Controls.Add(ListeLigne);
                 }
             }

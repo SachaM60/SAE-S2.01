@@ -15,6 +15,7 @@ namespace SAE_S2._01
         public PageAccueil()
         {
             InitializeComponent();
+            bool testOuvert = ClasseBD.Ouverture();
         }
 
         private void btnSeConnecterAccueil_Click(object sender, EventArgs e)

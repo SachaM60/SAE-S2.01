@@ -32,12 +32,11 @@
             btnValider = new Button();
             label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
-            lbLigne = new Label();
-            numericUpDownNbLigne = new NumericUpDown();
             txtBoxNom = new TextBox();
-            flpLigne = new FlowLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownNbLigne).BeginInit();
+            label3 = new Label();
+            label4 = new Label();
+            txtBoxLatitude = new TextBox();
+            txtBoxLongitude = new TextBox();
             SuspendLayout();
             // 
             // btnRetour
@@ -72,62 +71,61 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(139, 125);
+            label2.Location = new Point(296, 167);
             label2.Name = "label2";
             label2.Size = new Size(140, 25);
             label2.TabIndex = 3;
             label2.Text = "Nom de l'arrêt : ";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(139, 199);
-            label3.Name = "label3";
-            label3.Size = new Size(300, 25);
-            label3.TabIndex = 4;
-            label3.Text = "Combien de lignes sont desservies : ";
-            // 
-            // lbLigne
-            // 
-            lbLigne.AutoSize = true;
-            lbLigne.Location = new Point(139, 268);
-            lbLigne.Name = "lbLigne";
-            lbLigne.Size = new Size(101, 25);
-            lbLigne.TabIndex = 5;
-            lbLigne.Text = "Lesquelles :";
-            // 
-            // numericUpDownNbLigne
-            // 
-            numericUpDownNbLigne.Location = new Point(498, 197);
-            numericUpDownNbLigne.Name = "numericUpDownNbLigne";
-            numericUpDownNbLigne.Size = new Size(180, 31);
-            numericUpDownNbLigne.TabIndex = 6;
-            numericUpDownNbLigne.ValueChanged += numericUpDownNbLigne_ValueChanged;
-            // 
             // txtBoxNom
             // 
-            txtBoxNom.Location = new Point(316, 125);
+            txtBoxNom.Location = new Point(479, 161);
             txtBoxNom.Name = "txtBoxNom";
             txtBoxNom.Size = new Size(227, 31);
             txtBoxNom.TabIndex = 7;
             // 
-            // flpLigne
+            // label3
             // 
-            flpLigne.Location = new Point(316, 268);
-            flpLigne.Name = "flpLigne";
-            flpLigne.Size = new Size(362, 242);
-            flpLigne.TabIndex = 8;
+            label3.AutoSize = true;
+            label3.Location = new Point(273, 238);
+            label3.Name = "label3";
+            label3.Size = new Size(163, 25);
+            label3.TabIndex = 8;
+            label3.Text = "Latitude de l'arrêt : ";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(273, 319);
+            label4.Name = "label4";
+            label4.Size = new Size(180, 25);
+            label4.TabIndex = 9;
+            label4.Text = "Longitude de l'arrêt : ";
+            // 
+            // txtBoxLatitude
+            // 
+            txtBoxLatitude.Location = new Point(479, 238);
+            txtBoxLatitude.Name = "txtBoxLatitude";
+            txtBoxLatitude.Size = new Size(227, 31);
+            txtBoxLatitude.TabIndex = 10;
+            // 
+            // txtBoxLongitude
+            // 
+            txtBoxLongitude.Location = new Point(479, 319);
+            txtBoxLongitude.Name = "txtBoxLongitude";
+            txtBoxLongitude.Size = new Size(227, 31);
+            txtBoxLongitude.TabIndex = 11;
             // 
             // PageAjoutArret
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 562);
-            Controls.Add(flpLigne);
-            Controls.Add(txtBoxNom);
-            Controls.Add(numericUpDownNbLigne);
-            Controls.Add(lbLigne);
+            Controls.Add(txtBoxLongitude);
+            Controls.Add(txtBoxLatitude);
+            Controls.Add(label4);
             Controls.Add(label3);
+            Controls.Add(txtBoxNom);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnValider);
@@ -135,7 +133,6 @@
             Margin = new Padding(4);
             Name = "PageAjoutArret";
             Text = "Ajout de données";
-            ((System.ComponentModel.ISupportInitialize)numericUpDownNbLigne).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -146,10 +143,10 @@
         private Button btnValider;
         private Label label1;
         private Label label2;
-        private Label label3;
-        private Label lbLigne;
-        private NumericUpDown numericUpDownNbLigne;
         private TextBox txtBoxNom;
-        private FlowLayoutPanel flpLigne;
+        private Label label3;
+        private Label label4;
+        private TextBox txtBoxLatitude;
+        private TextBox txtBoxLongitude;
     }
 }
