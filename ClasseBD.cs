@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using static System.Windows.Forms.LinkLabel;
 
 
 namespace SAE_S2._01
@@ -64,13 +65,35 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
-        public static void InsertionSuivant() { }
+        public static void InsertionSuivant(int actuel,int suivant,int ligne) 
+        {
+            string requeteSuivant = $"INSERT INTO Suivant (arret_actuel,arret_suivant,id_ligne) VALUES ({actuel},{suivant},{ligne});";
+            MySqlCommand cmd = new MySqlCommand(requeteSuivant, conn);
+            cmd.ExecuteNonQuery();
+        }
 
-        public static void InsertionCroisement() { }
+        public static void InsertionCroisement(int arret, int ligne) 
+        {
+            string requeteCroisement = $"INSERT INTO Croisement (id_arret,id_ligne) VALUES ({arret},{ligne});";
+            MySqlCommand cmd = new MySqlCommand(requeteCroisement, conn);
+            cmd.ExecuteNonQuery();
+        }
 
-        public static void InsertionFavori() { }
+        public static void InsertionFavori(int utilisateur, int favori) 
+        {
+            string requeteFavori = $"INSERT INTO Favori (id_utilisateur,id_ligne) VALUES ({utilisateur},{favori});";
+            MySqlCommand cmd = new MySqlCommand(requeteFavori, conn);
+            cmd.ExecuteNonQuery();
+        }
 
-        public static void InsertionUtilisateur() { }
+        public static void InsertionUtilisateur(string id,string nom, string prenom, string mdp, string sexe, int age) 
+        {
+            string requeteHoraire = $"INSERT INTO Utilisateur (id_utilisateur,nom_utilisateur,prenom_utilisateur," +
+                $"mot_de_passe,sexe_utilisateur,age_utilisateur) " +
+                $"VALUES ('{id}','{nom}','{prenom}','{mdp}','{sexe}',{age});";
+            MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn);
+            cmd.ExecuteNonQuery();
+        }
 
         public static void LectureNomArret(ref List<string> liste)
         {
