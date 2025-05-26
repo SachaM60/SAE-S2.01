@@ -41,11 +41,28 @@ namespace SAE_S2._01
             }
         }
 
-        public static void InsertionLigne() { }
+        public static void InsertionLigne(string NomLigne,int arret_dep,int arret_fin) 
+        {
+            string requeteLigne = $"INSERT INTO Ligne (nom_ligne,arret_dep,arret_fin) VALUES ('{NomLigne}',{arret_dep},{arret_fin});";
+            MySqlCommand cmd = new MySqlCommand(requeteLigne, conn);
+            cmd.ExecuteNonQuery();
+        }
 
-        public static void InsertionArret() { }
+        public static void InsertionArret(string NomArret,double latitude,double longitude) 
+        {
+            string requeteArret = $"INSERT INTO Arret (nom_arret,latitude_arret,longitude_arret) " +
+                $"VALUES ('{NomArret}',{latitude},{longitude});";
+            MySqlCommand cmd = new MySqlCommand(requeteArret, conn);
+            cmd.ExecuteNonQuery();
+        }
 
-        public static void InsertionHoraire() { }
+        public static void InsertionHoraire(int bus,int arret,int ligne,string horaire) 
+        {
+            string requeteHoraire = $"INSERT INTO Horaire (id_bus,id_arret,id_ligne,heure_depart) " +
+                $"VALUES ({bus},{arret},{ligne},'{horaire}');";
+            MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn);
+            cmd.ExecuteNonQuery();
+        }
 
         public static void InsertionSuivant() { }
 
