@@ -37,6 +37,8 @@
             label4 = new Label();
             txtBoxLatitude = new TextBox();
             txtBoxLongitude = new TextBox();
+            lbErreurLat = new Label();
+            lbErreurLong = new Label();
             SuspendLayout();
             // 
             // btnRetour
@@ -116,11 +118,31 @@
             txtBoxLongitude.Size = new Size(227, 31);
             txtBoxLongitude.TabIndex = 11;
             // 
+            // lbErreurLat
+            // 
+            lbErreurLat.AutoSize = true;
+            lbErreurLat.Location = new Point(781, 244);
+            lbErreurLat.Name = "lbErreurLat";
+            lbErreurLat.Size = new Size(58, 25);
+            lbErreurLat.TabIndex = 12;
+            lbErreurLat.Text = "Erreur";
+            // 
+            // lbErreurLong
+            // 
+            lbErreurLong.AutoSize = true;
+            lbErreurLong.Location = new Point(781, 325);
+            lbErreurLong.Name = "lbErreurLong";
+            lbErreurLong.Size = new Size(58, 25);
+            lbErreurLong.TabIndex = 13;
+            lbErreurLong.Text = "Erreur";
+            // 
             // PageAjoutArret
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 562);
+            Controls.Add(lbErreurLong);
+            Controls.Add(lbErreurLat);
             Controls.Add(txtBoxLongitude);
             Controls.Add(txtBoxLatitude);
             Controls.Add(label4);
@@ -148,5 +170,7 @@
         private Label label4;
         private TextBox txtBoxLatitude;
         private TextBox txtBoxLongitude;
+        private Label lbErreurLat;
+        private Label lbErreurLong;
     }
 }

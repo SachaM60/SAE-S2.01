@@ -15,6 +15,8 @@ namespace SAE_S2._01
         public PageAjoutArret()
         {
             InitializeComponent();
+            lbErreurLat.Text = "";
+            lbErreurLong.Text = "";
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -26,10 +28,27 @@ namespace SAE_S2._01
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            //Commande de BD pour Ajouter les infos récolter dans arrêt et croisement
-            PageModifBd pagemodifbd = new PageModifBd();
-            pagemodifbd.Show();
-            this.Close();
+            double latitude, longitude;
+            bool latOk = double.TryParse(txtBoxLatitude.Text, out latitude);
+            bool longOk = double.TryParse(txtBoxLongitude.Text, out longitude);
+
+            if (!latOk)
+            {
+                lbErreurLat.Text = "Latitude invalide.";
+            }
+
+            if (!longOk)
+            {
+                lbErreurLong.Text = "Longitude invalide.";
+            }
+
+            if (latOk && longOk)
+            {
+                ClasseBD.InsertionArret(txtBoxNom.Text, latitude, longitude);
+                PageModifBd pagemodifbd = new PageModifBd();
+                pagemodifbd.Show();
+                this.Close();
+            }
         }
 
         private void numericUpDownNbLigne_ValueChanged(object sender, EventArgs e)

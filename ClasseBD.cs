@@ -42,11 +42,12 @@ namespace SAE_S2._01
             }
         }
 
-        public static void InsertionLigne(string NomLigne,int arret_dep,int arret_fin) 
+        public static int InsertionLigne(string NomLigne,int arret_dep,int arret_fin) 
         {
             string requeteLigne = $"INSERT INTO Ligne (nom_ligne,arret_dep,arret_fin) VALUES ('{NomLigne}',{arret_dep},{arret_fin});";
             MySqlCommand cmd = new MySqlCommand(requeteLigne, conn);
             cmd.ExecuteNonQuery();
+            return (int)cmd.LastInsertedId;
         }
 
         public static void InsertionArret(string NomArret,double latitude,double longitude) 
@@ -95,15 +96,18 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
-        public static void LectureNomArret(ref List<string> liste)
+        public static void LectureArret(ref List<(int,string,double,double)> Liste)
         {
-            string requeteArret = "SELECT nom_arret FROM Arret ORDER BY nom_arret;";
+            string requeteArret = "SELECT id_arret,nom_arret,latitude_arret,longitude_arret FROM Arret ORDER BY nom_arret;";
             MySqlCommand cmd = new MySqlCommand(requeteArret, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                string nom = reader.GetString(0);
-                liste.Add(nom);
+                int id = reader.GetInt32(0);
+                string nom = reader.GetString(1);
+                double latitude = reader.GetDouble(2);
+                double longitude = reader.GetDouble(3);
+                Liste.Add( (id,nom,latitude,longitude) );
             }
             reader.Close();
         }
