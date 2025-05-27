@@ -14,7 +14,7 @@ namespace SAE_S2._01
     public partial class PageAjoutLigne : Form
     {
         private static MySqlConnection conn;
-        private List<(int,string,double,double)> Arret = new List<(int,string,double,double)>();
+        private List<(int, string, double, double)> Arret = new List<(int, string, double, double)>();
 
         public PageAjoutLigne()
         {
@@ -118,6 +118,16 @@ namespace SAE_S2._01
             {
                 btnValider.Enabled = false;
             }
+        }
+
+        private void flpArret_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtBoxNom_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

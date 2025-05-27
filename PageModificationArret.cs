@@ -16,5 +16,10 @@ namespace SAE_S2._01
         {
             InitializeComponent();
         }
+
+        private void BtnValider_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

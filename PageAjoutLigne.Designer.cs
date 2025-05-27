@@ -43,66 +43,76 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(273, 18);
+            label1.Location = new Point(218, 14);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(241, 25);
+            label1.Size = new Size(202, 20);
             label1.TabIndex = 0;
             label1.Text = "Création d'une nouvelle ligne";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(30, 64);
+            label2.Location = new Point(24, 51);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(152, 25);
+            label2.Size = new Size(127, 20);
             label2.TabIndex = 1;
             label2.Text = "Nom de la ligne : ";
             // 
             // txtBoxNom
             // 
-            txtBoxNom.Location = new Point(238, 64);
+            txtBoxNom.Location = new Point(190, 51);
+            txtBoxNom.Margin = new Padding(2);
             txtBoxNom.Name = "txtBoxNom";
-            txtBoxNom.Size = new Size(183, 31);
+            txtBoxNom.Size = new Size(147, 27);
             txtBoxNom.TabIndex = 2;
+            txtBoxNom.TextChanged += txtBoxNom_TextChanged;
             // 
             // numericUpDownNbArret
             // 
-            numericUpDownNbArret.Location = new Point(311, 145);
+            numericUpDownNbArret.Location = new Point(249, 116);
+            numericUpDownNbArret.Margin = new Padding(2);
             numericUpDownNbArret.Name = "numericUpDownNbArret";
-            numericUpDownNbArret.Size = new Size(110, 31);
+            numericUpDownNbArret.Size = new Size(88, 27);
             numericUpDownNbArret.TabIndex = 3;
             numericUpDownNbArret.ValueChanged += numericUpDownNbArret_ValueChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(30, 145);
+            label3.Location = new Point(24, 116);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(271, 25);
+            label3.Size = new Size(227, 20);
             label3.TabIndex = 4;
             label3.Text = "Par combien d'arrêt passe-t-elle :";
             // 
             // lbArret
             // 
             lbArret.AutoSize = true;
-            lbArret.Location = new Point(30, 204);
+            lbArret.Location = new Point(24, 163);
+            lbArret.Margin = new Padding(2, 0, 2, 0);
             lbArret.Name = "lbArret";
-            lbArret.Size = new Size(155, 25);
+            lbArret.Size = new Size(128, 20);
             lbArret.TabIndex = 5;
             lbArret.Text = "Choisir les arrêts : ";
             // 
             // flpArret
             // 
-            flpArret.Location = new Point(191, 208);
+            flpArret.Location = new Point(153, 166);
+            flpArret.Margin = new Padding(2);
             flpArret.Name = "flpArret";
-            flpArret.Size = new Size(532, 192);
+            flpArret.Size = new Size(426, 154);
             flpArret.TabIndex = 6;
+            flpArret.Paint += flpArret_Paint;
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(82, 404);
+            btnRetour.Location = new Point(66, 323);
+            btnRetour.Margin = new Padding(2);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(289, 34);
+            btnRetour.Size = new Size(231, 27);
             btnRetour.TabIndex = 7;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
@@ -110,9 +120,10 @@
             // 
             // btnValider
             // 
-            btnValider.Location = new Point(434, 404);
+            btnValider.Location = new Point(347, 323);
+            btnValider.Margin = new Padding(2);
             btnValider.Name = "btnValider";
-            btnValider.Size = new Size(289, 34);
+            btnValider.Size = new Size(231, 27);
             btnValider.TabIndex = 8;
             btnValider.Text = "Valider";
             btnValider.UseVisualStyleBackColor = true;
@@ -120,9 +131,9 @@
             // 
             // PageAjoutLigne
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(640, 360);
             Controls.Add(btnValider);
             Controls.Add(btnRetour);
             Controls.Add(flpArret);
@@ -132,6 +143,7 @@
             Controls.Add(txtBoxNom);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(2);
             Name = "PageAjoutLigne";
             Text = "PageAjoutLigne";
             ((System.ComponentModel.ISupportInitialize)numericUpDownNbArret).EndInit();

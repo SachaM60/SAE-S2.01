@@ -31,5 +31,15 @@ namespace SAE_S2._01
             pagechoixajout.Show();
             this.Close();
         }
+
+        private void comboBoxBus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

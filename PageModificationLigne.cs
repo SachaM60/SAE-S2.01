@@ -16,5 +16,20 @@ namespace SAE_S2._01
         {
             InitializeComponent();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblWarning_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
