@@ -102,6 +102,7 @@
             comboBoxArret.Name = "comboBoxArret";
             comboBoxArret.Size = new Size(182, 33);
             comboBoxArret.TabIndex = 9;
+            comboBoxArret.SelectedIndexChanged += comboBoxArret_SelectedIndexChanged;
             // 
             // comboBoxHoraire
             // 
@@ -110,6 +111,7 @@
             comboBoxHoraire.Name = "comboBoxHoraire";
             comboBoxHoraire.Size = new Size(182, 33);
             comboBoxHoraire.TabIndex = 10;
+            comboBoxHoraire.SelectedIndexChanged += comboBoxHoraire_SelectedIndexChanged;
             // 
             // PageSuppressionHoraire
             // 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,28 @@ namespace SAE_S2._01
 {
     public partial class PageSuppressionHoraire : Form
     {
+        private List<(int, string, int, int)> Ligne = new List<(int, string, int, int)>();
+        private List<(int, string, double, double)> Arret = new List<(int, string, double, double)>();
+        private List<(int, int, int, string)> Horaire = new List<(int, int, int, string)>();
 
-        private List<string> test = ["Valeur 1", "Valeur 2", "Je t'emmerde", "Faudra enlever"];
         public PageSuppressionHoraire()
         {
             InitializeComponent();
-            lbLigne.Text = "";
-            lbHoraire.Text = "";
-            lbArret.Text = "";
+            lbLigne.Text = lbHoraire.Text = lbArret.Text = "";
             comboBoxArret.Hide();
             comboBoxHoraire.Hide();
-            lstBoxLigne.DataSource = test;
+            btnSupprimer.Enabled = false;
+
+            ClasseBD.LectureArret(ref Arret);
+            ClasseBD.LectureLigne(ref Ligne);
+            ClasseBD.LectureHoraire(ref Horaire);
+
+            var nomsLignesUniques = Ligne.Select(l => l.Item2).Distinct();
+            foreach (var ligne in nomsLignesUniques)
+            {
+                lstBoxLigne.Items.Add(ligne);
+            }
+
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -41,15 +53,14 @@ namespace SAE_S2._01
 
         private void lstBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string nomligne = "nom";
-            if (lstBoxLigne.SelectedIndex != 0)
-            {
-                lbLigne.Text = $"Ligne sélectionnée : {nomligne}";
-                lbArret.Text = "Arrêt : ";
-                lbHoraire.Text = "Horaire : ";
-                comboBoxHoraire.Show();
-                comboBoxArret.Show();
-            }
+        }
+
+        private void comboBoxHoraire_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void comboBoxArret_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

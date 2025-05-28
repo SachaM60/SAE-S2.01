@@ -142,7 +142,7 @@ namespace SAE_S2._01
             ClasseBD.LectureLigne(ref Ligne);
             if (Ligne.Any(l => l.Item3 == id || l.Item4 == id))
             {
-                return "L'arrêt ne peut pas être supprimer car il est le départ ou le terminus d'une ligne";
+                return "L'arrêt ne peut pas être supprimer car \n il est le départ ou le terminus d'une ligne";
             }
             else
             {
@@ -154,9 +154,9 @@ namespace SAE_S2._01
             
         }
 
-        public static void SuppressionHoraire(int id_bus, int id_arret, int id_ligne)
+        public static void SuppressionHoraire(string horaire, int id_arret, int id_ligne)
         {
-            string requeteHoraire = $"DELETE FROM Horaire WHERE id_bus = {id_bus} AND id_arret = {id_arret} AND id_ligne = {id_ligne};";
+            string requeteHoraire = $"DELETE FROM Horaire WHERE heure_depart = '{horaire}' AND id_arret = {id_arret} AND id_ligne = {id_ligne};";
             MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn);
             cmd.ExecuteNonQuery();
         }
@@ -235,6 +235,20 @@ namespace SAE_S2._01
                 int id_ligne = reader.GetInt32(2);
                 string heure_depart = reader.GetTimeSpan(3).ToString(@"hh\:mm");
                 Liste.Add((id_bus, id_arret, id_ligne, heure_depart));
+            }
+            reader.Close();
+        }
+
+        public static void LectureCroisement(ref List<(int, int)> Liste)
+        {
+            string requeteCroisement = "SELECT * FROM Croisement;";
+            MySqlCommand cmd = new MySqlCommand(requeteCroisement, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int id_arret = reader.GetInt32(0);
+                int id_ligne = reader.GetInt32(1);
+                Liste.Add((id_arret, id_ligne));
             }
             reader.Close();
         }
