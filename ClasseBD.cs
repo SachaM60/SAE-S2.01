@@ -138,20 +138,73 @@ namespace SAE_S2._01
 
         public static string SuppressionArret(int id)
         {
-            List<(int,string,int,int)> Ligne = new List<(int, string, int, int)>();
+            List<(int, string, int, int)> Ligne = new List<(int, string, int, int)>();
             ClasseBD.LectureLigne(ref Ligne);
             if (Ligne.Any(l => l.Item3 == id || l.Item4 == id))
             {
-                return "L'arrêt ne peut pas être supprimer car \n il est le départ ou le terminus d'une ligne";
+                return "L'arrêt ne peut pas être supprimé car \n il est le départ ou le terminus d'une ligne";
             }
-            else
+
+            // Recherche des paires (précédent, id) et (id, suivant) pour chaque ligne
+            string requetePrecedents = $"SELECT arret_actuel, id_ligne FROM Suivant WHERE arret_suivant = {id};";
+            string requeteSuivants = $"SELECT arret_suivant, id_ligne FROM Suivant WHERE arret_actuel = {id};";
+
+            Dictionary<int, int> precedents = new Dictionary<int, int>(); // id_ligne -> arret_actuel
+            Dictionary<int, int> suivants = new Dictionary<int, int>();   // id_ligne -> arret_suivant
+
+            using (MySqlCommand cmdPrec = new MySqlCommand(requetePrecedents, conn))
+            using (MySqlDataReader readerPrec = cmdPrec.ExecuteReader())
             {
-                string requeteArret = $"DELETE FROM Arret WHERE id_arret = {id};";
-                MySqlCommand cmd = new MySqlCommand(requeteArret, conn);
-                cmd.ExecuteNonQuery();
+                while (readerPrec.Read())
+                {
+                    int precedent = readerPrec.GetInt32(0);
+                    int ligne = readerPrec.GetInt32(1);
+                    precedents[ligne] = precedent;
+                }
             }
+
+            using (MySqlCommand cmdSuiv = new MySqlCommand(requeteSuivants, conn))
+            using (MySqlDataReader readerSuiv = cmdSuiv.ExecuteReader())
+            {
+                while (readerSuiv.Read())
+                {
+                    int suivant = readerSuiv.GetInt32(0);
+                    int ligne = readerSuiv.GetInt32(1);
+                    suivants[ligne] = suivant;
+                }
+            }
+
+            // Pour chaque ligne qui a à la fois un précédent et un suivant
+            foreach (var ligne in precedents.Keys)
+            {
+                if (suivants.ContainsKey(ligne))
+                {
+                    int precedent = precedents[ligne];
+                    int suivant = suivants[ligne];
+
+                    // Insertion du nouveau lien
+                    string requeteInsert = $"INSERT INTO Suivant (arret_actuel, arret_suivant, id_ligne) VALUES ({precedent}, {suivant}, {ligne});";
+                    MySqlCommand cmdInsert = new MySqlCommand(requeteInsert, conn);
+                    cmdInsert.ExecuteNonQuery();
+                }
+            }
+
+            // Suppression des lignes où id est utilisé
+            string requeteDeleteSuivant = $"DELETE FROM Suivant WHERE arret_actuel = {id} OR arret_suivant = {id};";
+            MySqlCommand cmdDelSuivant = new MySqlCommand(requeteDeleteSuivant, conn);
+            cmdDelSuivant.ExecuteNonQuery();
+
+            // Suppression des croisements associés à l'arrêt
+            string requeteCroisement = $"DELETE FROM Croisement WHERE id_arret = {id};";
+            MySqlCommand cmdDelCroisement = new MySqlCommand(requeteCroisement, conn);
+            cmdDelCroisement.ExecuteNonQuery();
+
+            // Suppression de l'arrêt
+            string requeteArret = $"DELETE FROM Arret WHERE id_arret = {id};";
+            MySqlCommand cmdDelArret = new MySqlCommand(requeteArret, conn);
+            cmdDelArret.ExecuteNonQuery();
+
             return "";
-            
         }
 
         public static void SuppressionHoraire(string horaire, int id_arret, int id_ligne)
