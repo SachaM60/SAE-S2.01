@@ -225,7 +225,7 @@ namespace SAE_S2._01
 
         public static void LectureHoraire(ref List<(int, int, int, string)> Liste)
         {
-            string requeteHoraire = "SELECT * FROM Horaire;";
+            string requeteHoraire = "SELECT * FROM Horaire ORDER BY heure_depart;";
             MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
