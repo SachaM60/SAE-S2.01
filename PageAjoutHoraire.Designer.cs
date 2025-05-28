@@ -45,7 +45,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(284, 25);
+            label1.Location = new Point(264, 26);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(250, 25);
@@ -55,7 +55,7 @@
             // comboxArret
             // 
             comboxArret.FormattingEnabled = true;
-            comboxArret.Location = new Point(284, 223);
+            comboxArret.Location = new Point(264, 170);
             comboxArret.Margin = new Padding(2);
             comboxArret.Name = "comboxArret";
             comboxArret.Size = new Size(182, 33);
@@ -64,7 +64,7 @@
             // comboBoxBus
             // 
             comboBoxBus.FormattingEnabled = true;
-            comboBoxBus.Location = new Point(284, 104);
+            comboBoxBus.Location = new Point(264, 226);
             comboBoxBus.Margin = new Padding(2);
             comboBoxBus.Name = "comboBoxBus";
             comboBoxBus.Size = new Size(182, 33);
@@ -74,7 +74,7 @@
             // comboBoxLigne
             // 
             comboBoxLigne.FormattingEnabled = true;
-            comboBoxLigne.Location = new Point(284, 168);
+            comboBoxLigne.Location = new Point(264, 107);
             comboBoxLigne.Margin = new Padding(2);
             comboBoxLigne.Name = "comboBoxLigne";
             comboBoxLigne.Size = new Size(182, 33);
@@ -83,7 +83,7 @@
             // 
             // txtBoxHoraire
             // 
-            txtBoxHoraire.Location = new Point(284, 282);
+            txtBoxHoraire.Location = new Point(264, 282);
             txtBoxHoraire.Margin = new Padding(2);
             txtBoxHoraire.Name = "txtBoxHoraire";
             txtBoxHoraire.Size = new Size(182, 31);
@@ -92,17 +92,17 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(1, 107);
+            label2.Location = new Point(96, 226);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(279, 25);
+            label2.Size = new Size(116, 25);
             label2.TabIndex = 5;
-            label2.Text = "Quel bus se charge du ramassage";
+            label2.Text = "Bus concerné";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(52, 168);
+            label3.Location = new Point(42, 115);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(218, 25);
@@ -112,7 +112,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(96, 226);
+            label4.Location = new Point(84, 170);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
             label4.Size = new Size(133, 25);
@@ -122,7 +122,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(128, 282);
+            label5.Location = new Point(119, 282);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
             label5.Size = new Size(70, 25);
@@ -154,7 +154,7 @@
             // ErreurHoraire
             // 
             ErreurHoraire.AutoSize = true;
-            ErreurHoraire.Location = new Point(488, 288);
+            ErreurHoraire.Location = new Point(468, 285);
             ErreurHoraire.Name = "ErreurHoraire";
             ErreurHoraire.Size = new Size(58, 25);
             ErreurHoraire.TabIndex = 11;

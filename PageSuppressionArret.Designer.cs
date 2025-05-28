@@ -34,6 +34,7 @@
             lbArret = new Label();
             lbLigne = new Label();
             flpLigne = new FlowLayoutPanel();
+            lbErreur = new Label();
             SuspendLayout();
             // 
             // btnSupprimer
@@ -91,11 +92,21 @@
             flpLigne.Size = new Size(395, 150);
             flpLigne.TabIndex = 8;
             // 
+            // lbErreur
+            // 
+            lbErreur.AutoSize = true;
+            lbErreur.Location = new Point(241, 346);
+            lbErreur.Name = "lbErreur";
+            lbErreur.Size = new Size(58, 25);
+            lbErreur.TabIndex = 9;
+            lbErreur.Text = "Erreur";
+            // 
             // PageSuppressionArret
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lbErreur);
             Controls.Add(flpLigne);
             Controls.Add(lbLigne);
             Controls.Add(lbArret);
@@ -116,5 +127,6 @@
         private Label lbArret;
         private Label lbLigne;
         private FlowLayoutPanel flpLigne;
+        private Label lbErreur;
     }
 }

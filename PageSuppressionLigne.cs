@@ -7,27 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace SAE_S2._01
 {
     public partial class PageSuppressionLigne : Form
     {
 
-        private List<string> test = ["Valeur 1","Valeur 2","Je t'emmerde","Faudra enlever"];
+        private List<(int, string, int, int)> Ligne = new List<(int, string, int, int)>();
+        private List<string> NomsLignes = new List<string>();
+
         public PageSuppressionLigne()
         {
             InitializeComponent();
             lbInfo.Text = "";
             lbDepart.Text = "";
-            lbDepartBD.Text = "";
             lbId.Text = "";
-            lbIdBD.Text = "";
             lbNom.Text = "";
-            lbNomBD.Text = "";
             lbTerminus.Text = "";
-            lbTerminusBD.Text = "";
-            //Faudra définir avec une requête SQL le contenu de la listbox
-            lstBoxLigne.DataSource = test;
+
+            // Charger les lignes depuis la base
+            ClasseBD.LectureLigne(ref Ligne);
+
+            // Créer une liste formatée à afficher dans la ListBox
+            List<string> affichageLignes = new List<string>();
+            foreach (var ligne in Ligne)
+            {
+                string affichage = $"{ligne.Item2} ({ligne.Item1}) ";
+                affichageLignes.Add(affichage);
+            }
+
+            lstBoxLigne.DataSource = affichageLignes;
+            btnSupprimer.Enabled = false;
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -39,26 +50,36 @@ namespace SAE_S2._01
 
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
-            // Mettre les commandes SQL pour supprimer la ligne de toutes les tables ou elle apparaît
-            PageModifBd page = new PageModifBd();
-            page.Show();
-            this.Close();
+
+            if (lstBoxLigne.SelectedIndex >= 0)
+            {
+                var ligneSelectionnee = Ligne[lstBoxLigne.SelectedIndex];
+                ClasseBD.SuppressionLigne(ligneSelectionnee.Item1);
+
+                PageModifBd page = new PageModifBd();
+                page.Show();
+                this.Close();
+            }
+
         }
 
         private void lstBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstBoxLigne.SelectedIndex != 0)
             {
-                //Les lb qui finissent avec BD ont besoin d'une requête SQL pour afficherles infos dans la base
-                lbInfo.Text = "Informations de la ligne";
-                lbDepart.Text = " Départ : ";
-                lbDepartBD.Text = "";
-                lbId.Text = " id : ";
-                lbIdBD.Text = "";
-                lbNom.Text = " Nom : ";
-                lbNomBD.Text = "";
-                lbTerminus.Text = "Terminus : ";
-                lbTerminusBD.Text = "";
+                btnSupprimer.Enabled = true;
+
+                if (lstBoxLigne.SelectedIndex >= 0)
+                {
+                    btnSupprimer.Enabled = true;
+                    var ligneSelectionnee = Ligne[lstBoxLigne.SelectedIndex];
+
+                    lbInfo.Text = "Informations de la ligne";
+                    lbDepart.Text = $"Départ : {ligneSelectionnee.Item3}";
+                    lbId.Text = $"ID : {ligneSelectionnee.Item1}";
+                    lbNom.Text = $"Nom : {ligneSelectionnee.Item2}";
+                    lbTerminus.Text = $"Terminus : {ligneSelectionnee.Item4}";
+                }
             }
         }
     }

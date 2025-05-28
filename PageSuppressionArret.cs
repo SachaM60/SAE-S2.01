@@ -13,13 +13,27 @@ namespace SAE_S2._01
     public partial class PageSuppressionArret : Form
     {
 
-        private List<string> test = ["Valeur 1", "Valeur 2", "Je t'emmerde", "Faudra enlever"];
+        private List<(int, string, double, double)> Arret = new List<(int, string, double, double)>();
+        private List<(int,string,int,int)> Ligne = new List<(int, string, int, int)>();
         public PageSuppressionArret()
         {
             InitializeComponent();
+
             lbArret.Text = "";
             lbLigne.Text = "";
-            lstBoxArret.DataSource = test;
+            lbErreur.Text = "";
+            btnSupprimer.Enabled = false;
+
+            ClasseBD.LectureArret(ref Arret);
+            ClasseBD.LectureLigne(ref Ligne);
+
+            List<string> affichageArrets = new List<string>();
+            foreach (var arret in Arret)
+            {
+                affichageArrets.Add($"{arret.Item2}");
+            }
+
+            lstBoxArret.DataSource = affichageArrets;
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -30,8 +44,7 @@ namespace SAE_S2._01
         }
 
         private void btnSupprimer_Click(object sender, EventArgs e)
-        {
-            // Supprimer tout ce qui concecerne l'arrêt et modifier suivant en conséquence ( Avant : 2->5 ; 5->10 / Après : 2->10 )
+        {  
             PageModifBd page = new PageModifBd();
             page.Show();
             this.Close();
@@ -39,13 +52,7 @@ namespace SAE_S2._01
 
         private void lstBoxArret_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string nomArret = "L'arret sélectionné";
-
-            if (lstBoxArret.SelectedIndex != 0)
-            {
-                lbArret.Text = $"Arrêt sélectionné : {nomArret}";
-                lbLigne.Text = "Ligne désservie : ";
-            }
+          
         }
     }
 }

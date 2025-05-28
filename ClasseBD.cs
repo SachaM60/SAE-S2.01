@@ -42,6 +42,8 @@ namespace SAE_S2._01
             }
         }
 
+        //Méthodes d'insertion
+
         public static int InsertionLigne(string NomLigne, int arret_dep, int arret_fin)
         {
             string requeteLigne = $"INSERT INTO Ligne (nom_ligne,arret_dep,arret_fin) VALUES ('{NomLigne}',{arret_dep},{arret_fin});";
@@ -108,6 +110,72 @@ namespace SAE_S2._01
             MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn);
             cmd.ExecuteNonQuery();
         }
+
+        //Méthodes de suppression
+
+        public static void SuppressionLigne(int id)
+        {
+            string requeteHoraire = $"DELETE FROM Horaire WHERE id_ligne = {id};";
+            MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn);
+            cmd.ExecuteNonQuery();
+
+            string requeteSuivant = $"DELETE FROM Suivant WHERE id_ligne = {id};";
+            MySqlCommand cmd2 = new MySqlCommand(requeteSuivant, conn);
+            cmd2.ExecuteNonQuery();
+
+            string requeteCroisement = $"DELETE FROM Croisement WHERE id_ligne = {id};";
+            MySqlCommand cmd3 = new MySqlCommand(requeteCroisement, conn);
+            cmd3.ExecuteNonQuery();
+
+            string requeteFavori = $"DELETE FROM Favori WHERE id_ligne = {id};";
+            MySqlCommand cmd4 = new MySqlCommand(requeteFavori, conn);
+            cmd4.ExecuteNonQuery();
+
+            string requeteLigne = $"DELETE FROM Ligne WHERE id_ligne = {id};";
+            MySqlCommand cmd5 = new MySqlCommand(requeteLigne, conn);
+            cmd5.ExecuteNonQuery();
+        }
+
+        public static string SuppressionArret(int id)
+        {
+            List<(int,string,int,int)> Ligne = new List<(int, string, int, int)>();
+            ClasseBD.LectureLigne(ref Ligne);
+            if (Ligne.Any(l => l.Item3 == id || l.Item4 == id))
+            {
+                return "L'arrêt ne peut pas être supprimer car il est le départ ou le terminus d'une ligne";
+            }
+            else
+            {
+                string requeteArret = $"DELETE FROM Arret WHERE id_arret = {id};";
+                MySqlCommand cmd = new MySqlCommand(requeteArret, conn);
+                cmd.ExecuteNonQuery();
+            }
+            return "";
+            
+        }
+
+        public static void SuppressionHoraire(int id_bus, int id_arret, int id_ligne)
+        {
+            string requeteHoraire = $"DELETE FROM Horaire WHERE id_bus = {id_bus} AND id_arret = {id_arret} AND id_ligne = {id_ligne};";
+            MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        public static void SuppressionFavori(int id_utilisateur, int id_ligne)
+        {
+            string requeteFavori = $"DELETE FROM Favori WHERE id_utilisateur = {id_utilisateur} AND id_ligne = {id_ligne};";
+            MySqlCommand cmd = new MySqlCommand(requeteFavori, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        public static void SuppressionUtilisateur(string id_utilisateur)
+        {
+            string requeteUtilisateur = $"DELETE FROM Utilisateur WHERE id_utilisateur = '{id_utilisateur}';";
+            MySqlCommand cmd = new MySqlCommand(requeteUtilisateur, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        //Méthodes de lecture
 
         public static void LectureArret(ref List<(int, string, double, double)> Liste)
         {
