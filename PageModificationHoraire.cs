@@ -23,6 +23,8 @@ namespace SAE_S2._01
             LblSelectionHoraire.Text = "";
             lbHoraire.Text = "";
             lbArret.Text = "";
+            BtnValider.Enabled = false;
+
             ComboBoxHoraires.Hide();
             comboBoxArret.Hide();
             NumUpADownHeure.Hide();
@@ -51,7 +53,31 @@ namespace SAE_S2._01
 
         private void BtnValider_Click(object sender, EventArgs e)
         {
+            int idarret = 0;
+            foreach (var arret in Arret)
+            {
+                if (arret.Item2 == comboBoxArret.SelectedItem.ToString())
+                {
+                    idarret = arret.Item1;
+                    break;
+                }
+            }
 
+            int idligne = 0;
+            foreach (var ligne in Ligne)
+            {
+                if (ligne.Item2 == ComboBoxLigne.SelectedItem.ToString() && ligne.Item3==idarret)
+                {
+                    idligne = ligne.Item1;
+                    break;
+                }
+            }
+            string Newhoraire = NumUpADownHeure.Value.ToString() + ":" + NumUpADownMinute.Value.ToString();
+            string oldhoraire = ComboBoxHoraires.SelectedItem.ToString();
+            ClasseBD.ModificationHoraire(oldhoraire,Newhoraire,idarret,idligne);
+            PageChoixModification pageChoixModification = new PageChoixModification();
+            pageChoixModification.Show();
+            this.Close();
         }
 
         private void ComboBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,6 +85,7 @@ namespace SAE_S2._01
             if (ComboBoxLigne.SelectedItem != null)
             {
                 lbArret.Text = "Arrêt de départ : ";
+                comboBoxArret.Items.Clear();
                 foreach (var ligne in Ligne)
                 {
                     if (ligne.Item2 == ComboBoxLigne.SelectedItem.ToString())
@@ -73,18 +100,54 @@ namespace SAE_S2._01
                         }
                     }
                 }
+                comboBoxArret.Show();
             }
         }
 
         private void comboBoxArret_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ComboBoxHoraires.Items.Clear();
             if (comboBoxArret.SelectedItem != null)
             {
+                List<int> idLigne = new List<int>();
+                foreach (var ligne in Ligne)
+                {
+                    if (ligne.Item2 == ComboBoxLigne.SelectedItem.ToString())
+                    {
+                        idLigne.Add(ligne.Item1);
+                    }
+                }
+
+                int idArret = 0;
+                foreach (var arret in Arret)
+                {
+                    if (arret.Item2 == comboBoxArret.SelectedItem.ToString())
+                    {
+                        idArret = arret.Item1;
+                        break;
+                    }
+                }
+
                 LblSelectionHoraire.Text = "Selectionner l'horaire à modifier : ";
+                foreach (var horaire in Horaire)
+                {
+                    if (idLigne.Contains(horaire.Item3) && idArret == horaire.Item2)
+                    {
+                        ComboBoxHoraires.Items.Add(horaire.Item4);
+                    }
+                }
                 ComboBoxHoraires.Show();
                 lbHoraire.Text = "Nouvel Horaire : ";
                 NumUpADownHeure.Show();
                 NumUpADownMinute.Show();
+            }
+        }
+
+        private void ComboBoxHoraires_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboBoxHoraires.SelectedItem != null)
+            {
+                BtnValider.Enabled = true;
             }
         }
     }

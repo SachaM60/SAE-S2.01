@@ -369,5 +369,19 @@ namespace SAE_S2._01
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public static void ModificationHoraire(string Oldhoraire, string Newhoraire, int id_arret, int id_ligne)
+        {
+            string requeteHoraire = "UPDATE Horaire SET heure_depart = @newhoraire " +
+                "WHERE heure_depart = @oldhoraire AND id_arret = @id_arret AND id_ligne = @id_ligne;";
+            using (MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn))
+            {
+                cmd.Parameters.AddWithValue("@newhoraire", Newhoraire);
+                cmd.Parameters.AddWithValue("@oldhoraire", Oldhoraire);
+                cmd.Parameters.AddWithValue("@id_arret", id_arret);
+                cmd.Parameters.AddWithValue("@id_ligne", id_ligne);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

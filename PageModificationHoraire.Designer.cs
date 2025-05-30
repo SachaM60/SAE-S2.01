@@ -94,6 +94,7 @@
             ComboBoxHoraires.Name = "ComboBoxHoraires";
             ComboBoxHoraires.Size = new Size(188, 33);
             ComboBoxHoraires.TabIndex = 4;
+            ComboBoxHoraires.SelectedIndexChanged += ComboBoxHoraires_SelectedIndexChanged;
             // 
             // LbLigne
             // 
