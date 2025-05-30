@@ -69,14 +69,12 @@ namespace SAE_S2._01
                 {
                     lbErreurId.Text = "Identifiant incorrect.";
                     lbErreurMdp.Text = "";
-                    return;
                 }
 
                 else if (user.Item1 == username)
                 {
                     lbErreurMdp.Text = "Mot de passe incorrect.";
                     lbErreurId.Text = "";
-                    return;
                 }
             }
 
