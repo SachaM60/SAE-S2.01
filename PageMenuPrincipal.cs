@@ -57,9 +57,20 @@ namespace SAE_S2._01
 
         private void picAdmin_Click(object sender, EventArgs e)
         {
-            PageMenuAdmin pageMenuAdmin = new PageMenuAdmin();
-            pageMenuAdmin.Show();
-            this.Close();
+            //Pop up pour saisir un mdp
+            string password = Microsoft.VisualBasic.Interaction.InputBox("Veuillez saisir le mot de passe administrateur :", "Accès Administrateur", "", -1, -1);
+           
+            if (password != "admin")
+            {
+                MessageBox.Show("Mot de passe incorrect. Accès refusé.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                PageMenuAdmin pageMenuAdmin = new PageMenuAdmin();
+                pageMenuAdmin.Show();
+                this.Close();
+            }
         }
     }
 }

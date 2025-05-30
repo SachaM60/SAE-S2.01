@@ -307,6 +307,21 @@ namespace SAE_S2._01
             reader.Close();
         }
 
+        public static void LectureSuivant(ref List<(int, int, int)> Liste)
+        {
+            string requeteSuivant = "SELECT * FROM Suivant;";
+            MySqlCommand cmd = new MySqlCommand(requeteSuivant, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int arret_actuel = reader.GetInt32(0);
+                int arret_suivant = reader.GetInt32(1);
+                int id_ligne = reader.GetInt32(2);
+                Liste.Add((arret_actuel, arret_suivant, id_ligne));
+            }
+            reader.Close();
+        }
+
         public static void LectureFavori(ref List<(int, int)> Liste)
         {
             string requeteFavori = "SELECT * FROM Favori;";
@@ -320,6 +335,7 @@ namespace SAE_S2._01
             }
             reader.Close();
         }
+
         public static void LectureUtilisateur(ref List<(string, string, string, string, string, int)> Liste)
         {
             string requeteUtilisateur = "SELECT * FROM Utilisateur;";
@@ -336,6 +352,22 @@ namespace SAE_S2._01
                 Liste.Add((id_utilisateur, nom_utilisateur, prenom_utilisateur, mot_de_passe, sexe_utilisateur, age_utilisateur));
             }
             reader.Close();
+        }
+
+        // Méthodes de Modifiaction
+
+        public static void ModificationArret(string Oldnom, string Newnom, double lat, double lon)
+        {
+            string requeteArret = "UPDATE Arret SET nom_arret = @newnom, latitude_arret = @lat, longitude_arret = @lon " +
+                "WHERE nom_arret = @oldnom;";
+            using (MySqlCommand cmd = new MySqlCommand(requeteArret, conn))
+            {
+                cmd.Parameters.AddWithValue("@newnom", Newnom);
+                cmd.Parameters.AddWithValue("@lat", lat);
+                cmd.Parameters.AddWithValue("@lon", lon);
+                cmd.Parameters.AddWithValue("@oldnom", Oldnom);
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

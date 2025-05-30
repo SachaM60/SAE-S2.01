@@ -28,111 +28,116 @@
         /// </summary>
         private void InitializeComponent()
         {
-            LblSelectionLigne = new Label();
-            ComboBoxSelectLigne = new ComboBox();
-            LblDepartLigne = new Label();
+            lbNomLigne = new Label();
+            LbArret = new Label();
             NumUpADownNbArret = new NumericUpDown();
-            flpArretsDesservis = new FlowLayoutPanel();
-            LblSelectionArrets = new Label();
+            flpArrets = new FlowLayoutPanel();
             BtnRetour = new Button();
             BtnValider = new Button();
-            LblWarning = new Label();
+            label1 = new Label();
+            txtBoxNom = new TextBox();
+            lstBoxLigne = new ListBox();
             ((System.ComponentModel.ISupportInitialize)NumUpADownNbArret).BeginInit();
             SuspendLayout();
             // 
-            // LblSelectionLigne
+            // lbNomLigne
             // 
-            LblSelectionLigne.AutoSize = true;
-            LblSelectionLigne.Location = new Point(81, 59);
-            LblSelectionLigne.Name = "LblSelectionLigne";
-            LblSelectionLigne.Size = new Size(228, 20);
-            LblSelectionLigne.TabIndex = 0;
-            LblSelectionLigne.Text = "Selectionner la ligne à modifier : ";
-            LblSelectionLigne.Click += label1_Click;
+            lbNomLigne.AutoSize = true;
+            lbNomLigne.Location = new Point(432, 116);
+            lbNomLigne.Margin = new Padding(4, 0, 4, 0);
+            lbNomLigne.Name = "lbNomLigne";
+            lbNomLigne.Size = new Size(147, 25);
+            lbNomLigne.TabIndex = 0;
+            lbNomLigne.Text = "Nom de la ligne :";
             // 
-            // ComboBoxSelectLigne
+            // LbArret
             // 
-            ComboBoxSelectLigne.FormattingEnabled = true;
-            ComboBoxSelectLigne.Location = new Point(315, 56);
-            ComboBoxSelectLigne.Name = "ComboBoxSelectLigne";
-            ComboBoxSelectLigne.Size = new Size(151, 28);
-            ComboBoxSelectLigne.TabIndex = 1;
-            // 
-            // LblDepartLigne
-            // 
-            LblDepartLigne.AutoSize = true;
-            LblDepartLigne.Location = new Point(56, 119);
-            LblDepartLigne.Name = "LblDepartLigne";
-            LblDepartLigne.Size = new Size(253, 20);
-            LblDepartLigne.TabIndex = 2;
-            LblDepartLigne.Text = "Nombre d'arrêts présent dans ligne : ";
+            LbArret.AutoSize = true;
+            LbArret.Location = new Point(347, 174);
+            LbArret.Margin = new Padding(4, 0, 4, 0);
+            LbArret.Name = "LbArret";
+            LbArret.Size = new Size(241, 25);
+            LbArret.TabIndex = 2;
+            LbArret.Text = "Arrêts présent dans la ligne : ";
             // 
             // NumUpADownNbArret
             // 
-            NumUpADownNbArret.Location = new Point(315, 117);
+            NumUpADownNbArret.Location = new Point(595, 174);
+            NumUpADownNbArret.Margin = new Padding(4);
             NumUpADownNbArret.Name = "NumUpADownNbArret";
-            NumUpADownNbArret.Size = new Size(88, 27);
+            NumUpADownNbArret.Size = new Size(217, 31);
             NumUpADownNbArret.TabIndex = 3;
             // 
-            // flpArretsDesservis
+            // flpArrets
             // 
-            flpArretsDesservis.Location = new Point(315, 186);
-            flpArretsDesservis.Name = "flpArretsDesservis";
-            flpArretsDesservis.Size = new Size(328, 150);
-            flpArretsDesservis.TabIndex = 4;
-            // 
-            // LblSelectionArrets
-            // 
-            LblSelectionArrets.AutoSize = true;
-            LblSelectionArrets.Location = new Point(78, 177);
-            LblSelectionArrets.Name = "LblSelectionArrets";
-            LblSelectionArrets.Size = new Size(228, 20);
-            LblSelectionArrets.TabIndex = 5;
-            LblSelectionArrets.Text = "Selectionner les arrêts desservis : ";
-            LblSelectionArrets.Click += label1_Click_1;
+            flpArrets.Location = new Point(260, 232);
+            flpArrets.Margin = new Padding(4);
+            flpArrets.Name = "flpArrets";
+            flpArrets.Size = new Size(663, 188);
+            flpArrets.TabIndex = 4;
             // 
             // BtnRetour
             // 
-            BtnRetour.Location = new Point(293, 379);
+            BtnRetour.Location = new Point(260, 500);
+            BtnRetour.Margin = new Padding(4);
             BtnRetour.Name = "BtnRetour";
-            BtnRetour.Size = new Size(94, 29);
+            BtnRetour.Size = new Size(283, 36);
             BtnRetour.TabIndex = 6;
             BtnRetour.Text = "Retour";
             BtnRetour.UseVisualStyleBackColor = true;
+            BtnRetour.Click += BtnRetour_Click;
             // 
             // BtnValider
             // 
-            BtnValider.Location = new Point(423, 379);
+            BtnValider.Location = new Point(640, 500);
+            BtnValider.Margin = new Padding(4);
             BtnValider.Name = "BtnValider";
-            BtnValider.Size = new Size(94, 29);
+            BtnValider.Size = new Size(283, 36);
             BtnValider.TabIndex = 7;
             BtnValider.Text = "Valider";
             BtnValider.UseVisualStyleBackColor = true;
+            BtnValider.Click += BtnValider_Click;
             // 
-            // LblWarning
+            // label1
             // 
-            LblWarning.AutoSize = true;
-            LblWarning.Location = new Point(148, 197);
-            LblWarning.Name = "LblWarning";
-            LblWarning.Size = new Size(161, 20);
-            LblWarning.TabIndex = 8;
-            LblWarning.Text = "( Sens de la descente ) ";
-            LblWarning.Click += LblWarning_Click;
+            label1.AutoSize = true;
+            label1.Location = new Point(772, 113);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 25);
+            label1.TabIndex = 8;
+            // 
+            // txtBoxNom
+            // 
+            txtBoxNom.Location = new Point(595, 110);
+            txtBoxNom.Name = "txtBoxNom";
+            txtBoxNom.Size = new Size(217, 31);
+            txtBoxNom.TabIndex = 9;
+            // 
+            // lstBoxLigne
+            // 
+            lstBoxLigne.FormattingEnabled = true;
+            lstBoxLigne.ItemHeight = 25;
+            lstBoxLigne.Location = new Point(16, 16);
+            lstBoxLigne.Name = "lstBoxLigne";
+            lstBoxLigne.Size = new Size(180, 529);
+            lstBoxLigne.TabIndex = 10;
+            lstBoxLigne.SelectedIndexChanged += lstBoxLigne_SelectedIndexChanged;
             // 
             // PageModificationLigne
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(LblWarning);
+            ClientSize = new Size(1000, 562);
+            Controls.Add(lstBoxLigne);
+            Controls.Add(txtBoxNom);
+            Controls.Add(label1);
             Controls.Add(BtnValider);
             Controls.Add(BtnRetour);
-            Controls.Add(LblSelectionArrets);
-            Controls.Add(flpArretsDesservis);
+            Controls.Add(flpArrets);
             Controls.Add(NumUpADownNbArret);
-            Controls.Add(LblDepartLigne);
-            Controls.Add(ComboBoxSelectLigne);
-            Controls.Add(LblSelectionLigne);
+            Controls.Add(LbArret);
+            Controls.Add(lbNomLigne);
+            Margin = new Padding(4);
             Name = "PageModificationLigne";
             Text = "PageModificationLigne";
             ((System.ComponentModel.ISupportInitialize)NumUpADownNbArret).EndInit();
@@ -142,14 +147,14 @@
 
         #endregion
 
-        private Label LblSelectionLigne;
-        private ComboBox ComboBoxSelectLigne;
-        private Label LblDepartLigne;
+        private Label lbNomLigne;
+        private Label LbArret;
         private NumericUpDown NumUpADownNbArret;
-        private FlowLayoutPanel flpArretsDesservis;
-        private Label LblSelectionArrets;
+        private FlowLayoutPanel flpArrets;
         private Button BtnRetour;
         private Button BtnValider;
-        private Label LblWarning;
+        private Label label1;
+        private TextBox txtBoxNom;
+        private ListBox lstBoxLigne;
     }
 }

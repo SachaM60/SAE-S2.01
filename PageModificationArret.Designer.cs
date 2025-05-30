@@ -32,114 +32,149 @@
             comboBoxArret = new ComboBox();
             BtnRetour = new Button();
             BtnValider = new Button();
-            LabelNomArret = new Label();
+            LbNom = new Label();
             TxtBoxNom = new TextBox();
-            LblLattitude = new Label();
-            LblLongitude = new Label();
-            TxtBoxLattitude = new TextBox();
-            TxtBoxLongittude = new TextBox();
+            Lblat = new Label();
+            Lblong = new Label();
+            TxtBoxLat = new TextBox();
+            TxtBoxLong = new TextBox();
+            lbErreurLat = new Label();
+            lbErreurLong = new Label();
             SuspendLayout();
             // 
             // LabelChoixArret
             // 
             LabelChoixArret.AutoSize = true;
-            LabelChoixArret.Location = new Point(67, 84);
+            LabelChoixArret.Location = new Point(158, 64);
+            LabelChoixArret.Margin = new Padding(4, 0, 4, 0);
             LabelChoixArret.Name = "LabelChoixArret";
-            LabelChoixArret.Size = new Size(202, 20);
+            LabelChoixArret.Size = new Size(242, 25);
             LabelChoixArret.TabIndex = 0;
             LabelChoixArret.Text = "Choisissez l'arrêt à Modifier : ";
             // 
             // comboBoxArret
             // 
             comboBoxArret.FormattingEnabled = true;
-            comboBoxArret.Location = new Point(291, 81);
+            comboBoxArret.Location = new Point(438, 60);
+            comboBoxArret.Margin = new Padding(4);
             comboBoxArret.Name = "comboBoxArret";
-            comboBoxArret.Size = new Size(151, 28);
+            comboBoxArret.Size = new Size(223, 33);
             comboBoxArret.TabIndex = 1;
+            comboBoxArret.SelectedIndexChanged += comboBoxArret_SelectedIndexChanged;
             // 
             // BtnRetour
             // 
-            BtnRetour.Location = new Point(254, 354);
+            BtnRetour.Location = new Point(116, 513);
+            BtnRetour.Margin = new Padding(4);
             BtnRetour.Name = "BtnRetour";
-            BtnRetour.Size = new Size(94, 29);
+            BtnRetour.Size = new Size(273, 36);
             BtnRetour.TabIndex = 2;
             BtnRetour.Text = "Retour";
             BtnRetour.UseVisualStyleBackColor = true;
+            BtnRetour.Click += BtnRetour_Click;
             // 
             // BtnValider
             // 
             BtnValider.Enabled = false;
-            BtnValider.Location = new Point(444, 354);
+            BtnValider.Location = new Point(634, 513);
+            BtnValider.Margin = new Padding(4);
             BtnValider.Name = "BtnValider";
-            BtnValider.Size = new Size(94, 29);
+            BtnValider.Size = new Size(273, 36);
             BtnValider.TabIndex = 3;
             BtnValider.Text = "Valider";
             BtnValider.UseVisualStyleBackColor = true;
             BtnValider.Click += BtnValider_Click;
             // 
-            // LabelNomArret
+            // LbNom
             // 
-            LabelNomArret.AutoSize = true;
-            LabelNomArret.Location = new Point(153, 148);
-            LabelNomArret.Name = "LabelNomArret";
-            LabelNomArret.Size = new Size(116, 20);
-            LabelNomArret.TabIndex = 4;
-            LabelNomArret.Text = "Nom de l'arrêt : ";
+            LbNom.AutoSize = true;
+            LbNom.Location = new Point(265, 196);
+            LbNom.Margin = new Padding(4, 0, 4, 0);
+            LbNom.Name = "LbNom";
+            LbNom.Size = new Size(140, 25);
+            LbNom.TabIndex = 4;
+            LbNom.Text = "Nom de l'arrêt : ";
             // 
             // TxtBoxNom
             // 
-            TxtBoxNom.Location = new Point(291, 145);
+            TxtBoxNom.Location = new Point(438, 192);
+            TxtBoxNom.Margin = new Padding(4);
             TxtBoxNom.Name = "TxtBoxNom";
-            TxtBoxNom.Size = new Size(125, 27);
+            TxtBoxNom.Size = new Size(223, 31);
             TxtBoxNom.TabIndex = 5;
             // 
-            // LblLattitude
+            // Lblat
             // 
-            LblLattitude.AutoSize = true;
-            LblLattitude.Location = new Point(127, 203);
-            LblLattitude.Name = "LblLattitude";
-            LblLattitude.Size = new Size(142, 20);
-            LblLattitude.TabIndex = 6;
-            LblLattitude.Text = "Lattitude de l'arrêt : ";
+            Lblat.AutoSize = true;
+            Lblat.Location = new Point(233, 278);
+            Lblat.Margin = new Padding(4, 0, 4, 0);
+            Lblat.Name = "Lblat";
+            Lblat.Size = new Size(163, 25);
+            Lblat.TabIndex = 6;
+            Lblat.Text = "Latitude de l'arrêt : ";
             // 
-            // LblLongitude
+            // Lblong
             // 
-            LblLongitude.AutoSize = true;
-            LblLongitude.Location = new Point(114, 258);
-            LblLongitude.Name = "LblLongitude";
-            LblLongitude.Size = new Size(155, 20);
-            LblLongitude.TabIndex = 7;
-            LblLongitude.Text = "Longittude de l'arrêt : ";
+            Lblong.AutoSize = true;
+            Lblong.Location = new Point(216, 361);
+            Lblong.Margin = new Padding(4, 0, 4, 0);
+            Lblong.Name = "Lblong";
+            Lblong.Size = new Size(180, 25);
+            Lblong.TabIndex = 7;
+            Lblong.Text = "Longitude de l'arrêt : ";
             // 
-            // TxtBoxLattitude
+            // TxtBoxLat
             // 
-            TxtBoxLattitude.Location = new Point(291, 203);
-            TxtBoxLattitude.Name = "TxtBoxLattitude";
-            TxtBoxLattitude.Size = new Size(125, 27);
-            TxtBoxLattitude.TabIndex = 8;
+            TxtBoxLat.Location = new Point(438, 278);
+            TxtBoxLat.Margin = new Padding(4);
+            TxtBoxLat.Name = "TxtBoxLat";
+            TxtBoxLat.Size = new Size(223, 31);
+            TxtBoxLat.TabIndex = 8;
             // 
-            // TxtBoxLongittude
+            // TxtBoxLong
             // 
-            TxtBoxLongittude.Location = new Point(291, 258);
-            TxtBoxLongittude.Name = "TxtBoxLongittude";
-            TxtBoxLongittude.Size = new Size(125, 27);
-            TxtBoxLongittude.TabIndex = 9;
+            TxtBoxLong.Location = new Point(438, 361);
+            TxtBoxLong.Margin = new Padding(4);
+            TxtBoxLong.Name = "TxtBoxLong";
+            TxtBoxLong.Size = new Size(223, 31);
+            TxtBoxLong.TabIndex = 9;
+            // 
+            // lbErreurLat
+            // 
+            lbErreurLat.AutoSize = true;
+            lbErreurLat.Location = new Point(682, 284);
+            lbErreurLat.Name = "lbErreurLat";
+            lbErreurLat.Size = new Size(58, 25);
+            lbErreurLat.TabIndex = 10;
+            lbErreurLat.Text = "Erreur";
+            // 
+            // lbErreurLong
+            // 
+            lbErreurLong.AutoSize = true;
+            lbErreurLong.Location = new Point(682, 367);
+            lbErreurLong.Name = "lbErreurLong";
+            lbErreurLong.Size = new Size(58, 25);
+            lbErreurLong.TabIndex = 11;
+            lbErreurLong.Text = "Erreur";
             // 
             // PageModificationArret
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(TxtBoxLongittude);
-            Controls.Add(TxtBoxLattitude);
-            Controls.Add(LblLongitude);
-            Controls.Add(LblLattitude);
+            ClientSize = new Size(1000, 562);
+            Controls.Add(lbErreurLong);
+            Controls.Add(lbErreurLat);
+            Controls.Add(TxtBoxLong);
+            Controls.Add(TxtBoxLat);
+            Controls.Add(Lblong);
+            Controls.Add(Lblat);
             Controls.Add(TxtBoxNom);
-            Controls.Add(LabelNomArret);
+            Controls.Add(LbNom);
             Controls.Add(BtnValider);
             Controls.Add(BtnRetour);
             Controls.Add(comboBoxArret);
             Controls.Add(LabelChoixArret);
+            Margin = new Padding(4);
             Name = "PageModificationArret";
             Text = "PageModificationArret";
             ResumeLayout(false);
@@ -152,11 +187,13 @@
         private ComboBox comboBoxArret;
         private Button BtnRetour;
         private Button BtnValider;
-        private Label LabelNomArret;
+        private Label LbNom;
         private TextBox TxtBoxNom;
-        private Label LblLattitude;
-        private Label LblLongitude;
-        private TextBox TxtBoxLattitude;
-        private TextBox TxtBoxLongittude;
+        private Label Lblat;
+        private Label Lblong;
+        private TextBox TxtBoxLat;
+        private TextBox TxtBoxLong;
+        private Label lbErreurLat;
+        private Label lbErreurLong;
     }
 }

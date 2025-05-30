@@ -65,7 +65,7 @@ namespace SAE_S2._01
                     }
                 }
 
-                else if (Utilisateur.Contains(user) && user.Item1 != username)
+                else if (Utilisateur.Any(u => u.Item1 == username) == false)
                 {
                     lbErreurId.Text = "Identifiant incorrect.";
                     lbErreurMdp.Text = "";
