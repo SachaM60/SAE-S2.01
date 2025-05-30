@@ -37,14 +37,16 @@
             txtNomInscription = new TextBox();
             txtPrenomInscription = new TextBox();
             numAgeInscription = new NumericUpDown();
+            comboBoxSexe = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numAgeInscription).BeginInit();
             SuspendLayout();
             // 
             // btnRetourInscription
             // 
-            btnRetourInscription.Location = new Point(356, 372);
+            btnRetourInscription.Location = new Point(445, 465);
+            btnRetourInscription.Margin = new Padding(4, 4, 4, 4);
             btnRetourInscription.Name = "btnRetourInscription";
-            btnRetourInscription.Size = new Size(94, 29);
+            btnRetourInscription.Size = new Size(118, 36);
             btnRetourInscription.TabIndex = 0;
             btnRetourInscription.Text = "Retour";
             btnRetourInscription.UseVisualStyleBackColor = true;
@@ -53,44 +55,49 @@
             // lblNomInscription
             // 
             lblNomInscription.AutoSize = true;
-            lblNomInscription.Location = new Point(229, 72);
+            lblNomInscription.Location = new Point(286, 90);
+            lblNomInscription.Margin = new Padding(4, 0, 4, 0);
             lblNomInscription.Name = "lblNomInscription";
-            lblNomInscription.Size = new Size(49, 20);
+            lblNomInscription.Size = new Size(61, 25);
             lblNomInscription.TabIndex = 1;
             lblNomInscription.Text = "Nom :";
             // 
             // lblPrenomInscription
             // 
             lblPrenomInscription.AutoSize = true;
-            lblPrenomInscription.Location = new Point(211, 131);
+            lblPrenomInscription.Location = new Point(264, 164);
+            lblPrenomInscription.Margin = new Padding(4, 0, 4, 0);
             lblPrenomInscription.Name = "lblPrenomInscription";
-            lblPrenomInscription.Size = new Size(67, 20);
+            lblPrenomInscription.Size = new Size(83, 25);
             lblPrenomInscription.TabIndex = 2;
             lblPrenomInscription.Text = "Prénom :";
             // 
             // lblAgeInscription
             // 
             lblAgeInscription.AutoSize = true;
-            lblAgeInscription.Location = new Point(235, 187);
+            lblAgeInscription.Location = new Point(294, 234);
+            lblAgeInscription.Margin = new Padding(4, 0, 4, 0);
             lblAgeInscription.Name = "lblAgeInscription";
-            lblAgeInscription.Size = new Size(43, 20);
+            lblAgeInscription.Size = new Size(53, 25);
             lblAgeInscription.TabIndex = 3;
             lblAgeInscription.Text = "Age :";
             // 
             // lblSexeInscription
             // 
             lblSexeInscription.AutoSize = true;
-            lblSexeInscription.Location = new Point(229, 243);
+            lblSexeInscription.Location = new Point(286, 304);
+            lblSexeInscription.Margin = new Padding(4, 0, 4, 0);
             lblSexeInscription.Name = "lblSexeInscription";
-            lblSexeInscription.Size = new Size(47, 20);
+            lblSexeInscription.Size = new Size(57, 25);
             lblSexeInscription.TabIndex = 4;
             lblSexeInscription.Text = "Sexe :";
             // 
             // btnValiderInscription
             // 
-            btnValiderInscription.Location = new Point(355, 324);
+            btnValiderInscription.Location = new Point(444, 405);
+            btnValiderInscription.Margin = new Padding(4, 4, 4, 4);
             btnValiderInscription.Name = "btnValiderInscription";
-            btnValiderInscription.Size = new Size(94, 29);
+            btnValiderInscription.Size = new Size(118, 36);
             btnValiderInscription.TabIndex = 5;
             btnValiderInscription.Text = "Valider";
             btnValiderInscription.UseVisualStyleBackColor = true;
@@ -98,30 +105,42 @@
             // 
             // txtNomInscription
             // 
-            txtNomInscription.Location = new Point(355, 69);
+            txtNomInscription.Location = new Point(444, 86);
+            txtNomInscription.Margin = new Padding(4, 4, 4, 4);
             txtNomInscription.Name = "txtNomInscription";
-            txtNomInscription.Size = new Size(125, 27);
+            txtNomInscription.Size = new Size(155, 31);
             txtNomInscription.TabIndex = 6;
             // 
             // txtPrenomInscription
             // 
-            txtPrenomInscription.Location = new Point(355, 131);
+            txtPrenomInscription.Location = new Point(444, 164);
+            txtPrenomInscription.Margin = new Padding(4, 4, 4, 4);
             txtPrenomInscription.Name = "txtPrenomInscription";
-            txtPrenomInscription.Size = new Size(125, 27);
+            txtPrenomInscription.Size = new Size(155, 31);
             txtPrenomInscription.TabIndex = 7;
             // 
             // numAgeInscription
             // 
-            numAgeInscription.Location = new Point(355, 187);
+            numAgeInscription.Location = new Point(444, 234);
+            numAgeInscription.Margin = new Padding(4, 4, 4, 4);
             numAgeInscription.Name = "numAgeInscription";
-            numAgeInscription.Size = new Size(150, 27);
+            numAgeInscription.Size = new Size(155, 31);
             numAgeInscription.TabIndex = 8;
+            // 
+            // comboBoxSexe
+            // 
+            comboBoxSexe.FormattingEnabled = true;
+            comboBoxSexe.Location = new Point(445, 304);
+            comboBoxSexe.Name = "comboBoxSexe";
+            comboBoxSexe.Size = new Size(154, 33);
+            comboBoxSexe.TabIndex = 9;
             // 
             // PageInscription1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 562);
+            Controls.Add(comboBoxSexe);
             Controls.Add(numAgeInscription);
             Controls.Add(txtPrenomInscription);
             Controls.Add(txtNomInscription);
@@ -131,6 +150,7 @@
             Controls.Add(lblPrenomInscription);
             Controls.Add(lblNomInscription);
             Controls.Add(btnRetourInscription);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "PageInscription1";
             Text = "Inscription";
             ((System.ComponentModel.ISupportInitialize)numAgeInscription).EndInit();
@@ -149,5 +169,6 @@
         private TextBox txtNomInscription;
         private TextBox txtPrenomInscription;
         private NumericUpDown numAgeInscription;
+        private ComboBox comboBoxSexe;
     }
 }

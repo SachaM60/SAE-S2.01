@@ -34,45 +34,52 @@
             txtMotDePasseConnexion = new TextBox();
             btnRetour = new Button();
             btnValiderConnexion = new Button();
+            lbErreurId = new Label();
+            lbErreurMdp = new Label();
             SuspendLayout();
             // 
             // lblIdentifiantConnexion
             // 
             lblIdentifiantConnexion.AutoSize = true;
-            lblIdentifiantConnexion.Location = new Point(198, 106);
+            lblIdentifiantConnexion.Location = new Point(248, 132);
+            lblIdentifiantConnexion.Margin = new Padding(4, 0, 4, 0);
             lblIdentifiantConnexion.Name = "lblIdentifiantConnexion";
-            lblIdentifiantConnexion.Size = new Size(84, 20);
+            lblIdentifiantConnexion.Size = new Size(101, 25);
             lblIdentifiantConnexion.TabIndex = 0;
             lblIdentifiantConnexion.Text = "Identifiant :";
             // 
             // lblMotDePasseConnexion
             // 
             lblMotDePasseConnexion.AutoSize = true;
-            lblMotDePasseConnexion.Location = new Point(177, 164);
+            lblMotDePasseConnexion.Location = new Point(221, 205);
+            lblMotDePasseConnexion.Margin = new Padding(4, 0, 4, 0);
             lblMotDePasseConnexion.Name = "lblMotDePasseConnexion";
-            lblMotDePasseConnexion.Size = new Size(105, 20);
+            lblMotDePasseConnexion.Size = new Size(129, 25);
             lblMotDePasseConnexion.TabIndex = 1;
             lblMotDePasseConnexion.Text = "Mot de passe :";
             // 
             // txtIdentifiantConnexion
             // 
-            txtIdentifiantConnexion.Location = new Point(334, 103);
+            txtIdentifiantConnexion.Location = new Point(418, 129);
+            txtIdentifiantConnexion.Margin = new Padding(4, 4, 4, 4);
             txtIdentifiantConnexion.Name = "txtIdentifiantConnexion";
-            txtIdentifiantConnexion.Size = new Size(125, 27);
+            txtIdentifiantConnexion.Size = new Size(155, 31);
             txtIdentifiantConnexion.TabIndex = 2;
             // 
             // txtMotDePasseConnexion
             // 
-            txtMotDePasseConnexion.Location = new Point(334, 161);
+            txtMotDePasseConnexion.Location = new Point(418, 201);
+            txtMotDePasseConnexion.Margin = new Padding(4, 4, 4, 4);
             txtMotDePasseConnexion.Name = "txtMotDePasseConnexion";
-            txtMotDePasseConnexion.Size = new Size(125, 27);
+            txtMotDePasseConnexion.Size = new Size(155, 31);
             txtMotDePasseConnexion.TabIndex = 3;
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(354, 341);
+            btnRetour.Location = new Point(442, 426);
+            btnRetour.Margin = new Padding(4, 4, 4, 4);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(94, 29);
+            btnRetour.Size = new Size(118, 36);
             btnRetour.TabIndex = 4;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
@@ -80,25 +87,47 @@
             // 
             // btnValiderConnexion
             // 
-            btnValiderConnexion.Location = new Point(354, 297);
+            btnValiderConnexion.Location = new Point(442, 371);
+            btnValiderConnexion.Margin = new Padding(4, 4, 4, 4);
             btnValiderConnexion.Name = "btnValiderConnexion";
-            btnValiderConnexion.Size = new Size(94, 29);
+            btnValiderConnexion.Size = new Size(118, 36);
             btnValiderConnexion.TabIndex = 5;
             btnValiderConnexion.Text = "Valider";
             btnValiderConnexion.UseVisualStyleBackColor = true;
             btnValiderConnexion.Click += btnValiderConnexion_Click;
             // 
+            // lbErreurId
+            // 
+            lbErreurId.AutoSize = true;
+            lbErreurId.Location = new Point(613, 132);
+            lbErreurId.Name = "lbErreurId";
+            lbErreurId.Size = new Size(58, 25);
+            lbErreurId.TabIndex = 6;
+            lbErreurId.Text = "Erreur";
+            // 
+            // lbErreurMdp
+            // 
+            lbErreurMdp.AutoSize = true;
+            lbErreurMdp.Location = new Point(613, 207);
+            lbErreurMdp.Name = "lbErreurMdp";
+            lbErreurMdp.Size = new Size(58, 25);
+            lbErreurMdp.TabIndex = 7;
+            lbErreurMdp.Text = "Erreur";
+            // 
             // PageConnexion
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 562);
+            Controls.Add(lbErreurMdp);
+            Controls.Add(lbErreurId);
             Controls.Add(btnValiderConnexion);
             Controls.Add(btnRetour);
             Controls.Add(txtMotDePasseConnexion);
             Controls.Add(txtIdentifiantConnexion);
             Controls.Add(lblMotDePasseConnexion);
             Controls.Add(lblIdentifiantConnexion);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "PageConnexion";
             Text = "Connexion";
             ResumeLayout(false);
@@ -113,5 +142,7 @@
         private TextBox txtMotDePasseConnexion;
         private Button btnRetour;
         private Button btnValiderConnexion;
+        private Label lbErreurId;
+        private Label lbErreurMdp;
     }
 }

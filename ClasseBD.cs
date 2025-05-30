@@ -12,6 +12,7 @@ namespace SAE_S2._01
     public static class ClasseBD
     {
         private static MySqlConnection conn;
+        public static string UserConnect { get; set; }
         public static bool Ouverture()
         {
             bool ouvert = false;
@@ -302,6 +303,37 @@ namespace SAE_S2._01
                 int id_arret = reader.GetInt32(0);
                 int id_ligne = reader.GetInt32(1);
                 Liste.Add((id_arret, id_ligne));
+            }
+            reader.Close();
+        }
+
+        public static void LectureFavori(ref List<(int, int)> Liste)
+        {
+            string requeteFavori = "SELECT * FROM Favori;";
+            MySqlCommand cmd = new MySqlCommand(requeteFavori, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int id_utilisateur = reader.GetInt32(0);
+                int id_ligne = reader.GetInt32(1);
+                Liste.Add((id_utilisateur, id_ligne));
+            }
+            reader.Close();
+        }
+        public static void LectureUtilisateur(ref List<(string, string, string, string, string, int)> Liste)
+        {
+            string requeteUtilisateur = "SELECT * FROM Utilisateur;";
+            MySqlCommand cmd = new MySqlCommand(requeteUtilisateur, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                string id_utilisateur = reader.GetString(0);
+                string nom_utilisateur = reader.GetString(1);
+                string prenom_utilisateur = reader.GetString(2);
+                string mot_de_passe = reader.GetString(3);
+                string sexe_utilisateur = reader.GetString(4);
+                int age_utilisateur = reader.GetInt32(5);
+                Liste.Add((id_utilisateur, nom_utilisateur, prenom_utilisateur, mot_de_passe, sexe_utilisateur, age_utilisateur));
             }
             reader.Close();
         }

@@ -33,15 +33,14 @@
             lblPasDeCompte = new Label();
             lblCompteExiste = new Label();
             btnRetourChoixConnexion = new Button();
-            picAdmin = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)picAdmin).BeginInit();
             SuspendLayout();
             // 
             // btnConnexion
             // 
-            btnConnexion.Location = new Point(444, 199);
+            btnConnexion.Location = new Point(555, 249);
+            btnConnexion.Margin = new Padding(4, 4, 4, 4);
             btnConnexion.Name = "btnConnexion";
-            btnConnexion.Size = new Size(149, 56);
+            btnConnexion.Size = new Size(186, 70);
             btnConnexion.TabIndex = 2;
             btnConnexion.Text = "Connexion";
             btnConnexion.UseVisualStyleBackColor = true;
@@ -49,9 +48,10 @@
             // 
             // btnInscription
             // 
-            btnInscription.Location = new Point(444, 74);
+            btnInscription.Location = new Point(555, 92);
+            btnInscription.Margin = new Padding(4, 4, 4, 4);
             btnInscription.Name = "btnInscription";
-            btnInscription.Size = new Size(149, 56);
+            btnInscription.Size = new Size(186, 70);
             btnInscription.TabIndex = 3;
             btnInscription.Text = "S'inscrire";
             btnInscription.UseVisualStyleBackColor = true;
@@ -60,57 +60,47 @@
             // lblPasDeCompte
             // 
             lblPasDeCompte.AutoSize = true;
-            lblPasDeCompte.Location = new Point(185, 92);
+            lblPasDeCompte.Location = new Point(231, 115);
+            lblPasDeCompte.Margin = new Padding(4, 0, 4, 0);
             lblPasDeCompte.Name = "lblPasDeCompte";
-            lblPasDeCompte.Size = new Size(117, 20);
+            lblPasDeCompte.Size = new Size(142, 25);
             lblPasDeCompte.TabIndex = 4;
             lblPasDeCompte.Text = "Pas de compte ?";
             // 
             // lblCompteExiste
             // 
             lblCompteExiste.AutoSize = true;
-            lblCompteExiste.Location = new Point(185, 217);
+            lblCompteExiste.Location = new Point(231, 271);
+            lblCompteExiste.Margin = new Padding(4, 0, 4, 0);
             lblCompteExiste.Name = "lblCompteExiste";
-            lblCompteExiste.Size = new Size(126, 20);
+            lblCompteExiste.Size = new Size(151, 25);
             lblCompteExiste.TabIndex = 5;
             lblCompteExiste.Text = "Déjà un compte ?";
             // 
             // btnRetourChoixConnexion
             // 
-            btnRetourChoixConnexion.Location = new Point(328, 311);
+            btnRetourChoixConnexion.Location = new Point(410, 389);
+            btnRetourChoixConnexion.Margin = new Padding(4, 4, 4, 4);
             btnRetourChoixConnexion.Name = "btnRetourChoixConnexion";
-            btnRetourChoixConnexion.Size = new Size(134, 50);
+            btnRetourChoixConnexion.Size = new Size(168, 62);
             btnRetourChoixConnexion.TabIndex = 6;
             btnRetourChoixConnexion.Text = "Retour à l'accueil";
             btnRetourChoixConnexion.UseVisualStyleBackColor = true;
             btnRetourChoixConnexion.Click += btnRetourChoixConnexion_Click;
             // 
-            // picAdmin
-            // 
-            picAdmin.Cursor = Cursors.Hand;
-            picAdmin.Image = Properties.Resources.gear;
-            picAdmin.Location = new Point(727, 12);
-            picAdmin.Name = "picAdmin";
-            picAdmin.Size = new Size(61, 51);
-            picAdmin.SizeMode = PictureBoxSizeMode.StretchImage;
-            picAdmin.TabIndex = 7;
-            picAdmin.TabStop = false;
-            picAdmin.Click += picAdmin_Click;
-            // 
             // PageChoixConnexion
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(picAdmin);
+            ClientSize = new Size(1000, 562);
             Controls.Add(btnRetourChoixConnexion);
             Controls.Add(lblCompteExiste);
             Controls.Add(lblPasDeCompte);
             Controls.Add(btnInscription);
             Controls.Add(btnConnexion);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "PageChoixConnexion";
             Text = "Page de connexion";
-            ((System.ComponentModel.ISupportInitialize)picAdmin).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -121,6 +111,5 @@
         private Label lblPasDeCompte;
         private Label lblCompteExiste;
         private Button btnRetourChoixConnexion;
-        private PictureBox picAdmin;
     }
 }

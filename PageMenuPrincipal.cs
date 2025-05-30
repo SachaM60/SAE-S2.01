@@ -15,6 +15,16 @@ namespace SAE_S2._01
         public PageMenuPrincipal()
         {
             InitializeComponent();
+            if (string.IsNullOrEmpty(ClasseBD.UserConnect))
+            {
+                btnFavoris.Enabled = false;
+                picAdmin.Visible = false;
+            }
+            else
+            {
+                btnFavoris.Enabled = true;
+                picAdmin.Visible = true;
+            }
         }
 
         private void picAccueilMenu_Click(object sender, EventArgs e)

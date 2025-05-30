@@ -29,9 +29,6 @@ namespace SAE_S2._01
 
         private void picAdmin_Click(object sender, EventArgs e)
         {
-            PageMenuAdmin pageMenuAdmin = new PageMenuAdmin();
-            pageMenuAdmin.Show();
-            this.Close();
         }
     }
 }

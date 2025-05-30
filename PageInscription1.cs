@@ -15,6 +15,9 @@ namespace SAE_S2._01
         public PageInscription1()
         {
             InitializeComponent();
+            comboBoxSexe.Items.Add("Homme");
+            comboBoxSexe.Items.Add("Femme");
+            comboBoxSexe.Items.Add("Autre");
         }
 
         private void btnRetourInscription_Click(object sender, EventArgs e)
@@ -27,9 +30,16 @@ namespace SAE_S2._01
 
         private void btnValiderInscription_Click(object sender, EventArgs e)
         {
-            PageInscription2 pageInscription2 = new PageInscription2();
-            pageInscription2.Show();
-            this.Close();
+            if (txtNomInscription.Text == "" || txtPrenomInscription.Text == "" || comboBoxSexe.SelectedItem == null || numAgeInscription.Value < 12)
+            {
+                return;
+            }
+            else
+            {
+                PageInscription2 pageInscription2 = new PageInscription2(txtNomInscription.Text,txtPrenomInscription.Text,comboBoxSexe.SelectedItem.ToString(),(int)numAgeInscription.Value);
+                pageInscription2.Show();
+                this.Close();
+            }
         }
     }
 }

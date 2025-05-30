@@ -18,6 +18,15 @@ namespace SAE_S2._01
         public PagePlanDuReseau()
         {
             InitializeComponent();
+
+            if (string.IsNullOrEmpty(ClasseBD.UserConnect))
+            {
+                btnFavoris.Enabled = false;
+            }
+            else
+            {
+                btnFavoris.Enabled = true;
+            }
         }
 
         private void btnMenu_Click(object sender, EventArgs e)

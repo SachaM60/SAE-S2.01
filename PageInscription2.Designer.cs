@@ -29,57 +29,52 @@
         private void InitializeComponent()
         {
             lblExplicationsInscription2 = new Label();
-            lblMail = new Label();
             lblIdentifiant = new Label();
             lblMotDePasse = new Label();
             btnValider2 = new Button();
             btnRetourInscription2 = new Button();
-            txtMail = new TextBox();
             txtIdentifiant = new TextBox();
             txtMotDePasse = new TextBox();
+            lbErreurId = new Label();
+            lbErreurMdp = new Label();
             SuspendLayout();
             // 
             // lblExplicationsInscription2
             // 
             lblExplicationsInscription2.AutoSize = true;
-            lblExplicationsInscription2.Location = new Point(258, 53);
+            lblExplicationsInscription2.Location = new Point(322, 66);
+            lblExplicationsInscription2.Margin = new Padding(4, 0, 4, 0);
             lblExplicationsInscription2.Name = "lblExplicationsInscription2";
-            lblExplicationsInscription2.Size = new Size(272, 20);
+            lblExplicationsInscription2.Size = new Size(325, 25);
             lblExplicationsInscription2.TabIndex = 0;
             lblExplicationsInscription2.Text = "Veuillez enter les informations suivantes";
-            // 
-            // lblMail
-            // 
-            lblMail.AutoSize = true;
-            lblMail.Location = new Point(177, 106);
-            lblMail.Name = "lblMail";
-            lblMail.Size = new Size(101, 20);
-            lblMail.TabIndex = 1;
-            lblMail.Text = "Adresse mail :";
             // 
             // lblIdentifiant
             // 
             lblIdentifiant.AutoSize = true;
-            lblIdentifiant.Location = new Point(194, 162);
+            lblIdentifiant.Location = new Point(242, 180);
+            lblIdentifiant.Margin = new Padding(4, 0, 4, 0);
             lblIdentifiant.Name = "lblIdentifiant";
-            lblIdentifiant.Size = new Size(84, 20);
+            lblIdentifiant.Size = new Size(101, 25);
             lblIdentifiant.TabIndex = 2;
             lblIdentifiant.Text = "Identifiant :";
             // 
             // lblMotDePasse
             // 
             lblMotDePasse.AutoSize = true;
-            lblMotDePasse.Location = new Point(173, 220);
+            lblMotDePasse.Location = new Point(216, 253);
+            lblMotDePasse.Margin = new Padding(4, 0, 4, 0);
             lblMotDePasse.Name = "lblMotDePasse";
-            lblMotDePasse.Size = new Size(105, 20);
+            lblMotDePasse.Size = new Size(129, 25);
             lblMotDePasse.TabIndex = 3;
             lblMotDePasse.Text = "Mot de passe :";
             // 
             // btnValider2
             // 
-            btnValider2.Location = new Point(358, 273);
+            btnValider2.Location = new Point(448, 358);
+            btnValider2.Margin = new Padding(4);
             btnValider2.Name = "btnValider2";
-            btnValider2.Size = new Size(94, 29);
+            btnValider2.Size = new Size(118, 36);
             btnValider2.TabIndex = 4;
             btnValider2.Text = "Valider";
             btnValider2.UseVisualStyleBackColor = true;
@@ -87,49 +82,64 @@
             // 
             // btnRetourInscription2
             // 
-            btnRetourInscription2.Location = new Point(359, 330);
+            btnRetourInscription2.Location = new Point(449, 429);
+            btnRetourInscription2.Margin = new Padding(4);
             btnRetourInscription2.Name = "btnRetourInscription2";
-            btnRetourInscription2.Size = new Size(94, 29);
+            btnRetourInscription2.Size = new Size(118, 36);
             btnRetourInscription2.TabIndex = 5;
             btnRetourInscription2.Text = "Retour";
             btnRetourInscription2.UseVisualStyleBackColor = true;
             btnRetourInscription2.Click += btnRetourInscription2_Click;
             // 
-            // txtMail
-            // 
-            txtMail.Location = new Point(345, 103);
-            txtMail.Name = "txtMail";
-            txtMail.Size = new Size(125, 27);
-            txtMail.TabIndex = 6;
-            // 
             // txtIdentifiant
             // 
-            txtIdentifiant.Location = new Point(345, 159);
+            txtIdentifiant.Location = new Point(431, 177);
+            txtIdentifiant.Margin = new Padding(4);
             txtIdentifiant.Name = "txtIdentifiant";
-            txtIdentifiant.Size = new Size(125, 27);
+            txtIdentifiant.Size = new Size(155, 31);
             txtIdentifiant.TabIndex = 7;
             // 
             // txtMotDePasse
             // 
-            txtMotDePasse.Location = new Point(345, 220);
+            txtMotDePasse.Location = new Point(431, 253);
+            txtMotDePasse.Margin = new Padding(4);
             txtMotDePasse.Name = "txtMotDePasse";
-            txtMotDePasse.Size = new Size(125, 27);
+            txtMotDePasse.Size = new Size(155, 31);
             txtMotDePasse.TabIndex = 8;
+            // 
+            // lbErreurId
+            // 
+            lbErreurId.AutoSize = true;
+            lbErreurId.Location = new Point(630, 183);
+            lbErreurId.Name = "lbErreurId";
+            lbErreurId.Size = new Size(58, 25);
+            lbErreurId.TabIndex = 10;
+            lbErreurId.Text = "Erreur";
+            // 
+            // lbErreurMdp
+            // 
+            lbErreurMdp.AutoSize = true;
+            lbErreurMdp.Location = new Point(630, 259);
+            lbErreurMdp.Name = "lbErreurMdp";
+            lbErreurMdp.Size = new Size(58, 25);
+            lbErreurMdp.TabIndex = 11;
+            lbErreurMdp.Text = "Erreur";
             // 
             // PageInscription2
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 562);
+            Controls.Add(lbErreurMdp);
+            Controls.Add(lbErreurId);
             Controls.Add(txtMotDePasse);
             Controls.Add(txtIdentifiant);
-            Controls.Add(txtMail);
             Controls.Add(btnRetourInscription2);
             Controls.Add(btnValider2);
             Controls.Add(lblMotDePasse);
             Controls.Add(lblIdentifiant);
-            Controls.Add(lblMail);
             Controls.Add(lblExplicationsInscription2);
+            Margin = new Padding(4);
             Name = "PageInscription2";
             Text = "Inscription";
             ResumeLayout(false);
@@ -139,13 +149,13 @@
         #endregion
 
         private Label lblExplicationsInscription2;
-        private Label lblMail;
         private Label lblIdentifiant;
         private Label lblMotDePasse;
         private Button btnValider2;
         private Button btnRetourInscription2;
-        private TextBox txtMail;
         private TextBox txtIdentifiant;
         private TextBox txtMotDePasse;
+        private Label lbErreurId;
+        private Label lbErreurMdp;
     }
 }
