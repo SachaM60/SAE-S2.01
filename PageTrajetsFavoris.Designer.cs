@@ -100,7 +100,6 @@
             lblFavs.Size = new Size(135, 25);
             lblFavs.TabIndex = 10;
             lblFavs.Text = "Lignes favorites";
-            lblFavs.Click += label2_Click;
             // 
             // listDispo
             // 

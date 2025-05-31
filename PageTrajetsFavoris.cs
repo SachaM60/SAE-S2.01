@@ -12,32 +12,32 @@ namespace SAE_S2._01
 {
     public partial class PageTrajetsFavoris : Form
     {
+        private List<(int,string,int,int)> Ligne = new List<(int, string, int, int)>();
+        private List<(string,int)> Favori = new List<(string, int)>();
         public PageTrajetsFavoris()
         {
             InitializeComponent();
-            ConfigListes();
-        }
+            ClasseBD.LectureLigne(ref Ligne);
+            ClasseBD.LectureFavori(ref Favori);
 
-        private void ConfigListes()
-        {
-            // BD non utilisée
-            listDispo.Items.AddRange(new string[] {
-                "Ligne 9",
-                "Ligne 10",
-                "Ligne 11",
-                "Ligne 12",
-                "Ligne 13",
-                "Ligne 14",
-                "Ligne 15",
-                "Ligne 16",
-                "Ligne 17",
-                "Ligne 18",
-                "Ligne 19",
-                "Ligne 20",
-                "Ligne 21",
-                "Ligne 22",
-                "Ligne 11 Express",
-            });
+            var favorisUser = Favori
+            .Where(fav => fav.Item1 == ClasseBD.UserConnect)
+            .Select(fav => fav.Item2)
+            .ToList();
+
+            foreach (var ligne in Ligne)
+            {
+                if (favorisUser.Contains(ligne.Item1))
+                {
+                    if (!listFav.Items.Contains(ligne.Item2))
+                        listFav.Items.Add(ligne.Item2);
+                }
+                else
+                {
+                    if (!listDispo.Items.Contains(ligne.Item2))
+                        listDispo.Items.Add(ligne.Item2);
+                }
+            }
 
             listDispo.MouseDoubleClick += DispoToFav;
             listFav.MouseDoubleClick += FavToDispo;
@@ -60,8 +60,19 @@ namespace SAE_S2._01
                 listDispo.Items.Remove(listDispo.SelectedItem);
             }
         }
+
+
         private void btnMenu_Click(object sender, EventArgs e)
         {
+            if (listFav.Items.Count > 0)
+            {
+                ClasseBD.SuppressionFavori(ClasseBD.UserConnect);
+                foreach (var item in listFav.Items)
+                {
+                    ClasseBD.ModificationFavori(ClasseBD.UserConnect, item.ToString());
+                }
+            }
+            
             PageMenuPrincipal pageMenuPrincipal = new PageMenuPrincipal();
             pageMenuPrincipal.Show();
             this.Close();
@@ -69,6 +80,15 @@ namespace SAE_S2._01
 
         private void btnCalculItinéraire_Click(object sender, EventArgs e)
         {
+            if (listFav.Items.Count > 0)
+            {
+                ClasseBD.SuppressionFavori(ClasseBD.UserConnect);
+                foreach (var item in listFav.Items)
+                {
+                    ClasseBD.ModificationFavori(ClasseBD.UserConnect, item.ToString());
+                }
+            }
+
             PageCalculItineraire pageCalculItineraire = new PageCalculItineraire();
             pageCalculItineraire.Show();
             this.Close();
@@ -76,14 +96,18 @@ namespace SAE_S2._01
 
         private void btnPlan_Click(object sender, EventArgs e)
         {
+            if (listFav.Items.Count > 0)
+            {
+                ClasseBD.SuppressionFavori(ClasseBD.UserConnect);
+                foreach (var item in listFav.Items)
+                {
+                    ClasseBD.ModificationFavori(ClasseBD.UserConnect, item.ToString());
+                }
+            }
+
             PagePlanDuReseau pagePlanDuReseau = new PagePlanDuReseau();
             pagePlanDuReseau.Show();
             this.Close();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -67,6 +67,7 @@
             NumUpADownNbArret.Name = "NumUpADownNbArret";
             NumUpADownNbArret.Size = new Size(217, 31);
             NumUpADownNbArret.TabIndex = 3;
+            NumUpADownNbArret.ValueChanged += NumUpADownNbArret_ValueChanged;
             // 
             // flpArrets
             // 

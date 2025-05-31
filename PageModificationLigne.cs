@@ -14,7 +14,9 @@ namespace SAE_S2._01
     {
         private List<(int, string, double, double)> Arret = new List<(int, string, double, double)>();
         private List<(int, string, int, int)> Ligne = new List<(int, string, int, int)>();
-        private List<(int,int,int)> Suivant = new List<(int, int, int)>();
+        private List<(int, int, int)> Suivant = new List<(int, int, int)>();
+        private List<(int, int, int, string)> Horaire = new List<(int, int, int, string)>();
+        private int IdFirstArret;
 
         public PageModificationLigne()
         {
@@ -23,11 +25,15 @@ namespace SAE_S2._01
             ClasseBD.LectureArret(ref Arret);
             ClasseBD.LectureLigne(ref Ligne);
             ClasseBD.LectureSuivant(ref Suivant);
+            ClasseBD.LectureHoraire(ref Horaire);
 
             lbNomLigne.Text = "";
             LbArret.Text = "";
             txtBoxNom.Hide();
             NumUpADownNbArret.Hide();
+
+            flpArrets.AutoScroll = true;
+            BtnValider.Enabled = false;
 
             foreach (var item in Ligne)
             {
@@ -44,6 +50,56 @@ namespace SAE_S2._01
 
         private void BtnValider_Click(object sender, EventArgs e)
         {
+            string nomLigne = lstBoxLigne.SelectedItem?.ToString();
+            string nouveauNom = txtBoxNom.Text.Trim();
+
+            if (string.IsNullOrEmpty(nomLigne) || string.IsNullOrEmpty(nouveauNom))
+            {
+                return;
+            }
+            else
+            {
+                int idLigne = int.Parse(lstBoxLigne.SelectedItem.ToString().Substring(1, lstBoxLigne.SelectedItem.ToString().IndexOf(')') - 1));
+                List<int> idArret = new List<int>();
+
+                //Récupérer les arrêts sélectionnés
+                foreach (ComboBox cb in flpArrets.Controls)
+                {
+                    if (cb.SelectedItem is string nomArret)
+                    {
+                        var arret = Arret.FirstOrDefault(a => a.Item2 == nomArret);
+                        idArret.Add(arret.Item1);
+                    }
+
+                }
+
+                // Mettre à jour la ligne 
+                ClasseBD.ModificationLigne(idLigne, nouveauNom, idArret.First(), idArret.Last());
+
+                // Mettre à jour Croisement
+                ClasseBD.SuppressionCroisement(idLigne);
+                for (int i = 0; i < idArret.Count - 1; i++)
+                {
+                    ClasseBD.InsertionCroisement(idArret[i], idLigne);
+                }
+
+                //Mettre à jour Suivant
+                ClasseBD.SuppressionSuivant(idLigne);
+                for (int i = 0; i < idArret.Count - 1; i++)
+                {
+                    int suivantId = idArret[i + 1];
+                    ClasseBD.InsertionSuivant(idArret[i], suivantId, idLigne);
+                }
+
+                //Mettre à jour Horaire si le premier arrêt de la ligne a été modifié
+                foreach (var horaire in Horaire)
+                {
+                    if (horaire.Item3 == idLigne && horaire.Item2 != idArret[0])
+                    {
+                        ClasseBD.ModificationHoraireBis(idLigne, idArret.First(), IdFirstArret);
+                    }
+                }
+            }
             PageModifBd pageModifBd = new PageModifBd();
             pageModifBd.Show();
             this.Close();
@@ -52,14 +108,104 @@ namespace SAE_S2._01
         private void lstBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
             string nomLigne = lstBoxLigne.SelectedItem.ToString();
+            nomLigne = nomLigne.Substring(nomLigne.IndexOf(' ') + 1);
+            //Récupérer l'id = le nombre entre parenthèses
+            int idLigne = int.Parse(lstBoxLigne.SelectedItem.ToString().Substring(1, lstBoxLigne.SelectedItem.ToString().IndexOf(')') - 1));
 
             if (lstBoxLigne.SelectedItem != null)
             {
+                BtnValider.Enabled = true;
                 lbNomLigne.Text = "Ligne sélectionnée :";
                 LbArret.Text = "Arrêts de la ligne :";
                 txtBoxNom.Show();
                 txtBoxNom.Text = nomLigne;
+                AfficherArretsLigne(idLigne);
                 NumUpADownNbArret.Show();
+
+                foreach (var arret in Arret)
+                {
+                    if (flpArrets.Controls[0] is ComboBox cb0 && arret.Item2 == cb0.SelectedItem?.ToString())
+                    {
+                        IdFirstArret = arret.Item1;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void AfficherArretsLigne(int idLigne)
+        {
+            flpArrets.Controls.Clear();
+
+            // Dictionnaire pour un accès rapide id => nom
+            Dictionary<int, string> dictionnaireArrets = Arret.ToDictionary(a => a.Item1, a => a.Item2);
+
+            // Récupérer les arrêts utilisés dans la ligne
+            List<int> arretsLigne = new();
+            ClasseBD.LectureArretsDeLaLigne(idLigne, ref arretsLigne);
+
+            // Ajouter les ComboBox dans le FlowLayoutPanel
+            foreach (int idArret in arretsLigne)
+            {
+                ComboBox cb = new ComboBox();
+                cb.DropDownHeight = 200;
+                cb.DropDownWidth = 300;
+                cb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cb.AutoCompleteSource = AutoCompleteSource.ListItems;
+                cb.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                // Ajouter tous les arrêts dans la ComboBox
+                foreach (var arret in Arret)
+                {
+                    cb.Items.Add(arret.Item2);
+                }
+
+                // Sélectionner l’arrêt actuel
+                if (dictionnaireArrets.TryGetValue(idArret, out string nomArret))
+                {
+                    cb.SelectedItem = nomArret;
+                }
+
+                // Ajouter la ComboBox au FlowLayoutPanel
+                flpArrets.Controls.Add(cb);
+
+            }
+            // Mettre à jour la valeur du NumericUpDown
+            NumUpADownNbArret.Value = arretsLigne.Count;
+        }
+
+        private void NumUpADownNbArret_ValueChanged(object sender, EventArgs e)
+        {
+            int nombreArrets = (int)NumUpADownNbArret.Value;
+            int nombreActuel = flpArrets.Controls.Count;
+            if (nombreArrets > nombreActuel)
+            {
+                // Ajouter des ComboBox si nécessaire
+                for (int i = nombreActuel; i < nombreArrets; i++)
+                {
+                    ComboBox cb = new ComboBox();
+                    cb.DropDownHeight = 200;
+                    cb.DropDownWidth = 300;
+                    cb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    cb.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    cb.DropDownStyle = ComboBoxStyle.DropDownList;
+                    // Ajouter tous les arrêts dans la ComboBox
+                    foreach (var arret in Arret)
+                    {
+                        cb.Items.Add(arret.Item2);
+                    }
+
+                    // Ajouter la ComboBox au FlowLayoutPanel
+                    flpArrets.Controls.Add(cb);
+                }
+            }
+            else if (nombreArrets < nombreActuel)
+            {
+                // Supprimer les ComboBox en trop
+                for (int i = nombreActuel - 1; i >= nombreArrets; i--)
+                {
+                    flpArrets.Controls.RemoveAt(i);
+                }
             }
         }
     }

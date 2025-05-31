@@ -96,9 +96,9 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
-        public static void InsertionFavori(int utilisateur, int favori)
+        public static void InsertionFavori(string utilisateur, int favori)
         {
-            string requeteFavori = $"INSERT INTO Favori (id_utilisateur,id_ligne) VALUES ({utilisateur},{favori});";
+            string requeteFavori = $"INSERT INTO Favori (id_utilisateur,id_ligne) VALUES ('{utilisateur}',{favori});";
             MySqlCommand cmd = new MySqlCommand(requeteFavori, conn);
             cmd.ExecuteNonQuery();
         }
@@ -215,17 +215,31 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
-        public static void SuppressionFavori(int id_utilisateur, int id_ligne)
-        {
-            string requeteFavori = $"DELETE FROM Favori WHERE id_utilisateur = {id_utilisateur} AND id_ligne = {id_ligne};";
-            MySqlCommand cmd = new MySqlCommand(requeteFavori, conn);
-            cmd.ExecuteNonQuery();
-        }
-
         public static void SuppressionUtilisateur(string id_utilisateur)
         {
             string requeteUtilisateur = $"DELETE FROM Utilisateur WHERE id_utilisateur = '{id_utilisateur}';";
             MySqlCommand cmd = new MySqlCommand(requeteUtilisateur, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        public static void SuppressionFavori(string id_utilisateur)
+        {
+            string requeteFavori = $"DELETE FROM Favori WHERE id_utilisateur = '{id_utilisateur}';";
+            MySqlCommand cmd = new MySqlCommand(requeteFavori, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        public static void SuppressionCroisement(int id_ligne)
+        {
+            string requeteCroisement = $"DELETE FROM Croisement WHERE id_ligne = {id_ligne};";
+            MySqlCommand cmd = new MySqlCommand(requeteCroisement, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        public static void SuppressionSuivant(int id_ligne)
+        {
+            string requeteSuivant = $"DELETE FROM Suivant WHERE id_ligne = {id_ligne};";
+            MySqlCommand cmd = new MySqlCommand(requeteSuivant, conn);
             cmd.ExecuteNonQuery();
         }
 
@@ -322,14 +336,14 @@ namespace SAE_S2._01
             reader.Close();
         }
 
-        public static void LectureFavori(ref List<(int, int)> Liste)
+        public static void LectureFavori(ref List<(string, int)> Liste)
         {
             string requeteFavori = "SELECT * FROM Favori;";
             MySqlCommand cmd = new MySqlCommand(requeteFavori, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                int id_utilisateur = reader.GetInt32(0);
+                string id_utilisateur = reader.GetString(0);
                 int id_ligne = reader.GetInt32(1);
                 Liste.Add((id_utilisateur, id_ligne));
             }
@@ -352,6 +366,54 @@ namespace SAE_S2._01
                 Liste.Add((id_utilisateur, nom_utilisateur, prenom_utilisateur, mot_de_passe, sexe_utilisateur, age_utilisateur));
             }
             reader.Close();
+        }
+
+        public static void LectureArretsDeLaLigne(int idLigne, ref List<int> idsArrets)
+        {
+            idsArrets.Clear();
+            int idPremierArret = -1;
+
+            // Étape 1 : Récupérer le premier arrêt
+            using (MySqlCommand cmd = new MySqlCommand("SELECT arret_dep FROM Ligne WHERE id_ligne = @idLigne", conn))
+            {
+                cmd.Parameters.AddWithValue("@idLigne", idLigne);
+                var result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    idPremierArret = Convert.ToInt32(result);
+                }
+                else
+                {
+                    return; // Ligne non trouvée
+                }
+            }
+
+            // Étape 2 : Parcourir la table Suivant pour reconstituer le chemin
+            int current = idPremierArret;
+            idsArrets.Add(current);
+
+            while (true)
+            {
+                int suivant = -1;
+
+                using (MySqlCommand cmd = new MySqlCommand(
+                    "SELECT arret_suivant FROM Suivant WHERE arret_actuel = @current AND id_ligne = @idLigne", conn))
+                {
+                    cmd.Parameters.AddWithValue("@current", current);
+                    cmd.Parameters.AddWithValue("@idLigne", idLigne);
+                    var result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        suivant = Convert.ToInt32(result);
+                    }
+                }
+
+                if (suivant == -1)
+                    break; // Fin du parcours
+
+                idsArrets.Add(suivant);
+                current = suivant;
+            }
         }
 
         // Méthodes de Modifiaction
@@ -380,6 +442,53 @@ namespace SAE_S2._01
                 cmd.Parameters.AddWithValue("@oldhoraire", Oldhoraire);
                 cmd.Parameters.AddWithValue("@id_arret", id_arret);
                 cmd.Parameters.AddWithValue("@id_ligne", id_ligne);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void ModificationHoraireBis(int idLigne, int NewArret, int OldArret)
+        {
+            string requeteHoraire = "UPDATE Horaire SET id_arret = @newarret " +
+                "WHERE id_ligne = @id_ligne AND id_arret = @oldarret;";
+            using (MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn))
+            {
+                cmd.Parameters.AddWithValue("@newarret", NewArret);
+                cmd.Parameters.AddWithValue("@oldarret", OldArret);
+                cmd.Parameters.AddWithValue("@id_ligne", idLigne);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void ModificationFavori(string utilisateur, string ligne)
+        {
+            List<(int,string,int,int)> Ligne = new List<(int, string, int, int)>();
+            ClasseBD.LectureLigne(ref Ligne);
+            List<int> idLigne = new List<int>();
+
+            foreach (var item in Ligne)
+            {
+                if (item.Item2 == ligne)
+                {
+                    idLigne.Add(item.Item1);
+                }
+            }
+            foreach (var id in idLigne)
+            {
+                ClasseBD.InsertionFavori(utilisateur, id);
+            }
+
+        }
+
+        public static void ModificationLigne(int idLigne, string nomLigne, int arret_dep, int arret_fin)
+        {
+            string requeteLigne = "UPDATE Ligne SET nom_ligne = @nom, arret_dep = @arret_dep, arret_fin = @arret_fin " +
+                "WHERE id_ligne = @idLigne;";
+            using (MySqlCommand cmd = new MySqlCommand(requeteLigne, conn))
+            {
+                cmd.Parameters.AddWithValue("@nom", nomLigne);
+                cmd.Parameters.AddWithValue("@arret_dep", arret_dep);
+                cmd.Parameters.AddWithValue("@arret_fin", arret_fin);
+                cmd.Parameters.AddWithValue("@idLigne", idLigne);
                 cmd.ExecuteNonQuery();
             }
         }

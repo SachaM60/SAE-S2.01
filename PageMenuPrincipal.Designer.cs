@@ -45,9 +45,10 @@
             // 
             picAccueilMenu.Cursor = Cursors.Hand;
             picAccueilMenu.Image = Properties.Resources.house_icon_187945;
-            picAccueilMenu.Location = new Point(751, 12);
+            picAccueilMenu.Location = new Point(939, 15);
+            picAccueilMenu.Margin = new Padding(4, 4, 4, 4);
             picAccueilMenu.Name = "picAccueilMenu";
-            picAccueilMenu.Size = new Size(37, 34);
+            picAccueilMenu.Size = new Size(46, 42);
             picAccueilMenu.SizeMode = PictureBoxSizeMode.StretchImage;
             picAccueilMenu.TabIndex = 0;
             picAccueilMenu.TabStop = false;
@@ -56,18 +57,20 @@
             // btnMenu
             // 
             btnMenu.BackColor = SystemColors.Highlight;
-            btnMenu.Location = new Point(1, 422);
+            btnMenu.Location = new Point(1, 528);
+            btnMenu.Margin = new Padding(4, 4, 4, 4);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(197, 29);
+            btnMenu.Size = new Size(246, 36);
             btnMenu.TabIndex = 1;
             btnMenu.Text = "Menu";
             btnMenu.UseVisualStyleBackColor = false;
             // 
             // btnFavoris
             // 
-            btnFavoris.Location = new Point(194, 422);
+            btnFavoris.Location = new Point(242, 528);
+            btnFavoris.Margin = new Padding(4, 4, 4, 4);
             btnFavoris.Name = "btnFavoris";
-            btnFavoris.Size = new Size(194, 29);
+            btnFavoris.Size = new Size(242, 36);
             btnFavoris.TabIndex = 2;
             btnFavoris.Text = "Trajets favoris";
             btnFavoris.UseVisualStyleBackColor = true;
@@ -75,9 +78,10 @@
             // 
             // btnCalculItinéraire
             // 
-            btnCalculItinéraire.Location = new Point(385, 422);
+            btnCalculItinéraire.Location = new Point(481, 528);
+            btnCalculItinéraire.Margin = new Padding(4, 4, 4, 4);
             btnCalculItinéraire.Name = "btnCalculItinéraire";
-            btnCalculItinéraire.Size = new Size(220, 29);
+            btnCalculItinéraire.Size = new Size(275, 36);
             btnCalculItinéraire.TabIndex = 3;
             btnCalculItinéraire.Text = "Calcul d'itinéraire";
             btnCalculItinéraire.UseVisualStyleBackColor = true;
@@ -85,9 +89,10 @@
             // 
             // btnPlan
             // 
-            btnPlan.Location = new Point(602, 422);
+            btnPlan.Location = new Point(752, 528);
+            btnPlan.Margin = new Padding(4, 4, 4, 4);
             btnPlan.Name = "btnPlan";
-            btnPlan.Size = new Size(201, 29);
+            btnPlan.Size = new Size(251, 36);
             btnPlan.TabIndex = 4;
             btnPlan.Text = "Plan du réseau";
             btnPlan.UseVisualStyleBackColor = true;
@@ -98,18 +103,20 @@
             lblHavgo.AutoSize = true;
             lblHavgo.Font = new Font("Segoe UI", 40.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblHavgo.ForeColor = SystemColors.HotTrack;
-            lblHavgo.Location = new Point(264, 12);
+            lblHavgo.Location = new Point(348, 9);
+            lblHavgo.Margin = new Padding(4, 0, 4, 0);
             lblHavgo.Name = "lblHavgo";
-            lblHavgo.Size = new Size(275, 89);
+            lblHavgo.Size = new Size(331, 108);
             lblHavgo.TabIndex = 5;
             lblHavgo.Text = "HAVGO";
             // 
             // picMenuPrincipal
             // 
             picMenuPrincipal.Image = Properties.Resources.image_menu;
-            picMenuPrincipal.Location = new Point(118, 104);
+            picMenuPrincipal.Location = new Point(87, 105);
+            picMenuPrincipal.Margin = new Padding(4, 4, 4, 4);
             picMenuPrincipal.Name = "picMenuPrincipal";
-            picMenuPrincipal.Size = new Size(587, 281);
+            picMenuPrincipal.Size = new Size(851, 415);
             picMenuPrincipal.SizeMode = PictureBoxSizeMode.StretchImage;
             picMenuPrincipal.TabIndex = 6;
             picMenuPrincipal.TabStop = false;
@@ -118,9 +125,10 @@
             // 
             picAdmin.Cursor = Cursors.Hand;
             picAdmin.Image = Properties.Resources.gear;
-            picAdmin.Location = new Point(15, 14);
+            picAdmin.Location = new Point(19, 18);
+            picAdmin.Margin = new Padding(4, 4, 4, 4);
             picAdmin.Name = "picAdmin";
-            picAdmin.Size = new Size(43, 32);
+            picAdmin.Size = new Size(54, 40);
             picAdmin.SizeMode = PictureBoxSizeMode.StretchImage;
             picAdmin.TabIndex = 7;
             picAdmin.TabStop = false;
@@ -128,9 +136,9 @@
             // 
             // PageMenuPrincipal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 562);
             Controls.Add(picAdmin);
             Controls.Add(picMenuPrincipal);
             Controls.Add(lblHavgo);
@@ -139,6 +147,7 @@
             Controls.Add(btnFavoris);
             Controls.Add(btnMenu);
             Controls.Add(picAccueilMenu);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "PageMenuPrincipal";
             Text = "Menu principal";
             ((System.ComponentModel.ISupportInitialize)picAccueilMenu).EndInit();
