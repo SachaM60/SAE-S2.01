@@ -32,6 +32,14 @@ namespace SAE_S2._01
         {
             if (txtNomInscription.Text == "" || txtPrenomInscription.Text == "" || comboBoxSexe.SelectedItem == null || numAgeInscription.Value < 12)
             {
+                if (numAgeInscription.Value < 12)
+                {
+                    //Message d'erreur qui renvoie au MenuPrincipal
+                    MessageBox.Show("Vous êtes trop jeune !", "Erreur d'inscription", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PageAccueil pageAccueil = new PageAccueil();
+                    pageAccueil.Show();
+                    this.Close();
+                }
                 return;
             }
             else

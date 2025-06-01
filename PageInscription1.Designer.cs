@@ -44,7 +44,7 @@
             // btnRetourInscription
             // 
             btnRetourInscription.Location = new Point(445, 465);
-            btnRetourInscription.Margin = new Padding(4, 4, 4, 4);
+            btnRetourInscription.Margin = new Padding(4);
             btnRetourInscription.Name = "btnRetourInscription";
             btnRetourInscription.Size = new Size(118, 36);
             btnRetourInscription.TabIndex = 0;
@@ -95,7 +95,7 @@
             // btnValiderInscription
             // 
             btnValiderInscription.Location = new Point(444, 405);
-            btnValiderInscription.Margin = new Padding(4, 4, 4, 4);
+            btnValiderInscription.Margin = new Padding(4);
             btnValiderInscription.Name = "btnValiderInscription";
             btnValiderInscription.Size = new Size(118, 36);
             btnValiderInscription.TabIndex = 5;
@@ -106,7 +106,7 @@
             // txtNomInscription
             // 
             txtNomInscription.Location = new Point(444, 86);
-            txtNomInscription.Margin = new Padding(4, 4, 4, 4);
+            txtNomInscription.Margin = new Padding(4);
             txtNomInscription.Name = "txtNomInscription";
             txtNomInscription.Size = new Size(155, 31);
             txtNomInscription.TabIndex = 6;
@@ -114,7 +114,7 @@
             // txtPrenomInscription
             // 
             txtPrenomInscription.Location = new Point(444, 164);
-            txtPrenomInscription.Margin = new Padding(4, 4, 4, 4);
+            txtPrenomInscription.Margin = new Padding(4);
             txtPrenomInscription.Name = "txtPrenomInscription";
             txtPrenomInscription.Size = new Size(155, 31);
             txtPrenomInscription.TabIndex = 7;
@@ -122,7 +122,7 @@
             // numAgeInscription
             // 
             numAgeInscription.Location = new Point(444, 234);
-            numAgeInscription.Margin = new Padding(4, 4, 4, 4);
+            numAgeInscription.Margin = new Padding(4);
             numAgeInscription.Name = "numAgeInscription";
             numAgeInscription.Size = new Size(155, 31);
             numAgeInscription.TabIndex = 8;
@@ -150,7 +150,7 @@
             Controls.Add(lblPrenomInscription);
             Controls.Add(lblNomInscription);
             Controls.Add(btnRetourInscription);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "PageInscription1";
             Text = "Inscription";
             ((System.ComponentModel.ISupportInitialize)numAgeInscription).EndInit();
