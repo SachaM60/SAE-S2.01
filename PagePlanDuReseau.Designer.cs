@@ -41,18 +41,20 @@
             // btnPlan
             // 
             btnPlan.BackColor = SystemColors.Highlight;
-            btnPlan.Location = new Point(596, 421);
+            btnPlan.Location = new Point(745, 526);
+            btnPlan.Margin = new Padding(4, 4, 4, 4);
             btnPlan.Name = "btnPlan";
-            btnPlan.Size = new Size(201, 29);
+            btnPlan.Size = new Size(251, 36);
             btnPlan.TabIndex = 8;
             btnPlan.Text = "Plan du réseau";
             btnPlan.UseVisualStyleBackColor = false;
             // 
             // btnCalculItinéraire
             // 
-            btnCalculItinéraire.Location = new Point(379, 421);
+            btnCalculItinéraire.Location = new Point(474, 526);
+            btnCalculItinéraire.Margin = new Padding(4, 4, 4, 4);
             btnCalculItinéraire.Name = "btnCalculItinéraire";
-            btnCalculItinéraire.Size = new Size(220, 29);
+            btnCalculItinéraire.Size = new Size(275, 36);
             btnCalculItinéraire.TabIndex = 7;
             btnCalculItinéraire.Text = "Calcul d'itinéraire";
             btnCalculItinéraire.UseVisualStyleBackColor = true;
@@ -60,9 +62,10 @@
             // 
             // btnFavoris
             // 
-            btnFavoris.Location = new Point(188, 421);
+            btnFavoris.Location = new Point(235, 526);
+            btnFavoris.Margin = new Padding(4, 4, 4, 4);
             btnFavoris.Name = "btnFavoris";
-            btnFavoris.Size = new Size(194, 29);
+            btnFavoris.Size = new Size(242, 36);
             btnFavoris.TabIndex = 6;
             btnFavoris.Text = "Trajets favoris";
             btnFavoris.UseVisualStyleBackColor = true;
@@ -71,9 +74,10 @@
             // btnMenu
             // 
             btnMenu.BackColor = Color.Transparent;
-            btnMenu.Location = new Point(-5, 421);
+            btnMenu.Location = new Point(-6, 526);
+            btnMenu.Margin = new Padding(4, 4, 4, 4);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(197, 29);
+            btnMenu.Size = new Size(246, 36);
             btnMenu.TabIndex = 5;
             btnMenu.Text = "Menu";
             btnMenu.UseVisualStyleBackColor = false;
@@ -82,9 +86,10 @@
             // picPlan
             // 
             picPlan.Image = Properties.Resources.plan_general_2024;
-            picPlan.Location = new Point(173, 101);
+            picPlan.Location = new Point(216, 126);
+            picPlan.Margin = new Padding(4, 4, 4, 4);
             picPlan.Name = "picPlan";
-            picPlan.Size = new Size(461, 294);
+            picPlan.Size = new Size(576, 368);
             picPlan.SizeMode = PictureBoxSizeMode.StretchImage;
             picPlan.TabIndex = 9;
             picPlan.TabStop = false;
@@ -94,28 +99,29 @@
             lblTitrePlan.AutoSize = true;
             lblTitrePlan.Font = new Font("Segoe UI", 40F, FontStyle.Bold);
             lblTitrePlan.ForeColor = SystemColors.HotTrack;
-            lblTitrePlan.Location = new Point(160, 9);
+            lblTitrePlan.Location = new Point(200, 11);
+            lblTitrePlan.Margin = new Padding(4, 0, 4, 0);
             lblTitrePlan.Name = "lblTitrePlan";
-            lblTitrePlan.Size = new Size(516, 89);
+            lblTitrePlan.Size = new Size(616, 106);
             lblTitrePlan.TabIndex = 10;
             lblTitrePlan.Text = "Plan du réseau ";
             // 
             // cboxChoixLigne
             // 
             cboxChoixLigne.FormattingEnabled = true;
-            cboxChoixLigne.Items.AddRange(new object[] { "Ligne 9", "Ligne 10", "Ligne 11", "Ligne 11 Express", "Ligne 12", "Ligne 13", "Ligne 14", "Ligne 15", "Ligne 16", "Ligne 17", "Ligne 18", "Ligne 19", "Ligne 21", "Plan complet" });
-            cboxChoixLigne.Location = new Point(16, 200);
+            cboxChoixLigne.Location = new Point(20, 250);
+            cboxChoixLigne.Margin = new Padding(4, 4, 4, 4);
             cboxChoixLigne.Name = "cboxChoixLigne";
-            cboxChoixLigne.Size = new Size(151, 28);
+            cboxChoixLigne.Size = new Size(188, 33);
             cboxChoixLigne.TabIndex = 11;
             cboxChoixLigne.Text = "Plan complet";
             cboxChoixLigne.SelectedIndexChanged += cboxChoixLigne_SelectedIndexChanged;
             // 
             // PagePlanDuReseau
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 562);
             Controls.Add(cboxChoixLigne);
             Controls.Add(lblTitrePlan);
             Controls.Add(picPlan);
@@ -123,6 +129,7 @@
             Controls.Add(btnCalculItinéraire);
             Controls.Add(btnFavoris);
             Controls.Add(btnMenu);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "PagePlanDuReseau";
             Text = "Plan du réseau";
             Load += PagePlanDuReseau_Load;

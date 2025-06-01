@@ -15,9 +15,16 @@ namespace SAE_S2._01
 {
     public partial class PagePlanDuReseau : Form
     {
+
+        private List<(int,string,int,int)> Ligne = new List<(int, string, int, int)>();
+        private List<(string, int)> Favori = new List<(string, int)>();
         public PagePlanDuReseau()
         {
             InitializeComponent();
+
+            ClasseBD.LectureLigne(ref Ligne);
+            ClasseBD.LectureFavori(ref Favori);
+            cboxChoixLigne.Items.Add("Plan Complet");
 
             if (string.IsNullOrEmpty(ClasseBD.UserConnect))
             {
@@ -27,6 +34,27 @@ namespace SAE_S2._01
             {
                 btnFavoris.Enabled = true;
             }
+
+            if (!string.IsNullOrEmpty(ClasseBD.UserConnect))
+            {
+                var favorisUser = Favori.Where(fav => fav.Item1 == ClasseBD.UserConnect).Select(fav => fav.Item2).ToList();
+                foreach (var ligne in Ligne)
+                {
+                    if (favorisUser.Contains(ligne.Item1) && !cboxChoixLigne.Items.Contains(ligne.Item2))
+                    {
+                        cboxChoixLigne.Items.Add(ligne.Item2);
+                    }
+                }
+            }
+
+            foreach (var ligne in Ligne)
+            {
+                if (!cboxChoixLigne.Items.Contains(ligne.Item2))
+                {
+                    cboxChoixLigne.Items.Add(ligne.Item2);
+                }
+            }
+
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
