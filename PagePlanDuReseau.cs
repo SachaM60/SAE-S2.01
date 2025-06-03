@@ -15,7 +15,7 @@ namespace SAE_S2._01
 {
     public partial class PagePlanDuReseau : Form
     {
-
+        //Liste nécessaires des données de la base
         private List<(int,string,int,int)> Ligne = new List<(int, string, int, int)>();
         private List<(string, int)> Favori = new List<(string, int)>();
         public PagePlanDuReseau()
@@ -35,6 +35,7 @@ namespace SAE_S2._01
                 btnFavoris.Enabled = true;
             }
 
+            //Remplissage de la combobox avec les lignes favorites si l'utilisateur est connecté
             if (!string.IsNullOrEmpty(ClasseBD.UserConnect))
             {
                 var favorisUser = Favori.Where(fav => fav.Item1 == ClasseBD.UserConnect).Select(fav => fav.Item2).ToList();
@@ -47,6 +48,8 @@ namespace SAE_S2._01
                 }
             }
 
+            //Ajout des autres lignes dans la combobox
+            //(si l'utilisateur n'est pas connecté,les lignes sont rangés dans l'ordre classique)
             foreach (var ligne in Ligne)
             {
                 if (!cboxChoixLigne.Items.Contains(ligne.Item2))
@@ -78,6 +81,11 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Affichage du plan de la ligne selon ce que l'utilisateur choisit dans la combobox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboxChoixLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selected = cboxChoixLigne.SelectedItem?.ToString();

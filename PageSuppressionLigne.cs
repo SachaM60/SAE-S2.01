@@ -48,6 +48,11 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Si une ligne a été sélectionnée, on supprime la ligne et ces références de la base
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
 
@@ -63,6 +68,11 @@ namespace SAE_S2._01
 
         }
 
+        /// <summary>
+        /// Au choix d'une ligne dans la liste, on affiche toutes ces informations
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstBoxLigne.SelectedIndex != 0)

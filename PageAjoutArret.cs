@@ -26,6 +26,12 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Vérifie que les coordonnées sont correctement saisies et affiche ou non un message d'erreur
+        /// Si tout est bon l'arrêt est insérer dans la base
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnValider_Click(object sender, EventArgs e)
         {
             double latitude, longitude;

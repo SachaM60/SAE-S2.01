@@ -12,6 +12,7 @@ namespace SAE_S2._01
 {
     public partial class PageModificationHoraire : Form
     {
+        //Liste des données nécessaires de la base
         private List<(int, string, int, int)> Ligne = new List<(int, string, int, int)>();
         private List<(int, string, double, double)> Arret = new List<(int, string, double, double)>();
         private List<(int, int, int, string)> Horaire = new List<(int, int, int, string)>();
@@ -51,8 +52,14 @@ namespace SAE_S2._01
             this.Hide();
         }
 
+        /// <summary>
+        /// On lance la méthode pour modifier l'horaire de l'arrêt et de la ligne
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnValider_Click(object sender, EventArgs e)
         {
+            //On récupère l'id de l'arrêt choisit
             int idarret = 0;
             foreach (var arret in Arret)
             {
@@ -63,6 +70,7 @@ namespace SAE_S2._01
                 }
             }
 
+            //On récupère l'id de la ligne choisit
             int idligne = 0;
             foreach (var ligne in Ligne)
             {
@@ -72,6 +80,7 @@ namespace SAE_S2._01
                     break;
                 }
             }
+
             string Newhoraire = NumUpADownHeure.Value.ToString() + ":" + NumUpADownMinute.Value.ToString();
             string oldhoraire = ComboBoxHoraires.SelectedItem.ToString();
             ClasseBD.ModificationHoraire(oldhoraire,Newhoraire,idarret,idligne);
@@ -80,8 +89,14 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Quand une ligne est choisit, on affiche et remplit une combobox avec les arrêts de départ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ComboBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
+            BtnValider.Enabled = false;
             if (ComboBoxLigne.SelectedItem != null)
             {
                 lbArret.Text = "Arrêt de départ : ";
@@ -101,11 +116,20 @@ namespace SAE_S2._01
                     }
                 }
                 comboBoxArret.Show();
+                ComboBoxHoraires.Hide();
+                NumUpADownHeure.Hide();
+                NumUpADownMinute.Hide();
             }
         }
 
+        /// <summary>
+        /// Quand un arrêt est sélectionné, on rempli et on affiche les horaires associés à l'arrêt et à la ligne
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxArret_SelectedIndexChanged(object sender, EventArgs e)
         {
+            BtnValider.Enabled = false;
             ComboBoxHoraires.Items.Clear();
             if (comboBoxArret.SelectedItem != null)
             {
@@ -143,6 +167,11 @@ namespace SAE_S2._01
             }
         }
 
+        /// <summary>
+        /// Si un horaire est sélectionnée, on active le vouton de validation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ComboBoxHoraires_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ComboBoxHoraires.SelectedItem != null)

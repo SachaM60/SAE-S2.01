@@ -12,7 +12,9 @@ namespace SAE_S2._01
 {
     public partial class PageAjoutHoraire : Form
     {
-
+        /// <summary>
+        /// Création des listes pour récupérer les données des tables nécessaires
+        /// </summary>
         private List<(int, string, double, double)> Arret = new List<(int, string, double, double)>();
         private List<(int, string, int, int)> Ligne = new List<(int, string, int, int)>();
         private List<(int, string)> Bus = new List<(int, string)>();
@@ -27,6 +29,7 @@ namespace SAE_S2._01
             ClasseBD.LectureBus(ref Bus);
             ClasseBD.LectureHoraire(ref Horaire);
 
+            //Afficher une seule fois les noms de ligne dans la combobox
             var nomsLignesUniques = Ligne.Select(l => l.Item2).Distinct();
             foreach (var ligne in nomsLignesUniques)
             {
@@ -37,7 +40,7 @@ namespace SAE_S2._01
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            // Vérification des champs
+            // Vérifiier que les champs sont remplies
             if (comboBoxLigne.SelectedIndex == -1 ||
                 comboxArret.SelectedIndex == -1 ||
                 comboBoxBus.SelectedIndex == -1 ||
@@ -78,6 +81,13 @@ namespace SAE_S2._01
 
         }
 
+        /// <summary>
+        /// Quand une ligne est sélectionnée, on remplit les différentes combobox
+        /// Combobox arrêt avec les deux arrêts de départ disponible pour la ligne
+        /// ComboBox Bus avec les Bus passant déjà sur la ligne ou les bus non utilisés sur le reseau
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
             string nomLigneChoisie = comboBoxLigne.SelectedItem.ToString();

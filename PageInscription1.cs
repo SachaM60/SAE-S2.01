@@ -28,6 +28,14 @@ namespace SAE_S2._01
 
         }
 
+        /// <summary>
+        /// On vérifie que tout les champs sont valides
+        /// Si des champs sont vides, on affiche un message d'erreur
+        /// Si l'utilisateur est trop jeune on le renvoit à l'accueil
+        /// Sinon on passe à la suite de l'inscription
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnValiderInscription_Click(object sender, EventArgs e)
         {
             if (txtNomInscription.Text == "" || txtPrenomInscription.Text == "" || comboBoxSexe.SelectedItem == null || numAgeInscription.Value < 12)

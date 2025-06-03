@@ -12,7 +12,7 @@ namespace SAE_S2._01
 {
     public partial class PageSuppressionArret : Form
     {
-
+        //Liste des données de la base
         private List<(int, string, double, double)> Arret = new List<(int, string, double, double)>();
         private List<(int,string,int,int)> Ligne = new List<(int, string, int, int)>();
         private List<(int,int)> Croisement = new List<(int, int)>();
@@ -46,6 +46,12 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// On supprime l'arrêt si il n'y a pas d'erreur sinon on reste sur la page
+        /// Le message d'erreur se produit dans la méthode de suppression
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
             (int,string,double,double)arretselectionne = (-1,"",-1,-1);
@@ -65,9 +71,14 @@ namespace SAE_S2._01
             }
         }
 
+        /// <summary>
+        /// Quand un arrêt est choisis, on affiche les lignes qui passent par celui-ci
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstBoxArret_SelectedIndexChanged(object sender, EventArgs e)
         {
-            (int, string, double, double) arretselectionne = (0,"bonsoir",0,0);
+            (int, string, double, double) arretselectionne = (0,"",0,0);
             lbErreur.Text = "";
 
             if (lstBoxArret.SelectedIndex >=0)
@@ -77,6 +88,8 @@ namespace SAE_S2._01
                 lbLigne.Text = "Ligne associée : ";
 
                 flpLigne.Controls.Clear();
+
+                //On récupère toutes les données de l'arrêt sélectionnée
                 foreach (var arret in Arret)
                 {
                     if (lstBoxArret.SelectedItem.ToString() == arret.Item2)
@@ -85,6 +98,7 @@ namespace SAE_S2._01
                     }
                 }
                 
+                //On récupère et affiche les lignes qui se croisent avec l'arrêt
                 foreach (var croisement in Croisement)
                 {
                     if (arretselectionne.Item1 == croisement.Item1)

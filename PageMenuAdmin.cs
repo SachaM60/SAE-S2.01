@@ -12,6 +12,10 @@ namespace SAE_S2._01
 {
     public partial class PageMenuAdmin : Form
     {
+        /// <summary>
+        /// Page accessible uniquement par un admin
+        ///     Peut retourner sur l'application ou modifier la base de donnée
+        /// </summary>
         public PageMenuAdmin()
         {
             InitializeComponent();

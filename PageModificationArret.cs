@@ -43,6 +43,13 @@ namespace SAE_S2._01
             BtnValider.Enabled = false;
         }
 
+        /// <summary>
+        /// On vérifie que les coordonnées saisies sont corrects,
+        /// Si elles sont bonnes, on modifie l'arrêt
+        /// Sinon un message s'affiche selon l'erreur rencontrée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnValider_Click(object sender, EventArgs e)
         {
             double latitude, longitude;
@@ -77,6 +84,11 @@ namespace SAE_S2._01
             this.Hide();
         }
 
+        /// <summary>
+        /// Quand un arrêt est choisit, on affiche ses informations
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxArret_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxArret.SelectedItem != null)

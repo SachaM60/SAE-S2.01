@@ -55,9 +55,13 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Demande de saisie de mot de passe Administrateur pour vérifier si il s'agit bien d'un admin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void picAdmin_Click(object sender, EventArgs e)
         {
-            //Pop up pour saisir un mdp
             string password = Microsoft.VisualBasic.Interaction.InputBox("Veuillez saisir le mot de passe administrateur :", "Accès Administrateur", "", -1, -1);
            
             if (password != "admin")

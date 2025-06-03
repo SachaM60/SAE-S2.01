@@ -12,11 +12,13 @@ namespace SAE_S2._01
 {
     public partial class PageInscription2 : Form
     {
+        //Donnée de la page d'inscription précédente
         private string nom;
         private string prenom;
         private string sexe;
         private int age;
 
+        //Liste des utilisateur déjà existant dans la base
         private static List<(string,string,string,string,string,int)> Utilisateur = new List<(string, string, string, string, string, int)>();
 
         public PageInscription2(string nom, string prenom, string sexe, int age)
@@ -40,6 +42,15 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Ajout de l'utilisateur dans la base si tout est valide et redirection vers l'application
+        /// Vérifiaction :
+        ///     -Id déjà dans la base ( Id doit être unique)
+        ///     -Chaque champ est rempli
+        ///     Affichage d'un message d'erreur selon le problème rencontré
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnValider2_Click(object sender, EventArgs e)
         {
             lbErreurId.Text = "";

@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace SAE_S2._01
 {
+    /// <summary>
+    /// Page pour choisir quel action réalisé sur la base
+    ///     -Ajout de donnée
+    ///     -Suppression de donnée
+    ///     -Modification de donnée
+    /// </summary>
     public partial class PageModifBd : Form
     {
         public PageModifBd()

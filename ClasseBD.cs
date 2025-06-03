@@ -12,7 +12,14 @@ namespace SAE_S2._01
     public static class ClasseBD
     {
         private static MySqlConnection conn;
+
+        //string UserConnect = Id de l'utilisateur connecté (get et set pour le modifier et l'utiliser dans tout les forms)
         public static string UserConnect { get; set; }
+
+        /// <summary>
+        /// Ouvre une connexion à la base de données MySQL.
+        /// </summary>
+        /// <returns> Retourne un booléen pour s'assurer que le l'ouverture c'est bien passée </returns>
         public static bool Ouverture()
         {
             bool ouvert = false;
@@ -34,6 +41,10 @@ namespace SAE_S2._01
             return ouvert;
         }
 
+
+        /// <summary>
+        /// Ferme la connexion à la base de données MySQL.
+        /// </summary>
         public static void Fermeture()
         {
             if (conn.State == System.Data.ConnectionState.Open)
@@ -43,8 +54,16 @@ namespace SAE_S2._01
             }
         }
 
+
         //Méthodes d'insertion
 
+        /// <summary>
+        /// Insère une nouvelle ligne dans la table Ligne.
+        /// </summary>
+        /// <param name="NomLigne"></param>
+        /// <param name="arret_dep"> Id du premier arrêt par lequel la ligne passe</param>
+        /// <param name="arret_fin"> Id de Dernier arrêt par lequel la ligne passe</param>
+        /// <returns> L'id de la ligne insérer</returns>
         public static int InsertionLigne(string NomLigne, int arret_dep, int arret_fin)
         {
             string requeteLigne = $"INSERT INTO Ligne (nom_ligne,arret_dep,arret_fin) VALUES ('{NomLigne}',{arret_dep},{arret_fin});";
@@ -53,6 +72,13 @@ namespace SAE_S2._01
             return (int)cmd.LastInsertedId;
         }
 
+
+        /// <summary>
+        /// Insère un nouvel arrêt dans la table Arret.
+        /// </summary>
+        /// <param name="NomArret"></param>
+        /// <param name="latitude"></param>
+        /// <param name="longitude"></param>
         public static void InsertionArret(string NomArret, double latitude, double longitude)
         {
             string requeteArret = "INSERT INTO Arret (nom_arret, latitude_arret, longitude_arret) " +
@@ -67,13 +93,14 @@ namespace SAE_S2._01
             }
         }
 
-        public static void InsertionBus(string immatriculation)
-        {
-            string requeteBus = $"INSERT INTO Bus (immatriculation) VALUES ('{immatriculation}');";
-            MySqlCommand cmd = new MySqlCommand(requeteBus, conn);
-            cmd.ExecuteNonQuery();
-        }
 
+        /// <summary>
+        /// Insère un nouvel horaire dans la table Horaire.
+        /// </summary>
+        /// <param name="bus"> Id Bus s'occupant du ramassage</param>
+        /// <param name="arret"> Id de l'arrêt d'où part le bus</param>
+        /// <param name="ligne"> Id de la ligne</param>
+        /// <param name="horaire"> Horaire de départ du bus </param>
         public static void InsertionHoraire(int bus, int arret, int ligne, string horaire)
         {
             string requeteHoraire = $"INSERT INTO Horaire (id_bus,id_arret,id_ligne,heure_depart) " +
@@ -82,6 +109,13 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
+
+        /// <summary>
+        /// Insere le successeur d'un arrêt pour une ligne dans la table Suivant
+        /// </summary>
+        /// <param name="actuel"> Id de l'arrêt actuel</param>
+        /// <param name="suivant"> Id du prédecesseur de l'arrêt</param>
+        /// <param name="ligne"> Id de la ligne </param>
         public static void InsertionSuivant(int actuel, int suivant, int ligne)
         {
             string requeteSuivant = $"INSERT INTO Suivant (arret_actuel,arret_suivant,id_ligne) VALUES ({actuel},{suivant},{ligne});";
@@ -89,6 +123,12 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
+
+        /// <summary>
+        /// Insere le croisement entre un arret et une ligne
+        /// </summary>
+        /// <param name="arret"> Id de l'arret </param>
+        /// <param name="ligne"> Id de la ligne </param>
         public static void InsertionCroisement(int arret, int ligne)
         {
             string requeteCroisement = $"INSERT INTO Croisement (id_arret,id_ligne) VALUES ({arret},{ligne});";
@@ -96,6 +136,11 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Insère une ligne choisis comme favori pour un utilisateur dans la table Favori.
+        /// </summary>
+        /// <param name="utilisateur"> Id de l'utilisateur (string)</param>
+        /// <param name="favori"> Id de la ligne choisis </param>
         public static void InsertionFavori(string utilisateur, int favori)
         {
             string requeteFavori = $"INSERT INTO Favori (id_utilisateur,id_ligne) VALUES ('{utilisateur}',{favori});";
@@ -103,6 +148,16 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
+
+        /// <summary>
+        /// Insère un nouvel utilisateur dans la table Utilisateur.
+        /// </summary>
+        /// <param name="id"> Identifiant de l'utilisateur (string choisis par l'utilisateur) </param>
+        /// <param name="nom"> Nom de l'utilisateur</param>
+        /// <param name="prenom"> prenom de l'utilisateur</param>
+        /// <param name="mdp"> Le mot de passe de l'utilisateur</param>
+        /// <param name="sexe"> Le genre de l'utilisateur</param>
+        /// <param name="age"> L'âge de l'utilisateur</param>
         public static void InsertionUtilisateur(string id, string nom, string prenom, string mdp, string sexe, int age)
         {
             string requeteHoraire = $"INSERT INTO Utilisateur (id_utilisateur,nom_utilisateur,prenom_utilisateur," +
@@ -114,29 +169,38 @@ namespace SAE_S2._01
 
         //Méthodes de suppression
 
+        /// <summary>
+        /// Supprimer une ligne à partir de son Id
+        /// Supprime les relations avec les tables Horaire,Suivant,Croisement et Favori
+        /// </summary>
+        /// <param name="id"> Id de la ligne</param>
         public static void SuppressionLigne(int id)
         {
             string requeteHoraire = $"DELETE FROM Horaire WHERE id_ligne = {id};";
             MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn);
             cmd.ExecuteNonQuery();
 
-            string requeteSuivant = $"DELETE FROM Suivant WHERE id_ligne = {id};";
-            MySqlCommand cmd2 = new MySqlCommand(requeteSuivant, conn);
-            cmd2.ExecuteNonQuery();
+            ClasseBD.SuppressionSuivant(id);
 
-            string requeteCroisement = $"DELETE FROM Croisement WHERE id_ligne = {id};";
-            MySqlCommand cmd3 = new MySqlCommand(requeteCroisement, conn);
-            cmd3.ExecuteNonQuery();
+            ClasseBD.SuppressionCroisement(id);
 
             string requeteFavori = $"DELETE FROM Favori WHERE id_ligne = {id};";
-            MySqlCommand cmd4 = new MySqlCommand(requeteFavori, conn);
-            cmd4.ExecuteNonQuery();
+            MySqlCommand cmd2 = new MySqlCommand(requeteFavori, conn);
+            cmd2.ExecuteNonQuery();
 
             string requeteLigne = $"DELETE FROM Ligne WHERE id_ligne = {id};";
-            MySqlCommand cmd5 = new MySqlCommand(requeteLigne, conn);
-            cmd5.ExecuteNonQuery();
+            MySqlCommand cmd3 = new MySqlCommand(requeteLigne, conn);
+            cmd3.ExecuteNonQuery();
         }
 
+
+        /// <summary>
+        /// Supprime un arrêt à partir de son Id, ainsi que ces liens dans la table Suivant, Croisement
+        /// Créer des nouveaux lien dans la table Suivant pour combler les trous ( 5->6 , 6->1 devient 5->1 )
+        /// </summary>
+        /// <param name="id"> Id de l'arrêt</param>
+        /// <returns> Retourne une chaîne de caractère vide si il n'y a pas de problème
+        /// Retourne un message d'erreur si l'arrêt est le départ ou le terminus d'une ligne</returns>
         public static string SuppressionArret(int id)
         {
             List<(int, string, int, int)> Ligne = new List<(int, string, int, int)>();
@@ -208,6 +272,12 @@ namespace SAE_S2._01
             return "";
         }
 
+        /// <summary>
+        /// Supprime un horaire dans la table Horaire
+        /// </summary>
+        /// <param name="horaire"></param>
+        /// <param name="id_arret"></param>
+        /// <param name="id_ligne"></param>
         public static void SuppressionHoraire(string horaire, int id_arret, int id_ligne)
         {
             string requeteHoraire = $"DELETE FROM Horaire WHERE heure_depart = '{horaire}' AND id_arret = {id_arret} AND id_ligne = {id_ligne};";
@@ -215,13 +285,10 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
-        public static void SuppressionUtilisateur(string id_utilisateur)
-        {
-            string requeteUtilisateur = $"DELETE FROM Utilisateur WHERE id_utilisateur = '{id_utilisateur}';";
-            MySqlCommand cmd = new MySqlCommand(requeteUtilisateur, conn);
-            cmd.ExecuteNonQuery();
-        }
-
+        /// <summary>
+        /// Supprime une ligne favori d'un utilisateur
+        /// </summary>
+        /// <param name="id_utilisateur"></param>
         public static void SuppressionFavori(string id_utilisateur)
         {
             string requeteFavori = $"DELETE FROM Favori WHERE id_utilisateur = '{id_utilisateur}';";
@@ -229,6 +296,10 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Supprime les croisements entre les arrêts et une ligne donnée
+        /// </summary>
+        /// <param name="id_ligne"></param>
         public static void SuppressionCroisement(int id_ligne)
         {
             string requeteCroisement = $"DELETE FROM Croisement WHERE id_ligne = {id_ligne};";
@@ -236,6 +307,11 @@ namespace SAE_S2._01
             cmd.ExecuteNonQuery();
         }
 
+
+        /// <summary>
+        /// Supprime toutes les relations contenant la ligne
+        /// </summary>
+        /// <param name="id_ligne"></param>
         public static void SuppressionSuivant(int id_ligne)
         {
             string requeteSuivant = $"DELETE FROM Suivant WHERE id_ligne = {id_ligne};";
@@ -245,6 +321,10 @@ namespace SAE_S2._01
 
         //Méthodes de lecture
 
+        /// <summary>
+        /// Récupère toutes les données de la table Arret
+        /// </summary>
+        /// <param name="Liste"> Liste de tuple pour chaque enregistrement de la table </param>
         public static void LectureArret(ref List<(int, string, double, double)> Liste)
         {
             string requeteArret = "SELECT * FROM Arret ORDER BY nom_arret;";
@@ -261,6 +341,10 @@ namespace SAE_S2._01
             reader.Close();
         }
 
+        /// <summary>
+        /// Récupère toutes les données de la table ligne
+        /// </summary>
+        /// <param name="Liste"> Liste de tuple pour chaque enregistrement de la table </param>
         public static void LectureLigne(ref List<(int, string, int, int)> Liste)
         {
             string requeteLigne = "SELECT * FROM Ligne ORDER BY nom_ligne;";
@@ -277,6 +361,10 @@ namespace SAE_S2._01
             reader.Close();
         }
 
+        /// <summary>
+        /// Récupère toutes les données de la table Bus
+        /// </summary>
+        /// <param name="Liste"> Liste de tuple pour chaque enregistrement de la table </param>
         public static void LectureBus(ref List<(int, string)> Liste)
         {
             string requeteBus = "SELECT * FROM Bus ORDER BY id_bus;";
@@ -291,6 +379,10 @@ namespace SAE_S2._01
             reader.Close();
         }
 
+        /// <summary>
+        /// Récupère toutes les données de la table Horaire
+        /// </summary>
+        /// <param name="Liste"> Liste de tuple pour chaque enregistrement de la table </param>
         public static void LectureHoraire(ref List<(int, int, int, string)> Liste)
         {
             string requeteHoraire = "SELECT * FROM Horaire ORDER BY heure_depart;";
@@ -307,6 +399,10 @@ namespace SAE_S2._01
             reader.Close();
         }
 
+        /// <summary>
+        /// Récupère toutes les données de la table Croisement
+        /// </summary>
+        /// <param name="Liste"> Liste de tuple pour chaque enregistrement de la table </param>
         public static void LectureCroisement(ref List<(int, int)> Liste)
         {
             string requeteCroisement = "SELECT * FROM Croisement;";
@@ -321,6 +417,11 @@ namespace SAE_S2._01
             reader.Close();
         }
 
+
+        /// <summary>
+        /// Récupère toutes les données de la table Suivant
+        /// </summary>
+        /// <param name="Liste"> Liste de tuple pour chaque enregistrement de la table </param>
         public static void LectureSuivant(ref List<(int, int, int)> Liste)
         {
             string requeteSuivant = "SELECT * FROM Suivant;";
@@ -336,9 +437,13 @@ namespace SAE_S2._01
             reader.Close();
         }
 
+        /// <summary>
+        /// Récupère les lignes favorites de l'utilisateur connecté
+        /// </summary>
+        /// <param name="Liste"> Liste de tuple pour chaque enregistrement de la table </param>
         public static void LectureFavori(ref List<(string, int)> Liste)
         {
-            string requeteFavori = "SELECT * FROM Favori;";
+            string requeteFavori = $"SELECT * FROM Favori WHERE id_utilisateur='{ClasseBD.UserConnect}';";
             MySqlCommand cmd = new MySqlCommand(requeteFavori, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -350,6 +455,10 @@ namespace SAE_S2._01
             reader.Close();
         }
 
+        /// <summary>
+        /// Récupère toutes les données de la table Favori
+        /// </summary>
+        /// <param name="Liste"> Liste de tuple pour chaque enregistrement de la table </param>
         public static void LectureUtilisateur(ref List<(string, string, string, string, string, int)> Liste)
         {
             string requeteUtilisateur = "SELECT * FROM Utilisateur;";
@@ -368,6 +477,11 @@ namespace SAE_S2._01
             reader.Close();
         }
 
+        /// <summary>
+        /// Récupère dans l'odre les arrêt d'une ligne
+        /// </summary>
+        /// <param name="idLigne"> Id de la ligne dont on cherche les arrêts</param>
+        /// <param name="idsArrets"> Liste des arrêts rangés dans l'ordre </param>
         public static void LectureArretsDeLaLigne(int idLigne, ref List<int> idsArrets)
         {
             idsArrets.Clear();
@@ -418,6 +532,14 @@ namespace SAE_S2._01
 
         // Méthodes de Modifiaction
 
+
+        /// <summary>
+        /// Modifie le nom et les coordonnées d'un arrêt
+        /// </summary>
+        /// <param name="Oldnom">Ancien nom pour identifier la ligne dans la table</param>
+        /// <param name="Newnom"> Nouveau nom de l'arrêt </param>
+        /// <param name="lat"> Latitude de l'arrêt </param>
+        /// <param name="lon"> Longitude de l'arrêt </param>
         public static void ModificationArret(string Oldnom, string Newnom, double lat, double lon)
         {
             string requeteArret = "UPDATE Arret SET nom_arret = @newnom, latitude_arret = @lat, longitude_arret = @lon " +
@@ -432,6 +554,13 @@ namespace SAE_S2._01
             }
         }
 
+        /// <summary>
+        /// Modifie uniquement l'horaire à partir de l'ancien horaire, de l'id de l'arrêt de de l'id de la ligne
+        /// </summary>
+        /// <param name="Oldhoraire"> Ancien Horaire pour identifier dans la table</param>
+        /// <param name="Newhoraire"> Nouvel Horaire</param>
+        /// <param name="id_arret"></param>
+        /// <param name="id_ligne"></param>
         public static void ModificationHoraire(string Oldhoraire, string Newhoraire, int id_arret, int id_ligne)
         {
             string requeteHoraire = "UPDATE Horaire SET heure_depart = @newhoraire " +
@@ -446,6 +575,12 @@ namespace SAE_S2._01
             }
         }
 
+        /// <summary>
+        /// Modifie l'arrêt de départ de l'horaire si dans la table ligne, arret_dep a été modifié
+        /// </summary>
+        /// <param name="idLigne"> Id de la ligne qui change son arrêt de départ</param>
+        /// <param name="NewArret"> Nouvel Horaire</param>
+        /// <param name="OldArret"> Ancien Horaire pour identifier dans la table</param>
         public static void ModificationHoraireBis(int idLigne, int NewArret, int OldArret)
         {
             string requeteHoraire = "UPDATE Horaire SET id_arret = @newarret " +
@@ -459,12 +594,18 @@ namespace SAE_S2._01
             }
         }
 
+        /// <summary>
+        /// Modifie les lignes favorites d'un utilisateur
+        /// </summary>
+        /// <param name="utilisateur">Id de l'utilisateur</param>
+        /// <param name="ligne"> Nom de la ligne</param>
         public static void ModificationFavori(string utilisateur, string ligne)
         {
             List<(int,string,int,int)> Ligne = new List<(int, string, int, int)>();
             ClasseBD.LectureLigne(ref Ligne);
             List<int> idLigne = new List<int>();
 
+            //Retrouve les id de la ligne choisit ( deux Id pour les deux sens de circulation )
             foreach (var item in Ligne)
             {
                 if (item.Item2 == ligne)
@@ -479,6 +620,13 @@ namespace SAE_S2._01
 
         }
 
+        /// <summary>
+        /// Modifie le nom de la ligne, son départ et son terminus
+        /// </summary>
+        /// <param name="idLigne"></param>
+        /// <param name="nomLigne"></param>
+        /// <param name="arret_dep"></param>
+        /// <param name="arret_fin"></param>
         public static void ModificationLigne(int idLigne, string nomLigne, int arret_dep, int arret_fin)
         {
             string requeteLigne = "UPDATE Ligne SET nom_ligne = @nom, arret_dep = @arret_dep, arret_fin = @arret_fin " +

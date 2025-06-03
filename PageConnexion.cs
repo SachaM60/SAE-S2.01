@@ -13,6 +13,7 @@ namespace SAE_S2._01
 
     public partial class PageConnexion : Form
     {
+        //Liste des utilisateur connu dans la base
         private List<(string, string, string, string, string, int)> Utilisateur = new List<(string, string, string, string, string, int)>();
 
         public PageConnexion()
@@ -30,6 +31,14 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Vérification de l'existence de l'utilisateur dans la base
+        /// Vérification de la correspondance entre L'id et le mot de passe
+        /// Affichage de message d'erreur en conséquence
+        /// Si aucun problème l'utilisateur est connecté et redirigé vers l'application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnValiderConnexion_Click(object sender, EventArgs e)
         {
             string username = txtIdentifiantConnexion.Text;

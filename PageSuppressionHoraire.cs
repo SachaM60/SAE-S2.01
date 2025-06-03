@@ -13,6 +13,7 @@ namespace SAE_S2._01
 {
     public partial class PageSuppressionHoraire : Form
     {
+        //Liste des données de la base
         private List<(int, string, int, int)> Ligne = new List<(int, string, int, int)>();
         private List<(int, string, double, double)> Arret = new List<(int, string, double, double)>();
         private List<(int, int, int, string)> Horaire = new List<(int, int, int, string)>();
@@ -31,6 +32,7 @@ namespace SAE_S2._01
             ClasseBD.LectureLigne(ref Ligne);
             ClasseBD.LectureHoraire(ref Horaire);
 
+            //Affiche une fois le nom de la ligne dans la liste
             var nomsLignesUniques = Ligne.Select(l => l.Item2).Distinct();
             foreach (var ligne in nomsLignesUniques)
             {
@@ -46,6 +48,12 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Si tout les champs sont remplis
+        /// On récupère chaque donnée puis on supprime l'horaire de la base
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
             if (comboBoxHoraire.SelectedItem != null && lstBoxLigne.SelectedItem != null && comboBoxArret.SelectedItem != null)
@@ -67,6 +75,12 @@ namespace SAE_S2._01
             }
         }
 
+        /// <summary>
+        /// Quand on sélectionne une ligne dans la liste,
+        /// on affiche les informations concernant ces arrêts de départ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstBoxLigne.SelectedItem != null)
@@ -76,7 +90,9 @@ namespace SAE_S2._01
 
                 comboBoxArret.Items.Clear();
                 comboBoxArret.Show();
+                comboBoxHoraire.Hide();
 
+                //On récupère les deux Id de la ligne
                 List<(int, string, int, int)> LigneSelect = new List<(int,string,int,int)>();
                 foreach (var ligne in Ligne)
                 {
@@ -86,6 +102,7 @@ namespace SAE_S2._01
                     }
                 }
 
+                //On ajoute dans la combobox les deux arrêts de départ
                 foreach (var ligne in LigneSelect)
                 {
                     if (Arret.Any(a => a.Item1 == ligne.Item3))
@@ -101,6 +118,12 @@ namespace SAE_S2._01
         {
         }
 
+        /// <summary>
+        /// Quand un arrêt de départ est choisis,
+        /// on affiche les horaires correspondant à celui-ci dans une combobox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxArret_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxArret.SelectedItem != null)

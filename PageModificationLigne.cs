@@ -12,10 +12,13 @@ namespace SAE_S2._01
 {
     public partial class PageModificationLigne : Form
     {
+        //Liste des données nécessaires de la base
         private List<(int, string, double, double)> Arret = new List<(int, string, double, double)>();
         private List<(int, string, int, int)> Ligne = new List<(int, string, int, int)>();
         private List<(int, int, int)> Suivant = new List<(int, int, int)>();
         private List<(int, int, int, string)> Horaire = new List<(int, int, int, string)>();
+
+        //Premier arrêt de la ligne = arret_dep
         private int IdFirstArret;
 
         public PageModificationLigne()
@@ -48,12 +51,18 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Si la la ligne a un nom et plus de deux arrêts, la ligne est modifié ainsi que toutes ces relations
+        /// Sinon un message d'erreur s'affiche
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnValider_Click(object sender, EventArgs e)
         {
             string nomLigne = lstBoxLigne.SelectedItem?.ToString();
             string nouveauNom = txtBoxNom.Text.Trim();
 
-            if (string.IsNullOrEmpty(nomLigne) || string.IsNullOrEmpty(nouveauNom))
+            if (string.IsNullOrEmpty(nomLigne) || string.IsNullOrEmpty(nouveauNom) || flpArrets.Controls.Count <2)
             {
                 return;
             }
@@ -105,10 +114,17 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Au changement de ligne dans la liste, on affiche les informations de la ligne sélectionnée
+        /// Nom et arrêt par lesquels elle passe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
             string nomLigne = lstBoxLigne.SelectedItem.ToString();
             nomLigne = nomLigne.Substring(nomLigne.IndexOf(' ') + 1);
+
             //Récupérer l'id = le nombre entre parenthèses
             int idLigne = int.Parse(lstBoxLigne.SelectedItem.ToString().Substring(1, lstBoxLigne.SelectedItem.ToString().IndexOf(')') - 1));
 
@@ -133,6 +149,10 @@ namespace SAE_S2._01
             }
         }
 
+        /// <summary>
+        /// On affiche des combobox pour chaque arrêt associés à la ligne dans l'odre
+        /// </summary>
+        /// <param name="idLigne"></param>
         private void AfficherArretsLigne(int idLigne)
         {
             flpArrets.Controls.Clear();
@@ -174,13 +194,21 @@ namespace SAE_S2._01
             NumUpADownNbArret.Value = arretsLigne.Count;
         }
 
+        /// <summary>
+        /// Quand le NumUpDown change de valeur, on ajoute ou supprime des combobox
+        /// On les places après les arrêts déjà existant ou on supprime les dernières
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumUpADownNbArret_ValueChanged(object sender, EventArgs e)
         {
             int nombreArrets = (int)NumUpADownNbArret.Value;
             int nombreActuel = flpArrets.Controls.Count;
             if (nombreArrets > nombreActuel)
             {
-                // Ajouter des ComboBox si nécessaire
+                /* Ajouter des ComboBox si nécessaire
+                 * ( quand on change de ligne la méthode détecte un changement de valeur alors qu'on veut seulement
+                 * ajouter les lignes de l'arrêt donc on vérifie que l'on n'est pas dans ce cas) */
                 for (int i = nombreActuel; i < nombreArrets; i++)
                 {
                     ComboBox cb = new ComboBox();

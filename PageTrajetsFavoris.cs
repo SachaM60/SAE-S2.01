@@ -12,6 +12,7 @@ namespace SAE_S2._01
 {
     public partial class PageTrajetsFavoris : Form
     {
+        //Liste des données nécessaires pour gérer les favoris d'un utilisateur
         private List<(int,string,int,int)> Ligne = new List<(int, string, int, int)>();
         private List<(string,int)> Favori = new List<(string, int)>();
         public PageTrajetsFavoris()
@@ -25,6 +26,7 @@ namespace SAE_S2._01
             .Select(fav => fav.Item2)
             .ToList();
 
+            //Remplissage des deux listes box selon les favoris déjà enregistrés de l'utilisateur
             foreach (var ligne in Ligne)
             {
                 if (favorisUser.Contains(ligne.Item1))
@@ -43,6 +45,11 @@ namespace SAE_S2._01
             listFav.MouseDoubleClick += FavToDispo;
         }
 
+        /// <summary>
+        /// Déplace une ligne des favoris vers les lignes disponibles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FavToDispo(object sender, EventArgs e)
         {
             if (listFav.SelectedItem != null)
@@ -52,6 +59,11 @@ namespace SAE_S2._01
             }
         }
 
+        /// <summary>
+        /// Déplace une ligne disponibles vers les favoris
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DispoToFav(object sender, MouseEventArgs e)
         {
             if (listDispo.SelectedItem != null)
@@ -61,7 +73,11 @@ namespace SAE_S2._01
             }
         }
 
-
+        /// <summary>
+        /// Au changement de page, les favoris sont modifié
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMenu_Click(object sender, EventArgs e)
         {
             if (listFav.Items.Count > 0)
@@ -72,12 +88,21 @@ namespace SAE_S2._01
                     ClasseBD.ModificationFavori(ClasseBD.UserConnect, item.ToString());
                 }
             }
+            else if (listFav.Items.Count == 0)
+            {
+                ClasseBD.SuppressionFavori(ClasseBD.UserConnect);
+            }
             
             PageMenuPrincipal pageMenuPrincipal = new PageMenuPrincipal();
             pageMenuPrincipal.Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Au changement de page, les favoris sont modifié
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCalculItinéraire_Click(object sender, EventArgs e)
         {
             if (listFav.Items.Count > 0)
@@ -94,6 +119,11 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Au changement de page, les favoris sont modifié
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPlan_Click(object sender, EventArgs e)
         {
             if (listFav.Items.Count > 0)

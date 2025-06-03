@@ -13,7 +13,7 @@ namespace SAE_S2._01
 {
     public partial class PageAjoutLigne : Form
     {
-        private static MySqlConnection conn;
+        //Liste des arrêts de la table
         private List<(int, string, double, double)> Arret = new List<(int, string, double, double)>();
 
         public PageAjoutLigne()
@@ -30,6 +30,14 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Ajoute la ligne dans la base ainsi que de remplir les tables associés :
+        /// Suivant pour les prédécesseurs de chaque arrêt pour la ligne
+        /// Croisement pour tout les arrêts de la ligne
+        /// On répète l'opération une deuxième fois mais dans le sens inverse
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnValider_Click(object sender, EventArgs e)
         {
             List<int> idArrets = new List<int>();
@@ -75,6 +83,12 @@ namespace SAE_S2._01
             this.Close();
         }
 
+        /// <summary>
+        /// Création  de combobox selon la valeur du NumericUpDown
+        /// Chaque combobox est rempli avec tout les arrêts de la base
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void numericUpDownNbArret_ValueChanged(object sender, EventArgs e)
         {
             if (numericUpDownNbArret.Value > 0)
