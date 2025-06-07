@@ -21,6 +21,7 @@ namespace SAE_S2._01
             InitializeComponent();
             lbArret.Text = "";
             btnValider.Enabled = false;
+            ClasseBD.LectureArret(ref Arret);
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -91,6 +92,7 @@ namespace SAE_S2._01
         /// <param name="e"></param>
         private void numericUpDownNbArret_ValueChanged(object sender, EventArgs e)
         {
+
             if (numericUpDownNbArret.Value > 0)
             {
                 lbArret.Text = " Choisir les arrêts : ";
@@ -103,7 +105,7 @@ namespace SAE_S2._01
                 for (int j = flpArret.Controls.Count; j < (compt); j++)
                 {
                     ComboBox ListeLigne = new ComboBox();
-                    ClasseBD.LectureArret(ref Arret);
+                    
                     foreach (var item in Arret)
                     {
                         ListeLigne.Items.Add(item.Item2);
