@@ -86,7 +86,7 @@ namespace SAE_S2._01
                 int id = chemin.Pop();
                 sb.Append(arrets[id].Nom);
                 if (chemin.Count > 0)
-                    sb.Append(", ");
+                    sb.Append(" -> ");
             }
 
             return sb.ToString();

@@ -86,45 +86,40 @@ namespace SAE_S2._01
             // Lecture des noms et positions des arrêts
             ClasseBD.LectureNomArret(ref nom, ref pos, nbarrets, ref idArret);
 
-
-            ////Création des arrêts à partir des données lues
-            for (int i = 0; i < nbarrets; i++)
-            {
-                ArretByID.Add(idArret[i], new Arret(nom[i], pos[i].Item1, pos[i].Item2, new List<ArretAdjacent>(), new List<ArretAdjacent>(), idArret[i]));
-            }
-
-            //Ajout des successeurs
-            foreach (int id in SuccesseursbyId.Keys)
-            {
-                Arret arret = ArretByID[id];
-                foreach (int adjacentId in SuccesseursbyId[id])
+            if (ArretByID.Count == 0) { 
+                ////Création des arrêts à partir des données lues
+                for (int i = 0; i < nbarrets; i++)
                 {
-                    double distance = arret.DistanceVers(ArretByID[adjacentId]); // Calcul de la distance entre les arrêts
-                    arret.Add_successeur(new ArretAdjacent(ArretByID[adjacentId], distance / 30, ArretByLigne[id]));
+                    ArretByID.Add(idArret[i], new Arret(nom[i], pos[i].Item1, pos[i].Item2, new List<ArretAdjacent>(), new List<ArretAdjacent>(), idArret[i]));
+                }
+
+                //Ajout des successeurs
+                foreach (int id in SuccesseursbyId.Keys)
+                {
+                    Arret arret = ArretByID[id];
+                    foreach (int adjacentId in SuccesseursbyId[id])
+                    {
+                        double distance = arret.DistanceVers(ArretByID[adjacentId]); // Calcul de la distance entre les arrêts
+                        arret.Add_successeur(new ArretAdjacent(ArretByID[adjacentId], distance / 30, ArretByLigne[id]));
+                    }
+                }
+
+                //Ajout des prédécesseurs
+                foreach (int id in PredecesseursById.Keys)
+                {
+                    Arret arret = ArretByID[id];
+                    foreach (int adjacentId in PredecesseursById[id])
+                    {
+                        double distance = arret.DistanceVers(ArretByID[adjacentId]); // Calcul de la distance entre les arrêts
+                        arret.Add_predecesseur(new ArretAdjacent(ArretByID[adjacentId], distance / 30, ArretByLigne[id]));
+                    }
                 }
             }
-
-            //Ajout des prédécesseurs
-            foreach (int id in PredecesseursById.Keys)
-            {
-                Arret arret = ArretByID[id];
-                foreach (int adjacentId in PredecesseursById[id])
-                {
-                    double distance = arret.DistanceVers(ArretByID[adjacentId]); // Calcul de la distance entre les arrêts
-                    arret.Add_predecesseur(new ArretAdjacent(ArretByID[adjacentId], distance / 30, ArretByLigne[id]));
-                }
-            }
-
             lblChemin.Text = "";
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            ArretByID.Clear();
-            ArretByIsFavoris.Clear();
-            SuccesseursbyId.Clear();
-            PredecesseursById.Clear();
-            ArretByLigne.Clear();
             PageMenuPrincipal pageMenuPrincipal = new PageMenuPrincipal();
             pageMenuPrincipal.Show();
             this.Close();
@@ -132,11 +127,6 @@ namespace SAE_S2._01
 
         private void btnFavoris_Click(object sender, EventArgs e)
         {
-            ArretByID.Clear();
-            ArretByIsFavoris.Clear();
-            SuccesseursbyId.Clear();
-            PredecesseursById.Clear();
-            ArretByLigne.Clear();
             PageTrajetsFavoris pageTrajetsFavoris = new PageTrajetsFavoris();
             pageTrajetsFavoris.Show();
             this.Close();
@@ -144,11 +134,6 @@ namespace SAE_S2._01
 
         private void btnPlan_Click(object sender, EventArgs e)
         {
-            ArretByID.Clear();
-            ArretByIsFavoris.Clear();
-            SuccesseursbyId.Clear();
-            PredecesseursById.Clear();
-            ArretByLigne.Clear();
             PagePlanDuReseau pagePlanDuReseau = new PagePlanDuReseau();
             pagePlanDuReseau.Show();
             this.Close();
@@ -221,8 +206,9 @@ namespace SAE_S2._01
              double temps = 0;
             chemin = Reseau.Djikstra(arret_actuel!.Id_arret, arret_stop!.Id_arret, ArretByIsFavoris, ref temps);
             labelAffTempsTra.Text = $"{temps.ToString()} minutes.";
-            lblChemin.Text = chemin.PadRight(Width);
-            
+            lblChemin.Text = chemin;
+            lblChemin.MaximumSize = new Size(420, 0); 
+            lblChemin.AutoSize = true;
         }
     }
 }

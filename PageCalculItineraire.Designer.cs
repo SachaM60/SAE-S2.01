@@ -91,7 +91,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(71, 63);
+            label1.Location = new Point(70, 26);
             label1.Name = "label1";
             label1.Size = new Size(158, 15);
             label1.TabIndex = 9;
@@ -101,7 +101,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(95, 110);
+            label2.Location = new Point(90, 50);
             label2.Name = "label2";
             label2.Size = new Size(138, 15);
             label2.TabIndex = 10;
@@ -111,7 +111,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(80, 193);
+            label3.Location = new Point(75, 140);
             label3.Name = "label3";
             label3.Size = new Size(153, 15);
             label3.TabIndex = 11;
@@ -120,7 +120,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(287, 157);
+            button1.Location = new Point(295, 98);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(83, 22);
@@ -132,7 +132,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(50, 218);
+            label4.Location = new Point(50, 175);
             label4.Name = "label4";
             label4.Size = new Size(178, 15);
             label4.TabIndex = 14;
@@ -141,7 +141,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(267, 61);
+            comboBox1.Location = new Point(267, 23);
             comboBox1.Margin = new Padding(3, 2, 3, 2);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(133, 23);
@@ -151,7 +151,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(267, 110);
+            comboBox2.Location = new Point(267, 50);
             comboBox2.Margin = new Padding(3, 2, 3, 2);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(133, 23);
@@ -161,7 +161,7 @@
             // labelAffTempsTra
             // 
             labelAffTempsTra.AutoSize = true;
-            labelAffTempsTra.Location = new Point(255, 193);
+            labelAffTempsTra.Location = new Point(267, 140);
             labelAffTempsTra.Name = "labelAffTempsTra";
             labelAffTempsTra.Size = new Size(97, 15);
             labelAffTempsTra.TabIndex = 17;
@@ -170,7 +170,7 @@
             // lblChemin
             // 
             lblChemin.AutoSize = true;
-            lblChemin.Location = new Point(257, 220);
+            lblChemin.Location = new Point(267, 175);
             lblChemin.Name = "lblChemin";
             lblChemin.Size = new Size(49, 15);
             lblChemin.TabIndex = 18;
