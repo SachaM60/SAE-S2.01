@@ -64,6 +64,8 @@ namespace SAE_S2._01
 
             if (string.IsNullOrEmpty(nomLigne) || string.IsNullOrEmpty(nouveauNom) || flpArrets.Controls.Count <2)
             {
+                MessageBox.Show("Veuillez sélectionner une ligne, entrer un nom valide et ajouter au moins deux arrêts.",
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else

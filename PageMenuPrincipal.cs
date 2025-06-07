@@ -15,20 +15,21 @@ namespace SAE_S2._01
         public PageMenuPrincipal()
         {
             InitializeComponent();
-            if (string.IsNullOrEmpty(ClasseBD.UserConnect))
+            picAdmin.Visible = false;
+            if (string.IsNullOrEmpty( (ClasseBD.UserConnect).Item1 ) )
             {
                 btnFavoris.Enabled = false;
-                picAdmin.Visible = false;
             }
             else
             {
                 btnFavoris.Enabled = true;
-                picAdmin.Visible = true;
+                if (ClasseBD.UserConnect.Item2 == 1) { picAdmin.Visible = true; }
             }
         }
 
         private void picAccueilMenu_Click(object sender, EventArgs e)
         {
+            ClasseBD.UserConnect = ("", 0);
             PageAccueil pageAccueil = new PageAccueil();
             pageAccueil.Show();
             this.Close();

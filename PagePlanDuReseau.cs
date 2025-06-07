@@ -26,7 +26,7 @@ namespace SAE_S2._01
             ClasseBD.LectureFavori(ref Favori);
             cboxChoixLigne.Items.Add("Plan Complet");
 
-            if (string.IsNullOrEmpty(ClasseBD.UserConnect))
+            if (string.IsNullOrEmpty(ClasseBD.UserConnect.Item1))
             {
                 btnFavoris.Enabled = false;
             }
@@ -36,9 +36,9 @@ namespace SAE_S2._01
             }
 
             //Remplissage de la combobox avec les lignes favorites si l'utilisateur est connecté
-            if (!string.IsNullOrEmpty(ClasseBD.UserConnect))
+            if (!string.IsNullOrEmpty(ClasseBD.UserConnect.Item1))
             {
-                var favorisUser = Favori.Where(fav => fav.Item1 == ClasseBD.UserConnect).Select(fav => fav.Item2).ToList();
+                var favorisUser = Favori.Where(fav => fav.Item1 == ClasseBD.UserConnect.Item1).Select(fav => fav.Item2).ToList();
                 foreach (var ligne in Ligne)
                 {
                     if (favorisUser.Contains(ligne.Item1) && !cboxChoixLigne.Items.Contains(ligne.Item2))

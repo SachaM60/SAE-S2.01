@@ -13,8 +13,10 @@ namespace SAE_S2._01
     {
         private static MySqlConnection conn;
 
-        //string UserConnect = Id de l'utilisateur connecté (get et set pour le modifier et l'utiliser dans tout les forms)
-        public static string UserConnect { get; set; }
+        //(string,int) UserConnect :
+        //string = Id de l'utilisateur connecté (get et set pour le modifier et l'utiliser dans tout les forms)
+        //int = 0 si non admin, 1 si admin
+        public static (string,int) UserConnect { get; set; }
 
         /// <summary>
         /// Ouvre une connexion à la base de données MySQL.
@@ -161,8 +163,8 @@ namespace SAE_S2._01
         public static void InsertionUtilisateur(string id, string nom, string prenom, string mdp, string sexe, int age)
         {
             string requeteHoraire = $"INSERT INTO Utilisateur (id_utilisateur,nom_utilisateur,prenom_utilisateur," +
-                $"mot_de_passe,sexe_utilisateur,age_utilisateur) " +
-                $"VALUES ('{id}','{nom}','{prenom}','{mdp}','{sexe}',{age});";
+                $"mot_de_passe,sexe_utilisateur,age_utilisateur,admin) " +
+                $"VALUES ('{id}','{nom}','{prenom}','{mdp}','{sexe}',{age},0);";
             MySqlCommand cmd = new MySqlCommand(requeteHoraire, conn);
             cmd.ExecuteNonQuery();
         }
@@ -459,7 +461,7 @@ namespace SAE_S2._01
         /// Récupère toutes les données de la table Favori
         /// </summary>
         /// <param name="Liste"> Liste de tuple pour chaque enregistrement de la table </param>
-        public static void LectureUtilisateur(ref List<(string, string, string, string, string, int)> Liste)
+        public static void LectureUtilisateur(ref List<(string, string, string, string, string, int,int)> Liste)
         {
             string requeteUtilisateur = "SELECT * FROM Utilisateur;";
             MySqlCommand cmd = new MySqlCommand(requeteUtilisateur, conn);
@@ -472,7 +474,8 @@ namespace SAE_S2._01
                 string mot_de_passe = reader.GetString(3);
                 string sexe_utilisateur = reader.GetString(4);
                 int age_utilisateur = reader.GetInt32(5);
-                Liste.Add((id_utilisateur, nom_utilisateur, prenom_utilisateur, mot_de_passe, sexe_utilisateur, age_utilisateur));
+                int admin = reader.GetInt32(6);
+                Liste.Add((id_utilisateur, nom_utilisateur, prenom_utilisateur, mot_de_passe, sexe_utilisateur, age_utilisateur,admin));
             }
             reader.Close();
         }

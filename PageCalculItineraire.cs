@@ -21,7 +21,7 @@ namespace SAE_S2._01
         {
             InitializeComponent();
 
-            if (string.IsNullOrEmpty(ClasseBD.UserConnect))
+            if (string.IsNullOrEmpty(ClasseBD.UserConnect.Item1))
             {
                 btnFavoris.Enabled = false;
             }

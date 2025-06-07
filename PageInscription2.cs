@@ -19,7 +19,7 @@ namespace SAE_S2._01
         private int age;
 
         //Liste des utilisateur déjà existant dans la base
-        private static List<(string,string,string,string,string,int)> Utilisateur = new List<(string, string, string, string, string, int)>();
+        private static List<(string,string,string,string,string,int,int)> Utilisateur = new List<(string, string, string, string, string, int,int)>();
 
         public PageInscription2(string nom, string prenom, string sexe, int age)
         {

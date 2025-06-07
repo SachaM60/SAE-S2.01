@@ -73,6 +73,11 @@ namespace SAE_S2._01
                 page.Show();
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une ligne, un arrêt et un horaire avant de supprimer.",
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>

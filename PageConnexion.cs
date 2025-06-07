@@ -14,7 +14,7 @@ namespace SAE_S2._01
     public partial class PageConnexion : Form
     {
         //Liste des utilisateur connu dans la base
-        private List<(string, string, string, string, string, int)> Utilisateur = new List<(string, string, string, string, string, int)>();
+        private List<(string, string, string, string, string, int,int)> Utilisateur = new List<(string, string, string, string, string, int,int)>();
 
         public PageConnexion()
         {
@@ -63,7 +63,7 @@ namespace SAE_S2._01
             {
                 if (user.Item1 == username && user.Item4 == password)
                 {
-                    ClasseBD.UserConnect = user.Item1;
+                    ClasseBD.UserConnect = (user.Item1,user.Item7);
 
                     DialogResult result = MessageBox.Show("Connexion réussie !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (result == DialogResult.OK)

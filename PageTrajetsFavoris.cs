@@ -22,7 +22,7 @@ namespace SAE_S2._01
             ClasseBD.LectureFavori(ref Favori);
 
             var favorisUser = Favori
-            .Where(fav => fav.Item1 == ClasseBD.UserConnect)
+            .Where(fav => fav.Item1 == ClasseBD.UserConnect.Item1)
             .Select(fav => fav.Item2)
             .ToList();
 
@@ -82,15 +82,15 @@ namespace SAE_S2._01
         {
             if (listFav.Items.Count > 0)
             {
-                ClasseBD.SuppressionFavori(ClasseBD.UserConnect);
+                ClasseBD.SuppressionFavori(ClasseBD.UserConnect.Item1);
                 foreach (var item in listFav.Items)
                 {
-                    ClasseBD.ModificationFavori(ClasseBD.UserConnect, item.ToString());
+                    ClasseBD.ModificationFavori(ClasseBD.UserConnect.Item1, item.ToString());
                 }
             }
             else if (listFav.Items.Count == 0)
             {
-                ClasseBD.SuppressionFavori(ClasseBD.UserConnect);
+                ClasseBD.SuppressionFavori(ClasseBD.UserConnect.Item1);
             }
             
             PageMenuPrincipal pageMenuPrincipal = new PageMenuPrincipal();
@@ -107,10 +107,10 @@ namespace SAE_S2._01
         {
             if (listFav.Items.Count > 0)
             {
-                ClasseBD.SuppressionFavori(ClasseBD.UserConnect);
+                ClasseBD.SuppressionFavori(ClasseBD.UserConnect.Item1);
                 foreach (var item in listFav.Items)
                 {
-                    ClasseBD.ModificationFavori(ClasseBD.UserConnect, item.ToString());
+                    ClasseBD.ModificationFavori(ClasseBD.UserConnect.Item1, item.ToString());
                 }
             }
 
@@ -128,10 +128,10 @@ namespace SAE_S2._01
         {
             if (listFav.Items.Count > 0)
             {
-                ClasseBD.SuppressionFavori(ClasseBD.UserConnect);
+                ClasseBD.SuppressionFavori(ClasseBD.UserConnect.Item1);
                 foreach (var item in listFav.Items)
                 {
-                    ClasseBD.ModificationFavori(ClasseBD.UserConnect, item.ToString());
+                    ClasseBD.ModificationFavori(ClasseBD.UserConnect.Item1, item.ToString());
                 }
             }
 
