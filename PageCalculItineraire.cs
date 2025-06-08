@@ -207,7 +207,7 @@ namespace SAE_S2._01
             chemin = Reseau.Djikstra(arret_actuel!.Id_arret, arret_stop!.Id_arret, ArretByIsFavoris, ref temps);
             labelAffTempsTra.Text = $"{temps.ToString()} minutes.";
             lblChemin.Text = chemin;
-            lblChemin.MaximumSize = new Size(420, 0); 
+            lblChemin.MaximumSize = new Size(560, 0); 
             lblChemin.AutoSize = true;
         }
     }

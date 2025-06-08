@@ -644,6 +644,8 @@ namespace SAE_S2._01
             }
         }
 
+        //Méthode de la SAE2.02 pour le calcul d'itinéraire
+
         public static void LectureNomArret(ref List<string> nomArrets, ref List<Tuple<double, double>> positionArrets, int nb_arrets, ref List<int> idArret)
         {
             // Lecture des noms et positions des arrêts depuis la base de données
