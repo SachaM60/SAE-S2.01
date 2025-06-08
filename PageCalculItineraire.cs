@@ -24,39 +24,42 @@ namespace SAE_S2._01
         private Arret arret_stop;
         private string nom_arret_stop;
         private string chemin = "";
+
         // Lecture du nombre d'arrêts dans la base de données
-        private static int nbarrets = ClasseBD.LectureNombreArret();
+        public static int nbarrets = ClasseBD.LectureNombreArret();
 
         // Initialisation des listes pour stocker les noms et positions des arrêts
         private static List<string> nom = new List<string>(nbarrets);
 
-        private static List<Tuple<double, double>> pos = new List<Tuple<double, double>>(nbarrets);
+        public List<Tuple<double, double>> pos = new List<Tuple<double, double>>(nbarrets);
 
         // Liste pour stocker les IDs des arrêts
-        private static List<int> idArret = new List<int>(nbarrets);
+        public List<int> idArret = new List<int>(nbarrets);
 
         // Dictionnaire pour stocker les arrêts par ID
-        private static Dictionary<int, Arret> ArretByID = new Dictionary<int, Arret>();
+        public Dictionary<int, Arret> ArretByID;
 
         // Initialize the dictionary ArretByIsFavoris before its usage to fix CS0165 error.  
-        private static Dictionary<int, bool> ArretByIsFavoris = new Dictionary<int, bool>();
+        public Dictionary<int, bool> ArretByIsFavoris = ClasseBD.LectureArretsFavoris();
 
         // Lecture des successeurs et prédécesseurs
-        private static Dictionary<int, List<int>> SuccesseursbyId = ClasseBD.LectureSuivant();
+        public Dictionary<int, List<int>> SuccesseursbyId = ClasseBD.LectureSuivant();
 
-        private static Dictionary<int, List<int>> PredecesseursById = ClasseBD.LecturePredecesseur();
+        public Dictionary<int, List<int>> PredecesseursById = ClasseBD.LecturePredecesseur();
 
         //Lecture des lignes passant par chaque arrêt
 
-        private static Dictionary<int, List<int>> ArretByLigne = ClasseBD.LectureCroisement();
+        public Dictionary<int, List<int>> ArretByLigne = ClasseBD.LectureCroisement();
 
         //Création du graphe du réseau de transport
-        private static Graphes Reseau = new Graphes(ArretByID);
+        public Graphes Reseau;
 
         public PageCalculItineraire()
         {
             InitializeComponent();
 
+            ArretByID = new Dictionary<int, Arret>();
+            Reseau = new Graphes(ArretByID);
             if (string.IsNullOrEmpty(ClasseBD.UserConnect.Item1))
             {
                 btnFavoris.Enabled = false;
@@ -83,10 +86,12 @@ namespace SAE_S2._01
             comboBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            // Lecture des noms et positions des arrêts
-            ClasseBD.LectureNomArret(ref nom, ref pos, nbarrets, ref idArret);
 
-            if (ArretByID.Count == 0) { 
+            
+            if (ArretByID.Count == 0) 
+            {
+                // Lecture des noms et positions des arrêts
+                ClasseBD.LectureNomArret(ref nom, ref pos, nbarrets, ref idArret);
                 ////Création des arrêts à partir des données lues
                 for (int i = 0; i < nbarrets; i++)
                 {
@@ -116,6 +121,7 @@ namespace SAE_S2._01
                 }
             }
             lblChemin.Text = "";
+            labelAffTempsTra.Text = "";
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -203,7 +209,7 @@ namespace SAE_S2._01
             /// <summary>
             /// Executer le calcul de l'itinéraire entre les deux arrêts sélectionnés
             /// </summary>
-             double temps = 0;
+            double temps = 0;
             chemin = Reseau.Djikstra(arret_actuel!.Id_arret, arret_stop!.Id_arret, ArretByIsFavoris, ref temps);
             labelAffTempsTra.Text = $"{temps.ToString()} minutes.";
             lblChemin.Text = chemin;

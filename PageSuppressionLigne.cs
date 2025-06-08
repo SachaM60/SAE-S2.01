@@ -75,7 +75,7 @@ namespace SAE_S2._01
         /// <param name="e"></param>
         private void lstBoxLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstBoxLigne.SelectedIndex != 0)
+            if (lstBoxLigne.SelectedItem != null)
             {
                 btnSupprimer.Enabled = true;
 

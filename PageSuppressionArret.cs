@@ -81,7 +81,7 @@ namespace SAE_S2._01
             (int, string, double, double) arretselectionne = (0,"",0,0);
             lbErreur.Text = "";
 
-            if (lstBoxArret.SelectedIndex >=0)
+            if (lstBoxArret.SelectedItem != null)
             {
                 btnSupprimer.Enabled = true;
                 lbArret.Text = $"Arret sélectionné : {lstBoxArret.SelectedItem.ToString()}";

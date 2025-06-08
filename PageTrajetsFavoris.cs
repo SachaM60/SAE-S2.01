@@ -82,7 +82,7 @@ namespace SAE_S2._01
         {
             if (listFav.Items.Count > 0)
             {
-                ClasseBD.SuppressionFavori(ClasseBD.UserConnect.Item1);
+                ClasseBD.SuppressionFavori();
                 foreach (var item in listFav.Items)
                 {
                     ClasseBD.ModificationFavori(ClasseBD.UserConnect.Item1, item.ToString());
@@ -90,7 +90,7 @@ namespace SAE_S2._01
             }
             else if (listFav.Items.Count == 0)
             {
-                ClasseBD.SuppressionFavori(ClasseBD.UserConnect.Item1);
+                ClasseBD.SuppressionFavori();
             }
             
             PageMenuPrincipal pageMenuPrincipal = new PageMenuPrincipal();
@@ -107,7 +107,7 @@ namespace SAE_S2._01
         {
             if (listFav.Items.Count > 0)
             {
-                ClasseBD.SuppressionFavori(ClasseBD.UserConnect.Item1);
+                ClasseBD.SuppressionFavori();
                 foreach (var item in listFav.Items)
                 {
                     ClasseBD.ModificationFavori(ClasseBD.UserConnect.Item1, item.ToString());
@@ -128,7 +128,7 @@ namespace SAE_S2._01
         {
             if (listFav.Items.Count > 0)
             {
-                ClasseBD.SuppressionFavori(ClasseBD.UserConnect.Item1);
+                ClasseBD.SuppressionFavori();
                 foreach (var item in listFav.Items)
                 {
                     ClasseBD.ModificationFavori(ClasseBD.UserConnect.Item1, item.ToString());

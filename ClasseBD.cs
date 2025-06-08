@@ -291,9 +291,9 @@ namespace SAE_S2._01
         /// Supprime une ligne favori d'un utilisateur
         /// </summary>
         /// <param name="id_utilisateur"></param>
-        public static void SuppressionFavori(string id_utilisateur)
+        public static void SuppressionFavori()
         {
-            string requeteFavori = $"DELETE FROM Favori WHERE id_utilisateur = '{id_utilisateur}';";
+            string requeteFavori = $"DELETE FROM Favori WHERE id_utilisateur = '{ClasseBD.UserConnect.Item1}';";
             MySqlCommand cmd = new MySqlCommand(requeteFavori, conn);
             cmd.ExecuteNonQuery();
         }
@@ -445,7 +445,7 @@ namespace SAE_S2._01
         /// <param name="Liste"> Liste de tuple pour chaque enregistrement de la table </param>
         public static void LectureFavori(ref List<(string, int)> Liste)
         {
-            string requeteFavori = $"SELECT * FROM Favori WHERE id_utilisateur='{ClasseBD.UserConnect}';";
+            string requeteFavori = $"SELECT * FROM Favori WHERE id_utilisateur='{ClasseBD.UserConnect.Item1}';";
             MySqlCommand cmd = new MySqlCommand(requeteFavori, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -736,6 +736,20 @@ namespace SAE_S2._01
             }
             reader.Close();
             return ArretByLigne;
+        }
+        public static Dictionary<int, bool> LectureArretsFavoris()
+        {
+            // Lecture des arrêts favoris de l'utilisateur connecté depuis la base de données
+            Dictionary<int, bool> arretsFavoris = new Dictionary<int, bool>();
+            string reqSQL = $"SELECT DISTINCT id_arret FROM Favori, Croisement WHERE Favori.id_ligne = Croisement.id_ligne and id_utilisateur = '{ClasseBD.UserConnect.Item1}';";
+            MySqlCommand cmd = new MySqlCommand(reqSQL, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                arretsFavoris.Add(reader.GetInt32(0), true);
+            }
+            reader.Close();
+            return arretsFavoris;
         }
     }
 }
