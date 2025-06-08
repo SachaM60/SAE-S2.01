@@ -22,6 +22,7 @@ namespace SAE_S2._01
             lbArret.Text = "";
             btnValider.Enabled = false;
             ClasseBD.LectureArret(ref Arret);
+            flpArret.AutoScroll = true;
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -41,6 +42,19 @@ namespace SAE_S2._01
         /// <param name="e"></param>
         private void btnValider_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtBoxNom.Text))
+            {
+                MessageBox.Show("Veuillez entrer un nom pour la ligne.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            foreach (ComboBox cb in flpArret.Controls)
+            {
+                if (cb.SelectedItem == null || string.IsNullOrEmpty(cb.SelectedItem.ToString()))
+                {
+                    MessageBox.Show("Veuillez sélectionner un arrêt pour chaque ComboBox.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             List<int> idArrets = new List<int>();
 
             foreach (ComboBox cb in flpArret.Controls)
